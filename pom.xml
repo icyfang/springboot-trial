@@ -92,6 +92,12 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.11.2</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -102,17 +108,6 @@
             </plugin>
         </plugins>
     </build>
-    <!-- transform swagger document to 	static page-->
-    <!--    <repositories>-->
-    <!--        <repository>-->
-    <!--            <snapshots>-->
-    <!--                <enabled>false</enabled>-->
-    <!--            </snapshots>-->
-    <!--            <id>jcenter-releases</id>-->
-    <!--            <name>jcenter</name>-->
-    <!--            <url>http://jcenter.bintray.com</url>-->
-    <!--        </repository>-->
-    <!--    </repositories>-->
 
 
 </project>

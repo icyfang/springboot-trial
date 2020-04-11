@@ -1,10 +1,10 @@
 package com.example.demo;
 
 import com.example.demo.bean.BookBean;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import com.spring4all.swagger.EnableSwagger2Doc;
-import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 @EnableSwagger2Doc
 @SpringBootApplication

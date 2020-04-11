@@ -58,6 +58,16 @@
             <version>1.9.0.RELEASE</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+
         <!-- transform swagger document to 	static page-->
         <dependency>
             <groupId>io.github.swagger2markup</groupId>
@@ -81,15 +91,6 @@
             <groupId>ch.netzwerg</groupId>
             <artifactId>paleo-core</artifactId>
             <version>0.11.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
     </dependencies>

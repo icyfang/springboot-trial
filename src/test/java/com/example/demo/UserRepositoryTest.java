@@ -1,7 +1,7 @@
 package com.example.demo;
 
-import com.example.demo.bean.ConcVo;
-import com.example.demo.bean.ConcVo2;
+import com.example.demo.bean.ConcreteVo;
+import com.example.demo.bean.ConcreteVo2;
 import com.example.demo.bean.Forum;
 import com.example.demo.bean.User;
 import com.example.demo.repository.*;
@@ -99,15 +99,20 @@ public class UserRepositoryTest {
 
     @Test
     public void test4() {
-        ConcVo vo = new ConcVo();
+        ConcreteVo vo = new ConcreteVo();
         vo.setDesp("desp");
         vo.setName("name");
         concreteRepository.save(vo);
+
+        ConcreteVo2 vo1 = new ConcreteVo2();
+        vo1.setDesp("desp");
+        vo1.setName("name");
+        concrete2Repository.save(vo1);
     }
 
     @Test
     public void test5() {
-        ConcVo2 vo = new ConcVo2();
+        ConcreteVo2 vo = new ConcreteVo2();
         vo.setDesp("desp");
         vo.setName("name");
         concrete2Repository.save(vo);

@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import com.example.demo.bean.BookBean;
+import com.example.demo.context.properties.BookBean;
 import com.spring4all.swagger.EnableSwagger2Doc;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

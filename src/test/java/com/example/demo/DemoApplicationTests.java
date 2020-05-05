@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import com.example.demo.controller.UserController;
+import com.example.demo.mvc.controller.UserController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

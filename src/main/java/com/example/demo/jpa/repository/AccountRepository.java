@@ -1,14 +1,14 @@
 package com.example.demo.jpa.repository;
 
 import com.example.demo.jpa.bean.Account;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 import org.springframework.data.repository.query.Param;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-public interface AccountRepository extends JpaRepositoryImplementation<Account, Long> {
+public interface AccountRepository extends JpaRepository<Account, Long> {
 
     Account findByAccountName(String accountName);
 

@@ -3,18 +3,16 @@ package com.example.demo.jpa.bean;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @Entity
-public class Joke {
+public class Joke1 {
 
     @Id
     private Long id;
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "joke_id")
-    private List<Comment> comments;
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinTable(name = "comment1")
+    private Comment1 comment;
 }

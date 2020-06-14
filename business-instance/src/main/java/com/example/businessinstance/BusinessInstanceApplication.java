@@ -1,17 +1,17 @@
-package com.example.eurekaserver;
+package com.example.businessinstance;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.web.bind.annotation.RestController;
 
-@EnableEurekaServer
 @SpringBootApplication
+@EnableEurekaClient
 @RestController
-public class EurekaServerApplication {
+public class BusinessInstanceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(EurekaServerApplication.class, args);
+        SpringApplication.run(BusinessInstanceApplication.class, args);
     }
 
 }

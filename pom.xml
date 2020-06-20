@@ -5,6 +5,9 @@
     <packaging>pom</packaging>
     <modules>
         <module>eureka-server</module>
+        <module>eureka-server-b</module>
+        <module>business-instance</module>
+        <module>business-instance-a</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -19,7 +22,7 @@
     <description>Demo project for Spring Boot</description>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>8</java.version>
     </properties>
 
     <dependencies>

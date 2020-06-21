@@ -9,16 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @EnableDiscoveryClient
 @RestController
-public class BusinessInstanceAApplication {
+public class BusinessInstanceBApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BusinessInstanceAApplication.class, args);
+        SpringApplication.run(BusinessInstanceBApplication.class, args);
     }
-
-
 
     @RequestMapping("/service/name")
     String name() {
-        return "business-instance-a";
+        return "business-instance-b";
     }
 }

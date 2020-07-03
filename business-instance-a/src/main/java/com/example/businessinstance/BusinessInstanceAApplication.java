@@ -15,8 +15,6 @@ public class BusinessInstanceAApplication {
         SpringApplication.run(BusinessInstanceAApplication.class, args);
     }
 
-
-
     @RequestMapping("/service/name")
     String name() {
         return "business-instance-a";

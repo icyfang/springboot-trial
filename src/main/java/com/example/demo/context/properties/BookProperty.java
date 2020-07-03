@@ -1,13 +1,17 @@
 package com.example.demo.context.properties;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @Component
 @ConfigurationProperties(prefix = "book")
-public class BookBean {
+public class BookProperty {
     private String name;
     private String author;
     private List<String> chapters;
@@ -35,4 +39,5 @@ public class BookBean {
     public void setName(String name) {
         this.name = name;
     }
+
 }

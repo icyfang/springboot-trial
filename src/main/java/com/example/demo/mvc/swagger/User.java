@@ -1,4 +1,4 @@
-package com.example.demo.mvc.bean;
+package com.example.demo.mvc.swagger;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

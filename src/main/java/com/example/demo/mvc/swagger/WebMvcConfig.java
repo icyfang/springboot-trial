@@ -1,4 +1,4 @@
-package com.example.demo.mvc.config;
+package com.example.demo.mvc.swagger;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;

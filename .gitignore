@@ -56,3 +56,5 @@ hs_err_pid*
 
 /mvnw.cmd
 /.mvn/wrapper/
+/swagger-client/
+/swagger-server/

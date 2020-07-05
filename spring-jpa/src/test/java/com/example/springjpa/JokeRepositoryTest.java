@@ -1,11 +1,6 @@
 package com.example.springjpa;
 
-import com.example.springjpa.bean.Comment;
-import com.example.springjpa.bean.Comment1;
-import com.example.springjpa.bean.Joke;
-import com.example.springjpa.bean.Joke1;
-import com.example.springjpa.repository.Joke1Repository;
-import com.example.springjpa.repository.JokeRepository;
+import com.example.springjpa.association.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,9 +1,9 @@
 package com.example.springjpa;
 
-import com.example.springjpa.bean.primary.PrimaryBean;
-import com.example.springjpa.bean.secondary.SecondaryBean;
-import com.example.springjpa.repository.primary.PrimaryRepository;
-import com.example.springjpa.repository.secondary.SecondaryRepository;
+import com.example.springjpa.multiDatasource.primary.PrimaryBean;
+import com.example.springjpa.multiDatasource.primary.PrimaryRepository;
+import com.example.springjpa.multiDatasource.secondary.SecondaryBean;
+import com.example.springjpa.multiDatasource.secondary.SecondaryRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = SpringJpaApplication.class)
 public class MultiDataSourceTest {
 
     @Autowired
@@ -21,21 +21,15 @@ public class MultiDataSourceTest {
     SecondaryRepository secondaryRepository;
 
     @Test
-    public void test() {
+    public void save() {
 
         SecondaryBean s = new SecondaryBean();
-        s.setId(4);
         s.setName("second");
+        secondaryRepository.save(s);
 
         PrimaryBean p = new PrimaryBean();
-        p.setId(4);
-
+        p.setName("primary");
         primaryRepository.save(p);
-        p.setName("second");
-
-        primaryRepository.save(p);
-        secondaryRepository.save(s);
     }
-
 
 }

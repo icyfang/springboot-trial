@@ -1,8 +1,8 @@
 package com.example.springjpa;
 
-import com.example.springjpa.bean.Account;
-import com.example.springjpa.repository.AccountRepository;
-import com.example.springjpa.service.AccountServiceImpl;
+import com.example.springjpa.version.Account;
+import com.example.springjpa.version.AccountRepository;
+import com.example.springjpa.version.AccountServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

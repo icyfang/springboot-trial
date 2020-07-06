@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface ForumRepository extends JpaRepository<Forum, Long> {
 
-    @Query(value = "select * from t_forum u where u.userName=:userName", nativeQuery = true)
+    @Query(value = "select u from Forum u where u.userName=:userName")
     Forum findForum(@Param("userName") String name);
 
     List<Forum> findNameNotEmpty();
@@ -24,8 +24,6 @@ public interface ForumRepository extends JpaRepository<Forum, Long> {
     List<Forum> findTop3ByUserName(String name);
 
     List<Forum> findLast3ByUserName(String name);
-
-    void deleteByUserName(String name);
 
 }
 

@@ -4,9 +4,10 @@ import com.example.springjpa.base.Forum;
 import com.example.springjpa.base.ForumRepository;
 import com.example.springjpa.base.ForumRepository2;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.jupiter.api.Test;
+import org.junit.FixMethodOrder;
+import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Sort;
@@ -18,7 +19,8 @@ import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-class ForumRepositoryTest {
+@FixMethodOrder(MethodSorters.JVM)
+public class ForumRepositoryTest {
 
     @Autowired
     private ForumRepository forumRepository;
@@ -26,7 +28,19 @@ class ForumRepositoryTest {
     @Autowired
     private ForumRepository2 forumRepository2;
 
-    @BeforeClass
+    @Test
+    public void doTest() {
+        init();
+        findForum();
+        findNameNotEmpty();
+        findByUserName();
+        findByUserNameAndAccount();
+        findByAccountBetween();
+        findTop3ByUsername();
+        findLast3ByUsername();
+        deleteAllInBatch();
+    }
+
     public void init() {
         forumRepository.save(new Forum((long) 1, "user1", "pwd", new BigDecimal(10), "street1", "city1", "country1", "title1", "comment1", 10));
         forumRepository.save(new Forum((long) 2, "user2", "pwd", new BigDecimal(20), "street1", "city1", "country1", "title1", "comment1", 10));
@@ -39,55 +53,47 @@ class ForumRepositoryTest {
         forumRepository2.save(new Forum((long) 8, "user8", "pwd", new BigDecimal(80), "street1", "city1", "country1", "title1", "comment1", 10));
     }
 
-    @Test
-    void findForum() {
+    public void findForum() {
         Forum forum = forumRepository.findForum("user1");
         Long aLong = Optional.ofNullable(forum).map(Forum::getId).orElse((long) 0);
         Assert.assertEquals(aLong.longValue(), 1);
     }
 
-    @Test
-    void findNameNotEmpty() {
+    public void findNameNotEmpty() {
         List<Forum> nameNotEmpty = forumRepository.findNameNotEmpty();
         Assert.assertEquals(nameNotEmpty.size(), 9);
     }
 
-    @Test
-    void findByUserName() {
+    public void findByUserName() {
         List<Forum> forums = forumRepository.findByUserName("user2", Sort.by(Sort.Direction.DESC, "id"));
         Long aLong = Optional.ofNullable(forums.get(0)).map(Forum::getId).orElse((long) 0);
-        Assert.assertEquals(aLong.longValue(), 20);
+        Assert.assertEquals(aLong.longValue(), 9);
     }
 
-    @Test
-    void findByUserNameAndAccount() {
+    public void findByUserNameAndAccount() {
         Forum forum = forumRepository.findByUserNameAndAccount("user2", new BigDecimal(20));
         Long aLong = Optional.ofNullable(forum).map(Forum::getId).orElse((long) 0);
         Assert.assertEquals(aLong.longValue(), 2);
     }
 
-    @Test
-    void findByAccountBetween() {
+    public void findByAccountBetween() {
         List<Forum> forums = forumRepository.findByAccountBetween(new BigDecimal(30), new BigDecimal(60));
         Assert.assertEquals(forums.size(), 4);
     }
 
-    @Test
-    void findTop3ByUsername() {
+    public void findTop3ByUsername() {
         List<Forum> forums = forumRepository.findTop3ByUserName("user2");
         Assert.assertEquals(forums.size(), 2);
     }
 
-    @Test
-    void findLast3ByUsername() {
+    public void findLast3ByUsername() {
         List<Forum> forums = forumRepository.findLast3ByUserName("user2");
         Assert.assertEquals(forums.size(), 2);
     }
 
-    @Test
-    void deleteByUserName() {
-        forumRepository.deleteByUserName("user8");
+    public void deleteAllInBatch() {
+        forumRepository.deleteAllInBatch();
         List<Forum> all = forumRepository.findAll();
-        Assert.assertEquals(all.size(), 8);
+        Assert.assertEquals(all.size(), 0);
     }
 }

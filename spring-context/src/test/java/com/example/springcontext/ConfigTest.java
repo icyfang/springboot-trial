@@ -1,12 +1,12 @@
-package com.example.demo.context;
+package com.example.springcontext;
 
-import com.example.demo.context.config.BeanA;
-import com.example.demo.context.config.BeanB;
-import com.example.demo.context.config.ConfigB;
+import com.example.springcontext.config.BeanA;
+import com.example.springcontext.config.BeanB;
+import com.example.springcontext.config.ConfigB;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-public class DemoImportTest {
+public class ConfigTest {
 
     @Test
     public void test() {

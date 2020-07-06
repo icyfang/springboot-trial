@@ -1,4 +1,4 @@
-package com.example.demo.context.properties;
+package com.example.springcontext.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;

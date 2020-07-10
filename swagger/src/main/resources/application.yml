@@ -1,0 +1,12 @@
+server:
+  port: 8101
+spring:
+  application:
+    name: mybatis-plus
+
+oauth2:
+  grant-type: client_credentials
+  client-authentication-scheme: form
+  client-secret: OENz4IziKhFpnxhk
+  client-id: IAXKerFvAjN3ODyRiUS1v8MAtBU6sZUr
+  access-token-uri: https://manulife-development-dev.apigee.net/v1/mg/oauth2/token

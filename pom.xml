@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <groupId>com.example</groupId>
     <artifactId>demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -31,6 +31,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security.oauth</groupId>
+            <artifactId>spring-security-oauth2</artifactId>
+            <version>2.3.3.RELEASE</version>
         </dependency>
 
         <dependency>
@@ -108,67 +114,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>io.swagger</groupId>
-                <artifactId>swagger-codegen-maven-plugin</artifactId>
-                <version>2.4.13</version>
-                <executions>
-                    <execution>
-                        <id>swagger-client</id>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <!-- specify the swagger yaml -->
-                            <inputSpec>src/main/resources/swagger.yml</inputSpec>
-                            <output>./swagger-client</output>
-                            <artifactId>swagger-client</artifactId>
-                            <groupId>com.baeldung</groupId>
-                            <artifactVersion>0.0.1-SNAPSHOT</artifactVersion>
-                            <!-- target to generate java client code -->
-                            <language>java</language>
-                            <addCompileSourceRoot>false</addCompileSourceRoot>
-                            <!-- hint: if you want to generate java server code, e.g. based on Spring Boot,
-                                 you can use the following target: <language>spring</language> -->
-
-                            <!-- pass any necessary config options -->
-                            <configOptions>
-                                <dateLibrary>joda</dateLibrary>
-                            </configOptions>
-
-                            <!-- override the default library to jersey2 -->
-                            <library>feign</library>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>swagger-server</id>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <!-- specify the swagger yaml -->
-                            <inputSpec>src/main/resources/swagger.yml</inputSpec>
-                            <output>./swagger-server</output>
-                            <artifactId>swagger-server</artifactId>
-                            <groupId>com.baeldung</groupId>
-                            <artifactVersion>0.0.1-SNAPSHOT</artifactVersion>
-                            <!-- target to generate java client code -->
-                            <language>spring</language>
-                            <addCompileSourceRoot>false</addCompileSourceRoot>
-                            <!-- hint: if you want to generate java server code, e.g. based on Spring Boot,
-                                 you can use the following target: <language>spring</language> -->
-
-                            <!-- pass any necessary config options -->
-                            <configOptions>
-                                <dateLibrary>joda</dateLibrary>
-                            </configOptions>
-
-                            <!-- override the default library to jersey2 -->
-                            <library>spring-boot</library>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

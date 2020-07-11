@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.springmvc;
 
 import io.github.swagger2markup.Swagger2MarkupConfig;
 import io.github.swagger2markup.Swagger2MarkupConverter;

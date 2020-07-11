@@ -1,6 +1,5 @@
-package com.example.demo.mvc.swagger;
+package com.example.springmvc.swagger;
 
-import com.example.demo.mvc.swagger.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;

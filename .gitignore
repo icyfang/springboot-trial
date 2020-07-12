@@ -66,3 +66,4 @@ hs_err_pid*
 /swagger/src/main/java/io/swagger/
 /swagger/.swagger-codegen/
 /swagger/gradle/wrapper/
+/spring-mvc/.mvn/wrapper/

@@ -11,8 +11,9 @@ import java.util.Collections;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class JokeRepositoryTest {
+public class AssociationTest {
 
+    //todo
     @Autowired
     private JokeRepository jokeRepository;
 

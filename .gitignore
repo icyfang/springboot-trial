@@ -58,3 +58,12 @@ hs_err_pid*
 /.mvn/wrapper/
 /swagger-client/
 /swagger-server/
+/swagger/docs/
+/swagger/src/main/java/com/example/swagger/api/
+/swagger/src/main/java/com/example/swagger/feign/
+/swagger/src/main/java/com/example/swagger/model/
+/swagger/src/main/java/com/example/swagger/restTemplate/
+/swagger/src/main/java/io/swagger/
+/swagger/.swagger-codegen/
+/swagger/gradle/wrapper/
+/spring-mvc/.mvn/wrapper/

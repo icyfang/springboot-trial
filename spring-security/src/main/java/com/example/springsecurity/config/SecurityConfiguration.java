@@ -85,7 +85,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private void configLogout(HttpSecurity http) throws Exception {
         LogoutConfigurer<HttpSecurity> logout = http.logout();
-        logout.logoutUrl("/logout").logoutSuccessUrl("/login").permitAll();
+        logout.logoutUrl("/logout")
+              .logoutSuccessUrl("/login")
+              .permitAll();
     }
 
     private void configExceptionHandler(HttpSecurity http) throws Exception {

@@ -4,9 +4,8 @@ package com.example.springmvc.aop.privilege;
 import java.lang.reflect.Method;
 
 /**
- * @author: Shanghong Cai
- * @descirption: parse PrivilegeInfo
- * @create: 2020-07-20 21:36
+ * @author Shanghong Cai
+ * @create 2020-07-20 21:36
  */
 public class AnnotationParser {
     public static String parse(Class clazz, String methodName) throws Exception {

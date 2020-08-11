@@ -14,9 +14,8 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 /**
- * @author: Shanghong Cai
- * @descirption:
- * @create: 2020-07-23 11:38
+ * @author Shanghong Cai
+ * @create 2020-07-23 11:38
  */
 @Configuration
 @EnableAuthorizationServer

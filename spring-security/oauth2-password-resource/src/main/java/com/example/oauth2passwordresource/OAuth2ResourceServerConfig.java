@@ -6,9 +6,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 
 /**
- * @author: Shanghong Cai
- * @descirption:
- * @create: 2020-07-23 14:02
+ * @author Shanghong Cai
+ * @create 2020-07-23 14:02
  */
 @Configuration
 @EnableResourceServer

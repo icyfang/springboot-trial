@@ -6,9 +6,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @author: Shanghong Cai
- * @descirption: annotation for privilege info
- * @create: 2020-07-20 21:34
+ * @author Shanghong Cai
+ * @create 2020-07-20 21:34
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

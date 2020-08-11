@@ -3,9 +3,8 @@ package com.example.springmvc.aop.exception;
 import org.aspectj.lang.ProceedingJoinPoint;
 
 /**
- * @author: Shanghong Cai
- * @descirption: aspect to handle MyException
- * @create: 2020-07-20 17:14
+ * @author Shanghong Cai
+ * @create 2020-07-20 17:14
  */
 public class MyExceptionAspect {
 

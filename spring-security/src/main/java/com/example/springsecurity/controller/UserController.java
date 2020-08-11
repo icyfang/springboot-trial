@@ -5,9 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @author: Shanghong Cai
- * @descirption: user controller
- * @create: 2020-07-11 13:47
+ * @author Shanghong Cai
+ * @create 2020-07-11 13:47
  */
 
 @RestController

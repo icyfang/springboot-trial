@@ -4,10 +4,9 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.example</groupId>
-        <artifactId>demo</artifactId>
+        <artifactId>spring-trial</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <groupId>com.example</groupId>
     <artifactId>swagger</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>swagger</name>
@@ -105,9 +104,9 @@
                         </goals>
                         <configuration>
                             <language>spring</language>
-                            <!--                            <artifactId>swagger-client</artifactId>-->
-                            <!--                            <groupId>com.baeldung</groupId>-->
-                            <!--                            <artifactVersion>0.0.1-SNAPSHOT</artifactVersion>-->
+                            <artifactId>swagger-client</artifactId>
+                            <groupId>com.example</groupId>
+                            <artifactVersion>0.0.1-SNAPSHOT</artifactVersion>
                             <apiPackage>com.example.swagger.api</apiPackage>
                             <modelPackage>com.example.swagger.model</modelPackage>
                             <inputSpec>${project.basedir}/src/main/resources/pet.yml</inputSpec>
@@ -121,7 +120,7 @@
 <!--                                <delegatePattern>true</delegatePattern>-->
                                 <useBeanValidation>true</useBeanValidation>
                                 <hideGenerationTimestamp>true</hideGenerationTimestamp>
-                                <dateLibrary>joda</dateLibrary>
+                                <dateLibrary>java8-datetime</dateLibrary>
                                 <java8>true</java8>
 <!--                                <defaultInterfaces>false</defaultInterfaces>-->
                                 <interfaceOnly>true</interfaceOnly>
@@ -149,7 +148,7 @@
                                 <delegatePattern>true</delegatePattern>
                                 <useBeanValidation>true</useBeanValidation>
                                 <hideGenerationTimestamp>true</hideGenerationTimestamp>
-                                <dateLibrary>joda</dateLibrary>
+                                <dateLibrary>java8-datetime</dateLibrary>
                             </configOptions>
                             <library>feign</library>
                         </configuration>

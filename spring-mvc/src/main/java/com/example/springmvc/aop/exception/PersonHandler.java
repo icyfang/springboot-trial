@@ -1,6 +1,6 @@
-package com.example.springmvc.exception;
+package com.example.springmvc.aop.exception;
 
-import com.example.springmvc.privilege.PrivilegeInfo;
+import com.example.springmvc.aop.privilege.PrivilegeInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

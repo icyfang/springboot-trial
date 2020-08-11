@@ -7,7 +7,7 @@
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <bean id="privilegeAspect" class="com.example.springmvc.privilege.PrivilegeAspect"/>
+    <bean id="privilegeAspect" class="com.example.springmvc.aop.privilege.PrivilegeAspect"/>
 
     <aop:config>
         <aop:aspect ref="privilegeAspect">

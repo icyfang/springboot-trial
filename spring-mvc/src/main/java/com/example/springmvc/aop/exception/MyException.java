@@ -1,4 +1,4 @@
-package com.example.springmvc.exception;
+package com.example.springmvc.aop.exception;
 
 /**
  * @author: Shanghong Cai

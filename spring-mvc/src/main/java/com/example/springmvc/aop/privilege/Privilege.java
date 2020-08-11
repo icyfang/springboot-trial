@@ -1,4 +1,4 @@
-package com.example.springmvc.privilege;
+package com.example.springmvc.aop.privilege;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

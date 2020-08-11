@@ -4,10 +4,9 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.example</groupId>
-        <artifactId>demo</artifactId>
+        <artifactId>spring-trial</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <groupId>com.example</groupId>
     <artifactId>spring-mvc</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-mvc</name>
@@ -44,6 +43,8 @@
             <artifactId>paleo-core</artifactId>
             <version>0.11.0</version>
         </dependency>
+
+
     </dependencies>
 
     <dependencyManagement>

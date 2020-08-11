@@ -1,5 +1,5 @@
 
-package com.example.springmvc.privilege;
+package com.example.springmvc.aop.privilege;
 
 import java.lang.reflect.Method;
 

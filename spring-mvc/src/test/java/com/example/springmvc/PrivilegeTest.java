@@ -1,8 +1,8 @@
 package com.example.springmvc;
 
-import com.example.springmvc.exception.PersonHandler;
-import com.example.springmvc.privilege.Privilege;
-import com.example.springmvc.privilege.PrivilegeAspect;
+import com.example.springmvc.aop.exception.PersonHandler;
+import com.example.springmvc.aop.privilege.Privilege;
+import com.example.springmvc.aop.privilege.PrivilegeAspect;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

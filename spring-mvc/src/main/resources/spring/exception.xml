@@ -7,11 +7,11 @@
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <bean id="exceptionAspect" class="com.example.springmvc.exception.MyExceptionAspect"/>
+    <bean id="exceptionAspect" class="com.example.springmvc.aop.exception.MyExceptionAspect"/>
 
     <aop:config>
         <aop:pointcut
-                expression="execution(* com.example.springmvc.exception.PersonHandler.*(..))"
+                expression="execution(* com.example.springmvc.aop.exception.PersonHandler.*(..))"
                 id="perform"/>
         <aop:aspect ref="exceptionAspect">
             <aop:around method="handleEx" pointcut-ref="perform"/>

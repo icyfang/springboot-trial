@@ -4,13 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.example</groupId>
-        <artifactId>demo</artifactId>
+        <artifactId>spring-trial</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <groupId>com.example</groupId>
-    <artifactId>auth2-client-auth</artifactId>
+    <artifactId>oauth2-client-auth</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>auth2-client-auth</name>
+    <name>oauth2-client-auth</name>
     <description>Demo project for Spring Boot</description>
 
     <dependencies>

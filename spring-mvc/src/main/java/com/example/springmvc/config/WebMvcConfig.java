@@ -1,5 +1,6 @@
 package com.example.springmvc.config;
 
+import com.example.springmvc.asyncIntercptor.AsyncTestInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -36,6 +37,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 System.out.println("enter HandlerInterceptor");
                 return true;
             }
-        }).addPathPatterns("/example/v1/*");
+        }).addPathPatterns("/advice/v1/*").order(10);
+        registry.addInterceptor(new AsyncTestInterceptor()).addPathPatterns("/async/v1/*").order(1);
     }
 }

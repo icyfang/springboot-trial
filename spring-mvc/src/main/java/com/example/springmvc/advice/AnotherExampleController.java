@@ -11,7 +11,7 @@ import java.util.Date;
  * @since 2020-08-10
  */
 @RestController
-@RequestMapping("/example/v2")
+@RequestMapping("/advice/v2")
 public class AnotherExampleController {
 
     @GetMapping("/exception")

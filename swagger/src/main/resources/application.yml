@@ -2,7 +2,7 @@ server:
   port: 8101
 spring:
   application:
-    name: mybatis-plus
+    name: swagger
 
 oauth2:
   grant-type: client_credentials

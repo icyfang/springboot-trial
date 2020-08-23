@@ -554,16 +554,45 @@ paths:
       - "application/xml"
       - "application/json"
       parameters:
-      - name: "username"
-        in: "path"
-        description: "The name that needs to be deleted"
-        required: true
-        type: "string"
+        - name: "username"
+          in: "path"
+          description: "The name that needs to be deleted"
+          required: true
+          type: "string"
       responses:
         "400":
           description: "Invalid username supplied"
         "404":
           description: "User not found"
+  '/file/download':
+    get:
+      tags:
+        - Download
+      operationId: downloadFile
+      # xlsx
+      produces:
+        - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: file
+  '/file/upload':
+    get:
+      tags:
+        - Download
+      operationId: uploadFile
+      # xlsx
+      consumes:
+        - multipart/form-data
+      parameters:
+        - name: file
+          in: formData
+          type: file
+          required: true
+      responses:
+        '200':
+          description: successful operation
 securityDefinitions:
   petstore_auth:
     type: "oauth2"

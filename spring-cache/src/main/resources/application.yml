@@ -1,0 +1,10 @@
+server:
+  port: 8103
+spring:
+  application:
+    name: spring-cache
+  redis:
+    host: 10.242.165.121
+    port: 6379
+  cache:
+    cache-names: cache-1

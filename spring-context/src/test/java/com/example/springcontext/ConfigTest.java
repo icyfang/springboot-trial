@@ -3,7 +3,7 @@ package com.example.springcontext;
 import com.example.springcontext.config.BeanA;
 import com.example.springcontext.config.BeanB;
 import com.example.springcontext.config.ConfigB;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class ConfigTest {

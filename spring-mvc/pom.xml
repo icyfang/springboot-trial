@@ -12,6 +12,10 @@
     <name>spring-mvc</name>
     <description>Demo project for Spring Boot</description>
 
+    <properties>
+        <version.swagger>2.9.2</version.swagger>
+    </properties>
+
     <dependencies>
 
         <dependency>
@@ -42,6 +46,12 @@
             <groupId>ch.netzwerg</groupId>
             <artifactId>paleo-core</artifactId>
             <version>0.11.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${version.swagger}</version>
         </dependency>
 
 

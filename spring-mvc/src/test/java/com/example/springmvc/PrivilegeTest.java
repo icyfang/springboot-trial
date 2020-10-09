@@ -3,12 +3,12 @@ package com.example.springmvc;
 import com.example.springmvc.aop.exception.PersonHandler;
 import com.example.springmvc.aop.privilege.Privilege;
 import com.example.springmvc.aop.privilege.PrivilegeAspect;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
  * @author Shanghong Cai
  * @create 2020-07-20 21:46
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class PrivilegeTest {
 
@@ -32,7 +32,7 @@ public class PrivilegeTest {
 
     MockMvc mockMvc;
 
-    @Before
+    @BeforeEach
     public void setup() {
         mockMvc = MockMvcBuilders.standaloneSetup(handler)
                                  .build();

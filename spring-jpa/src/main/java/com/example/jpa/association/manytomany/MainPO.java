@@ -1,6 +1,7 @@
 package com.example.jpa.association.manytomany;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.CascadeType;
@@ -12,7 +13,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity(name = "manytomany_main")
 @Proxy(lazy = false)
 public class MainPO {

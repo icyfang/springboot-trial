@@ -1,6 +1,8 @@
 package com.example.jpa.association.manytomany;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.CascadeType;
@@ -12,7 +14,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity(name = "manytomany_sub")
 @Proxy(lazy = false)
 public class SubPO {
@@ -23,6 +26,7 @@ public class SubPO {
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "manytomany_join", joinColumns = @JoinColumn(name = "sub_id"), inverseJoinColumns = @JoinColumn(name = "main_id"))
+    @JsonIgnore
     private List<MainPO> mainPOS;
 
 }

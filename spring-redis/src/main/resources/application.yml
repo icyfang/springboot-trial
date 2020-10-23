@@ -4,5 +4,5 @@ spring:
   application:
     name: spring-redis
   redis:
-    host: 10.242.165.121
+    host: 47.104.3.203
     port: 6379

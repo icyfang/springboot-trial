@@ -45,11 +45,11 @@ public class CustomControllerAdvice implements ResponseBodyAdvice<Object> {
                                   ServerHttpRequest request, ServerHttpResponse response) {
         if (body instanceof String) {
             try {
-                return new JsonMapper().writeValueAsString(ResponseEntity.of("500", "msg", body));
+                return new JsonMapper().writeValueAsString(ResponseEntity.of(500, "msg", body));
             } catch (JsonProcessingException e) {
                 e.printStackTrace();
             }
         }
-        return ResponseEntity.of("500", "msg", body);
+        return ResponseEntity.of(500, "msg", body);
     }
 }

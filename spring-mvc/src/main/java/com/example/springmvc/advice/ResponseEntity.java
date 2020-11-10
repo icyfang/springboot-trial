@@ -11,11 +11,11 @@ import lombok.Data;
 @AllArgsConstructor
 public class ResponseEntity<T> {
 
-    private String code;
+    private int code;
     private String message;
     private T body;
 
-    public static <T> ResponseEntity<T> of(String code, String msg, T t) {
+    public static <T> ResponseEntity<T> of(int code, String msg, T t) {
         return new ResponseEntity<>(code, msg, t);
     }
 }

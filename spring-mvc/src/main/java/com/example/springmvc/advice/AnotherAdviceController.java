@@ -11,21 +11,16 @@ import java.util.Date;
  * @since 2020-08-10
  */
 @RestController
-@RequestMapping("/advice/v1/")
-public class ExampleController {
+@RequestMapping("/advice/v2")
+public class AnotherAdviceController {
 
     @GetMapping("/exception")
     public String getException() throws Exception {
-        throw  new Exception("Exception occur");
+        throw new Exception("Exception occur");
     }
 
     @GetMapping("/dateFormat")
-    public String getDateFormat(Date date){
+    public String getDateFormat(Date date) {
         return date.toString();
-    }
-
-    @GetMapping("/entity")
-    public ExampleEntity getEntity(){
-        return new ExampleEntity("01","entity");
     }
 }

@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * @author Shanghong Cai
  * @since 2020-08-10
  */
-@RestControllerAdvice(assignableTypes = AnotherExampleController.class)
-public class AnotherCustomControllerAdvice {
+@RestControllerAdvice(assignableTypes = AnotherAdviceController.class)
+public class AnotherAdviceControllerAdvice {
 
     @InitBinder
     public void initWebBinder(WebDataBinder binder) {

@@ -20,8 +20,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  * @author Shanghong Cai
  * @since 2020-08-10
  */
-@RestControllerAdvice(assignableTypes = ExampleController.class)
-public class CustomControllerAdvice implements ResponseBodyAdvice<Object> {
+@RestControllerAdvice(assignableTypes = AdviceController.class)
+public class AdviceControllerAdvice implements ResponseBodyAdvice<Object> {
 
     @InitBinder
     public void initWebBinder(WebDataBinder binder) {

@@ -20,6 +20,7 @@ import org.springframework.web.util.NestedServletException;
 import javax.validation.ConstraintViolationException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -68,6 +69,7 @@ class ValidUserControllerTest {
         NestedServletException exception = assertThrows(NestedServletException.class, () -> mockMvc
                 .perform(post("/validation/single").content(mapper.writeValueAsString(user))
                                                    .accept(MediaType.APPLICATION_JSON)
+                                                   .locale(Locale.CHINA)
                                                    .contentType(MediaType.APPLICATION_JSON)));
         ConstraintViolationException cause = ((ConstraintViolationException) exception.getCause());
         assertEquals("postUser.user.age: age 应当大于 18", cause.getMessage());
@@ -82,6 +84,7 @@ class ValidUserControllerTest {
         MethodArgumentNotValidException resolvedException = ((MethodArgumentNotValidException) mockMvc
                 .perform(post("/validation/custom").content(mapper.writeValueAsString(user))
                                                    .accept(MediaType.APPLICATION_JSON)
+                                                   .locale(Locale.CHINA)
                                                    .contentType(MediaType.APPLICATION_JSON))
                 .andReturn().getResolvedException());
         List<String> collect = resolvedException.getBindingResult().getAllErrors().stream()
@@ -128,6 +131,7 @@ class ValidUserControllerTest {
         NestedServletException exception = assertThrows(NestedServletException.class, () -> mockMvc
                 .perform(post("/validation/nest").content(mapper.writeValueAsString(user))
                                                  .accept(MediaType.APPLICATION_JSON)
+                                                 .locale(Locale.CHINA)
                                                  .contentType(MediaType.APPLICATION_JSON)));
         ConstraintViolationException cause = ((ConstraintViolationException) exception.getCause());
         assertEquals("postNestedUser.user.age: age 应当大于 18", cause.getMessage());
@@ -142,6 +146,7 @@ class ValidUserControllerTest {
         MethodArgumentNotValidException resolvedException = ((MethodArgumentNotValidException) mockMvc
                 .perform(post("/validation/nest").content(mapper.writeValueAsString(user))
                                                  .accept(MediaType.APPLICATION_JSON)
+                                                 .locale(Locale.CHINA)
                                                  .contentType(MediaType.APPLICATION_JSON)).andReturn()
                 .getResolvedException());
         List<String> collect = resolvedException.getBindingResult().getAllErrors().stream()
@@ -191,6 +196,7 @@ class ValidUserControllerTest {
         NestedServletException exception = assertThrows(NestedServletException.class, () -> mockMvc
                 .perform(post("/validation/batch").content(mapper.writeValueAsString(Collections.singletonList(user)))
                                                   .accept(MediaType.APPLICATION_JSON)
+                                                  .locale(Locale.CHINA)
                                                   .contentType(MediaType.APPLICATION_JSON)));
         ConstraintViolationException cause = ((ConstraintViolationException) exception.getCause());
         assertEquals("postBatchUser.user[0].name: name 长度应该在 5~10 之间", cause.getMessage());
@@ -203,6 +209,7 @@ class ValidUserControllerTest {
         NestedServletException exception = assertThrows(NestedServletException.class, () -> mockMvc
                 .perform(get("/validation/1")
                         .accept(MediaType.APPLICATION_JSON)
+                        .locale(Locale.CHINA)
                         .contentType(MediaType.APPLICATION_JSON)));
         ConstraintViolationException cause = ((ConstraintViolationException) exception.getCause());
         assertEquals("getUser.id: 最小不能小于3", cause.getMessage());
@@ -227,6 +234,7 @@ class ValidUserControllerTest {
         NestedServletException exception = assertThrows(NestedServletException.class, () -> mockMvc
                 .perform(get("/validation/query?id=1")
                         .accept(MediaType.APPLICATION_JSON)
+                        .locale(Locale.CHINA)
                         .contentType(MediaType.APPLICATION_JSON)));
         ConstraintViolationException cause = ((ConstraintViolationException) exception.getCause());
         assertEquals("getUserByQuery.id: 最小不能小于3", cause.getMessage());

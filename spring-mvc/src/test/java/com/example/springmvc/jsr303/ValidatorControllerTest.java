@@ -14,6 +14,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.util.Locale;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
@@ -55,6 +57,7 @@ class ValidatorControllerTest {
         NestedUser user = new NestedUser(5, "name", 10, new NestedUser.Address((long) 1, "abcd"));
         String contentAsString = mockMvc.perform(post("/validator/")
                 .content(mapper.writeValueAsString(user))
+                .locale(Locale.CHINA)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON))
                                         .andReturn()
@@ -71,6 +74,7 @@ class ValidatorControllerTest {
         NestedUser user = new NestedUser(6, "name", 10, new NestedUser.Address((long) 1, "abcd"));
         String contentAsString = mockMvc.perform(post("/validator/group")
                 .content(mapper.writeValueAsString(user))
+                .locale(Locale.CHINA)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON))
                                         .andReturn()

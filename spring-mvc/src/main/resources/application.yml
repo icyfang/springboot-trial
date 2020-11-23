@@ -1,6 +1,10 @@
 spring:
   application:
     name: spring-mvc
+  messages:
+    basename: ValidationMessages
+    encoding: UTF-8
+
 server:
   port: 8093
 

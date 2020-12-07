@@ -6,8 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.SecondaryTable;
@@ -31,7 +29,6 @@ public class Forum implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String userName;
     private String password;
@@ -40,7 +37,7 @@ public class Forum implements Serializable {
 
     @Column(table = "address", length = 100)
     private String street;
-    @Column(table = "address", nullable = false)
+    @Column(table = "address")
     private String city;
     @Column(table = "address")
     private String country;

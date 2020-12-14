@@ -29,7 +29,7 @@ public class UserRepositoryTest {
     @Test
     public void initData() {
         Faker faker = new Faker(Locale.SIMPLIFIED_CHINESE);
-        List<User> collect = IntStream.range(1, 20000)
+        List<User> collect = IntStream.range(1, 80000)
                                       .mapToObj(i -> new User(null,
                                               faker.name().name(),
                                               faker.address().fullAddress(),

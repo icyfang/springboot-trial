@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -28,11 +29,14 @@ public class User {
     private String name;
     private String lastName;
     private String firstName;
-    private Integer gender;
+    private String gender;
+    private String bloodGroup;
+    private LocalDate birthday;
     private String phoneNum;
     private String email;
     private String address;
     private String occupation;
     private String description;
     private LocalDateTime updateTime;
+    private LocalDateTime createTime;
 }

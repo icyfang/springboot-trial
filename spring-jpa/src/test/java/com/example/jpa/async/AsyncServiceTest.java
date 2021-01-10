@@ -1,6 +1,5 @@
-package com.example.jpa;
+package com.example.jpa.async;
 
-import com.example.jpa.async.AsyncService;
 import com.example.jpa.base.Forum;
 import com.example.jpa.base.ForumRepository;
 import org.junit.jupiter.api.Assertions;

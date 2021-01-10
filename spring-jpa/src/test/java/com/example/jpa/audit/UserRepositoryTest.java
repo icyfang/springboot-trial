@@ -1,7 +1,5 @@
-package com.example.jpa;
+package com.example.jpa.audit;
 
-import com.example.jpa.base.User;
-import com.example.jpa.base.UserRepository;
 import com.github.javafaker.Faker;
 import com.github.javafaker.service.FakeValuesService;
 import com.github.javafaker.service.RandomService;
@@ -37,27 +35,21 @@ public class UserRepositoryTest {
         Faker faker = new Faker(Locale.SIMPLIFIED_CHINESE);
         Faker englishFaker = new Faker(Locale.ENGLISH);
         FakeValuesService fakeValuesService = new FakeValuesService(new Locale("en-GB"), new RandomService());
-        for (int j = 1; j < 10; j++) {
 
-            List<User> collect = IntStream.range(1, 100000)
-                                          .mapToObj(i -> new User(null,
-                                                  faker.name().name(),
-                                                  englishFaker.name().lastName(),
-                                                  englishFaker.name().firstName(),
-                                                  englishFaker.demographic().sex(),
-                                                  faker.name().bloodGroup(),
-                                                  LocalParser.toLocalDate(faker.date().birthday()),
-                                                  faker.phoneNumber().phoneNumber(),
-                                                  fakeValuesService.bothify("????##@gmail.com"),
-                                                  faker.address().fullAddress(),
-                                                  faker.job().title(),
-                                                  faker.company().industry(),
-                                                  LocalDateTime.now(),
-                                                  LocalDateTime.now()))
-                                          .collect(Collectors.toList());
+        List<User> collect = IntStream.range(1, 1000)
+                                      .mapToObj(i -> new User(null,
+                                              englishFaker.name().firstName(),
+                                              englishFaker.name().lastName(),
+                                              LocalParser.toLocalDate(faker.date().birthday()),
+                                              faker.phoneNumber().phoneNumber(),
+                                              fakeValuesService.bothify("????##@gmail.com"),
+                                              faker.address().fullAddress(),
+                                              LocalDateTime.now(),
+                                              LocalDateTime.now()
+                                      ))
+                                      .collect(Collectors.toList());
 
-            userRepository.saveAll(collect);
-        }
+        userRepository.saveAll(collect);
     }
 }
 

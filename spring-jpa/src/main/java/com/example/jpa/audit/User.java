@@ -1,8 +1,10 @@
-package com.example.jpa.base;
+package com.example.jpa.audit;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,22 +23,21 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "t_user")
+//@EntityListeners(value = AuditingEntityListener.class)
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String lastName;
     private String firstName;
-    private String gender;
-    private String bloodGroup;
+    private String lastName;
     private LocalDate birthday;
     private String phoneNum;
     private String email;
     private String address;
-    private String occupation;
-    private String description;
+
+    @LastModifiedDate
     private LocalDateTime updateTime;
+    @CreatedDate
     private LocalDateTime createTime;
 }

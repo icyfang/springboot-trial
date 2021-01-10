@@ -70,7 +70,7 @@ public class PrimaryConfig {
                 .dataSource(primaryDataSource())
                 .properties(jpaProperties.getProperties())
                 .packages("com.example.jpa.multiDatasource.primary", "com.example.jpa.association", "com" +
-                        ".example.jpa.attrOverride", "com.example.jpa.base", "com.example.jpa.version")
+                        ".example.jpa.attrOverride", "com.example.jpa.base", "com.example.jpa.version", "com.example.jpa.audit")
                 //设置实体类所在位置
                 .persistenceUnit("primaryPersistenceUnit")
                 .build();

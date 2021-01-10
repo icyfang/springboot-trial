@@ -3,8 +3,12 @@ package com.example.jpa.version;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author shanghongcai
+ * @since 2021-01-06
+ */
 @Component
-public interface AccountRepository extends JpaRepository<Account, Long> {
+public interface AccountWithVersionRepository extends JpaRepository<AccountWithVersion, Long> {
 
     Account findByAccountName(String accountName);
 }

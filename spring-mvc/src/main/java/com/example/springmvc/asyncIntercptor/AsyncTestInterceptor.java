@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author Shanghong Cai
+ * @author Hodur
  * @since 2020-08-12
  */
 public class AsyncTestInterceptor extends HandlerInterceptorAdapter {

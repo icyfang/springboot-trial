@@ -4,7 +4,7 @@ import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author Shanghong Cai
+ * @author Hodur
  * @since 2020-07-31
  */
 @Configuration

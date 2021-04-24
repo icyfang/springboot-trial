@@ -4,7 +4,7 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 /**
- * @author Shanghong Cai
+ * @author Hodur
  * @since 2020-11-03
  */
 public class CustomValidator implements ConstraintValidator<CustomCon, ValidUser> {

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
- * @author Shanghong Cai
+ * @author Hodur
  * @since 2020-08-10
  */
 @RestControllerAdvice(assignableTypes = AnotherAdviceController.class)

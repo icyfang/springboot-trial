@@ -8,7 +8,7 @@ import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 
 /**
- * @author Shanghong Cai
+ * @author Hodur
  * @since 2020-08-19
  */
 public class Person implements BeanFactoryAware, BeanNameAware, InitializingBean, DisposableBean {

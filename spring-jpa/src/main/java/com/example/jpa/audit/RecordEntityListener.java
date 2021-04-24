@@ -13,7 +13,7 @@ import javax.persistence.PreRemove;
 import javax.persistence.PreUpdate;
 
 /**
- * @author Shanghong Cai
+ * @author Hodur
  * @since 2021-01-06
  */
 @Component

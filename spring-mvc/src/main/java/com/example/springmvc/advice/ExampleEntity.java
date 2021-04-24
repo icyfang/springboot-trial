@@ -2,10 +2,9 @@ package com.example.springmvc.advice;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 
 /**
- * @author Shanghong Cai
+ * @author Hodur
  * @since 2020-08-10
  */
 @Data

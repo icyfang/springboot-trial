@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
 /**
- * @author Shanghong Cai
+ * @author Hodur
  * @create 2020-07-23 11:37
  */
 @Configuration

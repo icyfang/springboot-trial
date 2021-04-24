@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author Shanghong Cai
+ * @author Hodur
  * @since 2020-08-06
  */
 @Slf4j

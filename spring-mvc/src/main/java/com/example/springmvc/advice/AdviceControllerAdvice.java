@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 /**
- * @author Shanghong Cai
+ * @author Hodur
  * @since 2020-08-10
  */
 @RestControllerAdvice(assignableTypes = AdviceController.class)

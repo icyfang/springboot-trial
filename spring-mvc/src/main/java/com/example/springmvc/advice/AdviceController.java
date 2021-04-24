@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Date;
 
 /**
- * @author Shanghong Cai
+ * @author Hodur
  * @since 2020-08-10
  */
 @RestController

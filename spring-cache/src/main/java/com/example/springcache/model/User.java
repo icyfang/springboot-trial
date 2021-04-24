@@ -8,7 +8,7 @@ import lombok.Setter;
 import java.io.Serializable;
 
 /**
- * @author Shanghong Cai
+ * @author Hodur
  * @since 2020-09-04
  */
 @Getter

@@ -3,7 +3,7 @@ package com.example.springredis.controller;
 import com.example.springredis.model.User;
 
 /**
- * @author Shanghong Cai
+ * @author Hodur
  * @since 2020-10-22
  */
 public interface CrudInterface {

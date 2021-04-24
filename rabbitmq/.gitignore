@@ -36,3 +36,5 @@ build/
 /mvnw.cmd
 /.mvn/wrapper/
 /.mvn/wrapper/
+/mvnw
+/mvnw.cmd

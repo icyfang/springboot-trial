@@ -22,7 +22,7 @@ public class NestedUser extends ValidUser {
     private Address address;
 
     /**
-     * @author Shanghong Cai
+     * @author Hodur
      * @since 2020-11-03
      */
     @Data

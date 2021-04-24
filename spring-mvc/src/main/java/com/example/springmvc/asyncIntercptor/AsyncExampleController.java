@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.async.DeferredResult;
 
 /**
- * @author Shanghong Cai
+ * @author Hodur
  * @since 2020-08-12
  */
 @RestController

@@ -20,7 +20,7 @@ import javax.persistence.Table;
 import java.time.LocalDateTime;
 
 /**
- * @author Shanghong Cai
+ * @author Hodur
  * @since 2021-01-06
  */
 @Data

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 
 /**
- * @author Shanghong Cai
+ * @author Hodur
  * @since 2020-08-19
  */
 public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor {

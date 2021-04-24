@@ -36,13 +36,16 @@ public interface BatchMapper<T> {
             Class<?> mapperClass = this.getClass().getInterfaces()[0];
             BaseMapper mapper = (BaseMapper) session.getMapper(mapperClass);
             Class<?> clazz = getGenericClass(mapperClass);
+            Method method = null;
+            try {
+                method = mapper.getClass().getMethod(methodName, clazz);
+            } catch (NoSuchMethodException | SecurityException e) {
+                String s = "executeBatch failed. Please complete your custom method " + methodName + " in your mapper.xml";
+                log.error(s);
+                throw new RuntimeException(s);
+            }
+
             for (int i = 0; i < list.size(); i++) {
-                Method method = mapper.getClass().getMethod(methodName, clazz);
-                if (method == null) {
-                    String s = "executeBatch failed. Please complete your custom method " + methodName + " in your mapper.xml";
-                    log.error(s);
-                    throw new RuntimeException(s);
-                }
                 try {
                     method.invoke(mapper, list.get(i));
                 } catch (IllegalAccessException | InvocationTargetException e) {
@@ -55,7 +58,7 @@ public interface BatchMapper<T> {
             }
             session.commit();
             session.clearCache();
-        } catch (ClassNotFoundException | NoSuchMethodException e) {
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
 

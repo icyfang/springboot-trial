@@ -1,16 +1,12 @@
 package com.example.swagger.feign.api;
 
 import com.example.swagger.feign.ApiClient;
-import java.io.File;
-import com.example.swagger.model.ModelApiResponse;
 import com.example.swagger.model.Pet;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.io.File;
 import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for PetApi

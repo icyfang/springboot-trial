@@ -1,0 +1,44 @@
+server:
+  port: 9090
+  servelt:
+    session:
+      cookie:
+        name: OAUTH-SESSIONID
+
+# format for ResourceDetails
+#security:
+#  oauth2:
+#    client:
+#      client-id: clientapp
+#      client-secret: 112233
+#      access-token-uri: http://127.0.0.1:8080/oauth/token
+#      user-authorization-uri: http://127.0.0.1:8080/oauth/authorize
+#    resource:
+#      token-info-uri: http://127.0.0.1:8080/oauth/check_token
+
+# format for OAuth2ClientProperties
+spring:
+  security:
+    oauth2:
+      # OAuth2 Client 配置，对应 OAuth2ClientProperties 类
+      client:
+        registration:
+          reg1:
+            provider: default
+            client-id: clientapp
+            client-secret: 112233
+            authorizationGrantType: authorization_code
+            redirectUri: http://locahost:9090/redirect
+        provider:
+          default:
+            authorizationUri: http://127.0.0.1:8080/oauth/authorize
+            tokenUri: http://127.0.0.1:8080/oauth/token
+      # 获得 Token 信息的 URL
+      resource:
+        token-info-uri: http://127.0.0.1:8080/oauth/check_token
+      # OAuth2 Resource 配置，对应 ResourceServerProperties 类
+      resourceserver:
+        Opaquetoken:
+          introspectionUri: http://127.0.0.1:8080/oauth/check_token
+          client-id: clientapp
+          client-secret: 112233

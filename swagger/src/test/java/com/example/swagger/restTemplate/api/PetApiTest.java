@@ -13,16 +13,13 @@
 
 package com.example.swagger.restTemplate.api;
 
-import java.io.File;
 import com.example.swagger.model.ModelApiResponse;
 import com.example.swagger.model.Pet;
-import org.junit.Test;
 import org.junit.Ignore;
+import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.io.File;
 import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for PetApi

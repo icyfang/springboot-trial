@@ -14,12 +14,9 @@
 package com.example.swagger.restTemplate.api;
 
 import com.example.swagger.model.Order;
-import org.junit.Test;
 import org.junit.Ignore;
+import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**

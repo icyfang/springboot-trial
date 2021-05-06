@@ -17,8 +17,9 @@ public class SystemBeanConfig {
     @Conditional({ConditionForWindows.class})
     public SystemBean windows() {
         log.info("ConditionalConfig方法注入 windows实体");
-        return new SystemBean("windows系统","002");
+        return new SystemBean("windows系统", "002");
     }
+
     /**
      * 如果LinuxCondition的实现方法返回true，则注入这个bean
      */
@@ -26,6 +27,6 @@ public class SystemBeanConfig {
     @Conditional({ConditionForMac.class})
     public SystemBean mac() {
         log.info("ConditionalConfig方法注入 mac实体");
-        return new SystemBean("Mac ios系统","001");
+        return new SystemBean("Mac ios系统", "001");
     }
 }

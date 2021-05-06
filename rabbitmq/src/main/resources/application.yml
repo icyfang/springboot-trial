@@ -1,1 +1,15 @@
-
+server:
+  port: 8080
+spring:
+  rabbitmq:
+    host: 47.104.3.203
+    port: 5672
+    username: admin
+    password: Root@2887
+    virtual-host: /
+    # 手动提交消息
+    listener:
+      simple:
+        acknowledge-mode: manual
+      direct:
+        acknowledge-mode: manual

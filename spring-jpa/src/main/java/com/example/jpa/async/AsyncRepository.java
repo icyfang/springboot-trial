@@ -20,12 +20,11 @@ public class AsyncRepository {
     @Async
     @Transactional(rollbackFor = Exception.class)
     public void saveForum(long id) {
-        System.out.println("start");
+
         Forum entity = new Forum();
         entity.setId(id);
         entity.setUserName("username");
         forumRepository.save(entity);
-        System.out.println("end");
     }
 
     @Async

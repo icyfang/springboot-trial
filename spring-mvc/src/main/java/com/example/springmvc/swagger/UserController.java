@@ -3,7 +3,6 @@ package com.example.springmvc.swagger;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,18 +12,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author Hodur
+ */
+
 @Api(tags = "用户管理")
 @RestController
-@RequestMapping(value = "/users")     // 通过这里配置使下面的映射都在/users下
+@RequestMapping(value = "/users")
 public class UserController {
-
-    // 创建线程安全的Map，模拟users信息的存储
+    /**
+     * 创建线程安全的Map，模拟users信息的存储
+     */
     static Map<Long, User> users = Collections.synchronizedMap(new HashMap<>());
 
     /**
@@ -47,10 +52,10 @@ public class UserController {
      */
     @PostMapping("/")
     @ApiOperation(value = "创建用户", notes = "根据User对象创建用户")
-    public String postUser(@Validated @RequestBody User user) {
+    public String postUser(@Valid @RequestBody User user) {
         // @RequestBody注解用来绑定通过http请求中application/json类型上传的数据
         users.put(user.getId(), user);
-        return "success2";
+        return "success";
     }
 
     /**
@@ -93,7 +98,6 @@ public class UserController {
      */
     @DeleteMapping("/{id}")
     @ApiOperation(value = "删除用户", notes = "根据url的id来指定删除对象")
-
     public String deleteUser(@PathVariable Long id) {
         users.remove(id);
         return "success";

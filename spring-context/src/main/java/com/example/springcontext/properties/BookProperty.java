@@ -12,6 +12,8 @@ import java.util.List;
 public class BookProperty {
     private String name;
     private String author;
+    //    private Date editDate;
+//    private String editDateStr;
+//    private LocalDate editLocalDate;
     private List<String> chapters;
-
 }

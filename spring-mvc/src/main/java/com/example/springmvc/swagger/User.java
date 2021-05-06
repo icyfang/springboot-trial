@@ -8,8 +8,10 @@ public class User {
 
     @ApiModelProperty("用户编号")
     private Long id;
+
     @ApiModelProperty("用户姓名")
     private String name;
+
     @ApiModelProperty("用户年龄")
     private Integer age;
 

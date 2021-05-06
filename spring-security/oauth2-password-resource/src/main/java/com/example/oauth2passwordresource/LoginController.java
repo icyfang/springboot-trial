@@ -18,14 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author Hodur
- * @create 2020-07-26 16:28
+ * @date 2020-07-26 16:28
  */
 @RestController
 @RequestMapping("/")
 public class LoginController {
 
     @Autowired
-    private ResourceOwnerPasswordResourceDetails resourceDetails;
+    private ResourceOwnerPasswordResourceDetails passwordResourceDetails;
 
     @Autowired
     private AuthorizationCodeResourceDetails authorizationCodeResourceDetails;
@@ -36,10 +36,10 @@ public class LoginController {
     @PostMapping("/login")
     public OAuth2AccessToken login(@RequestParam("username") String username,
                                    @RequestParam("password") String password) {
-        resourceDetails.setUsername(username);
-        resourceDetails.setPassword(password);
+        passwordResourceDetails.setUsername(username);
+        passwordResourceDetails.setPassword(password);
 
-        OAuth2RestTemplate restTemplate = new OAuth2RestTemplate(resourceDetails);
+        OAuth2RestTemplate restTemplate = new OAuth2RestTemplate(passwordResourceDetails);
         restTemplate.setAccessTokenProvider(new ResourceOwnerPasswordAccessTokenProvider());
 
         return restTemplate.getAccessToken();

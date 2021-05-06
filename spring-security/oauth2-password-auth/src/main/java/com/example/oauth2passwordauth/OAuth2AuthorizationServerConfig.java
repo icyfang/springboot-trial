@@ -15,15 +15,12 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 /**
  * @author Hodur
- * @create 2020-07-23 11:38
+ * @date 2020-07-23 11:38
  */
 @Configuration
 @EnableAuthorizationServer
 public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-    /**
-     * 用户认证 Manager
-     */
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -32,8 +29,10 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.authenticationManager(authenticationManager).userDetailsService(userDetailsService)
-                .tokenStore(jwtTokenStore()).accessTokenConverter(jwtAccessTokenConverter());
+        endpoints.authenticationManager(authenticationManager)
+                 .userDetailsService(userDetailsService);
+//                .tokenStore(jwtTokenStore())
+//                .accessTokenConverter(jwtAccessTokenConverter());
 
     }
 

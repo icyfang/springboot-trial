@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 /**
  * @author Hodur
- * @since 2021-01-07
+ * @date 2021-01-07
  */
 @Configuration
 @EnableJpaAuditing

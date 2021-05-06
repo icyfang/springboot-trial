@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author Hodur
- * @since 2020-12-01
+ * @date 2020-12-01
  */
 @Service
 public class AsyncService {

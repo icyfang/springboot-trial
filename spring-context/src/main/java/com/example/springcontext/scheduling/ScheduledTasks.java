@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 /**
  * @author Hodur
- * @since 2020-10-26
+ * @date 2020-10-26
  */
 @Component
 public class ScheduledTasks {

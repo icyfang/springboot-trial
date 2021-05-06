@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @author Hodur
- * @since 2020-08-06
+ * @date 2020-08-06
  */
 @Slf4j
 @Configuration

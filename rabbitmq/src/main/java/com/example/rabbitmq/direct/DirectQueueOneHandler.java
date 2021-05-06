@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 /**
- * @author shanghongcai
+ * @author Hodur
  */
 @Slf4j
 @RabbitListener(queues = "direct.queue.1")

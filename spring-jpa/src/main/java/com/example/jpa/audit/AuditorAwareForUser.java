@@ -7,7 +7,7 @@ import java.util.Optional;
 
 /**
  * @author Hodur
- * @since 2021-01-06
+ * @date 2021-01-06
  */
 @Component
 public class AuditorAwareForUser implements AuditorAware<User> {

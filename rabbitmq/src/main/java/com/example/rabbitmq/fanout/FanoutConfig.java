@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @author Hodur
- * @since 2021-01-19
+ * @date 2021-01-19
  */
 @Configuration
 public class FanoutConfig {

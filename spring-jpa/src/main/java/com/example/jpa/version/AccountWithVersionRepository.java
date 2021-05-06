@@ -4,8 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
 /**
- * @author shanghongcai
- * @since 2021-01-06
+ * @author Hodur
+ * @date 2021-01-06
  */
 @Component
 public interface AccountWithVersionRepository extends JpaRepository<AccountWithVersion, Long> {

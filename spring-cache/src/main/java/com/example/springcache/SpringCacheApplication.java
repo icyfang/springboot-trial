@@ -6,7 +6,7 @@ import org.springframework.cache.annotation.EnableCaching;
 
 /**
  * @author Hodur
- * @since 2020-09-04
+ * @date 2020-09-04
  */
 @SpringBootApplication
 @EnableCaching

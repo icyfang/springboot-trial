@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @author Hodur
- * @since 2021-01-19
+ * @date 2021-01-19
  */
 @Component
 public class FanoutProducer {

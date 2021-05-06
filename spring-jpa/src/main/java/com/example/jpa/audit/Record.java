@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 
 /**
  * @author Hodur
- * @since 2021-01-06
+ * @date 2021-01-06
  */
 @Data
 @Entity

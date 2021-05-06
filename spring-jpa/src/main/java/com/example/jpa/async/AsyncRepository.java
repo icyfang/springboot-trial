@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author Hodur
- * @since 2020-12-02
+ * @date 2020-12-02
  */
 @Repository
 public class AsyncRepository {

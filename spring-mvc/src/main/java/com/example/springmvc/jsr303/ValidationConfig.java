@@ -11,7 +11,7 @@ import javax.validation.Validator;
 
 /**
  * @author Hodur
- * @since 2020-11-02
+ * @date 2020-11-02
  */
 @Configuration
 public class ValidationConfig {

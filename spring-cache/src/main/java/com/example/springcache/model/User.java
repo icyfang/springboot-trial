@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  * @author Hodur
- * @since 2020-09-04
+ * @date 2020-09-04
  */
 @Getter
 @Setter

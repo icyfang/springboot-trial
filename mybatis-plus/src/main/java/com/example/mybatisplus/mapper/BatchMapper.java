@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  * @author Hodur
- * @since 2020-09-03
+ * @date 2020-09-03
  */
 public interface BatchMapper<T> {
 

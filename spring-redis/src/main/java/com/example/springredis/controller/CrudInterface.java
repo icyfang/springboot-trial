@@ -4,7 +4,7 @@ import com.example.springredis.model.User;
 
 /**
  * @author Hodur
- * @since 2020-10-22
+ * @date 2020-10-22
  */
 public interface CrudInterface {
     User get(String username);

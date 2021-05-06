@@ -8,7 +8,7 @@ import java.util.Date;
 
 /**
  * @author Hodur
- * @since 2020-08-10
+ * @date 2020-08-10
  */
 @RestController
 @RequestMapping("/advice/v2")

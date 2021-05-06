@@ -12,7 +12,7 @@ import java.util.EnumSet;
 
 /**
  * @author Hodur
- * @since 2020-08-05
+ * @date 2020-08-05
  */
 @Slf4j
 @Configuration

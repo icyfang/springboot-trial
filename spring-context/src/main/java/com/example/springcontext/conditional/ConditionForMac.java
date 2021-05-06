@@ -8,7 +8,7 @@ import org.springframework.core.type.AnnotatedTypeMetadata;
 
 /**
  * @author Hodur
- * @since 2020-08-06
+ * @date 2020-08-06
  */
 @Slf4j
 public class ConditionForMac implements Condition {

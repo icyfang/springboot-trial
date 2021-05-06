@@ -11,8 +11,8 @@ import javax.persistence.Version;
 import java.math.BigDecimal;
 
 /**
- * @author shanghongcai
- * @since 2021-01-06
+ * @author Hodur
+ * @date 2021-01-06
  */
 @NoArgsConstructor
 @Data

@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 /**
  * @author Hodur
- * @since 2020-09-04
+ * @date 2020-09-04
  */
 @Component
 public class HashBean implements CrudInterface {

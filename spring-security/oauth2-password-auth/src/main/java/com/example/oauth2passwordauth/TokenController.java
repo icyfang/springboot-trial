@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author Hodur
- * @since 2020-07-30
+ * @date 2020-07-30
  */
 @RestController
 public class TokenController {

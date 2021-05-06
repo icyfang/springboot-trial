@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
  * @author Hodur
- * @since 2020-08-10
+ * @date 2020-08-10
  */
 @RestControllerAdvice(assignableTypes = AnotherAdviceController.class)
 public class AnotherAdviceControllerAdvice {

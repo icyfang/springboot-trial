@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author Hodur
- * @since 2020-08-12
+ * @date 2020-08-12
  */
 public class AsyncTestInterceptor extends HandlerInterceptorAdapter {
 

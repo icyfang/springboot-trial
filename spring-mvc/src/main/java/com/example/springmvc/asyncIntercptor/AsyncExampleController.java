@@ -7,7 +7,7 @@ import org.springframework.web.context.request.async.DeferredResult;
 
 /**
  * @author Hodur
- * @since 2020-08-12
+ * @date 2020-08-12
  */
 @RestController
 @RequestMapping("/async/v1")

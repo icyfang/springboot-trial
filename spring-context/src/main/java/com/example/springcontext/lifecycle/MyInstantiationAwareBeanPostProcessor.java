@@ -8,7 +8,7 @@ import java.beans.PropertyDescriptor;
 
 /**
  * @author Hodur
- * @since 2020-08-19
+ * @date 2020-08-19
  */
 public class MyInstantiationAwareBeanPostProcessor extends InstantiationAwareBeanPostProcessorAdapter {
     public MyInstantiationAwareBeanPostProcessor() {

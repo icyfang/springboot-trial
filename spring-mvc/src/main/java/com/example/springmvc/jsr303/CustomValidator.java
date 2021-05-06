@@ -5,7 +5,7 @@ import javax.validation.ConstraintValidatorContext;
 
 /**
  * @author Hodur
- * @since 2020-11-03
+ * @date 2020-11-03
  */
 public class CustomValidator implements ConstraintValidator<CustomCon, ValidUser> {
 

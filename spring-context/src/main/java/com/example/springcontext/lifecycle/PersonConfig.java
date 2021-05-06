@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @author Hodur
- * @since 2020-08-19
+ * @date 2020-08-19
  */
 @Configuration
 public class PersonConfig {

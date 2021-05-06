@@ -5,7 +5,7 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 
 /**
  * @author Hodur
- * @since 2020-08-19
+ * @date 2020-08-19
  */
 public class MyBeanPostProcessor implements BeanPostProcessor {
     public MyBeanPostProcessor() {

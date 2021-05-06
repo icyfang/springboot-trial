@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @author Hodur
- * @since 2020-07-31
+ * @date 2020-07-31
  */
 @Configuration
 @EnableOAuth2Sso

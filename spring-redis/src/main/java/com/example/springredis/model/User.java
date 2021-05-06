@@ -8,7 +8,7 @@ import lombok.Setter;
 
 /**
  * @author Hodur
- * @since 2020-09-04
+ * @date 2020-09-04
  */
 @Getter
 @Setter

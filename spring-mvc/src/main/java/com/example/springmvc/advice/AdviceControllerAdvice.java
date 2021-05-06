@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 /**
  * @author Hodur
- * @since 2020-08-10
+ * @date 2020-08-10
  */
 @RestControllerAdvice(assignableTypes = AdviceController.class)
 public class AdviceControllerAdvice implements ResponseBodyAdvice<Object> {

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author Hodur
- * @since 2020-10-22
+ * @date 2020-10-22
  */
 @Component
 public class StringBean implements CrudInterface {

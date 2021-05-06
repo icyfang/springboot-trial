@@ -1,0 +1,40 @@
+server:
+  port: 8100
+spring:
+  application:
+    name: spring-jpa
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: 123456
+    url: jdbc:mysql://localhost:3306/springjpa?serverTimezone=GMT%2B8
+    username: root
+  jpa:
+    open-in-view: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+        hbm2ddl:
+          auto: update
+    show-sql: true
+  # multi-datasource config
+  primary:
+    datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/springjpa?serverTimezone=GMT%2B8
+      password: 123456
+      username: root
+  secondary:
+    datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/secondary?serverTimezone=GMT%2B8
+      password: 123456
+      username: root
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql:
+              BasicBinder: trace

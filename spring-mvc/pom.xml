@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.example</groupId>
-        <artifactId>spring-trial</artifactId>
+        <artifactId>springboot-trial</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>spring-mvc</artifactId>
@@ -57,7 +57,11 @@
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>eu.bitwalker</groupId>
+            <artifactId>UserAgentUtils</artifactId>
+            <version>1.21</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>

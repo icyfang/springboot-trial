@@ -18,7 +18,7 @@ public class Person implements BeanFactoryAware, BeanNameAware, InitializingBean
     private String beanName;
 
     public Person() {
-        System.out.println("【构造器】调用Person的构造器实例化");
+        System.out.println("Person constructor");
     }
 
     public String getName() {
@@ -26,7 +26,7 @@ public class Person implements BeanFactoryAware, BeanNameAware, InitializingBean
     }
 
     public void setName(String name) {
-        System.out.println("【注入属性】注入属性name");
+        System.out.println("Person setProperty Name");
         this.name = name;
     }
 
@@ -40,7 +40,7 @@ public class Person implements BeanFactoryAware, BeanNameAware, InitializingBean
      */
     @Override
     public void setBeanFactory(BeanFactory arg0) throws BeansException {
-        System.out.println("【BeanFactoryAware接口】调用BeanFactoryAware.setBeanFactory()");
+        System.out.println("BeanFactoryAware#setBeanFactory");
         this.beanFactory = arg0;
     }
 
@@ -49,7 +49,7 @@ public class Person implements BeanFactoryAware, BeanNameAware, InitializingBean
      */
     @Override
     public void setBeanName(String arg0) {
-        System.out.println("【BeanNameAware接口】调用BeanNameAware.setBeanName()");
+        System.out.println("BeanNameAware#setBeanName");
         this.beanName = arg0;
     }
 
@@ -58,7 +58,7 @@ public class Person implements BeanFactoryAware, BeanNameAware, InitializingBean
      */
     @Override
     public void afterPropertiesSet() throws Exception {
-        System.out.println("【InitializingBean接口】调用InitializingBean.afterPropertiesSet()");
+        System.out.println("InitializingBean#afterPropertiesSet");
     }
 
     /**
@@ -66,20 +66,20 @@ public class Person implements BeanFactoryAware, BeanNameAware, InitializingBean
      */
     @Override
     public void destroy() throws Exception {
-        System.out.println("【DiposibleBean接口】调用DiposibleBean.destory()");
+        System.out.println("DisposableBean#destory");
     }
 
     /**
      * 通过<bean>的init-method属性指定的初始化方法
      */
     public void myInit() {
-        System.out.println("【init-method】调用<bean>的init-method属性指定的初始化方法");
+        System.out.println("Person init-method");
     }
 
     /**
      * 通过<bean>的destroy-method属性指定的初始化方法
      */
-    public void myDestory() {
-        System.out.println("【destroy-method】调用<bean>的destroy-method属性指定的初始化方法");
+    public void myDestroy() {
+        System.out.println("Person destroy-method");
     }
 }

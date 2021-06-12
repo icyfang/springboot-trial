@@ -10,10 +10,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.concurrent.Future;
 
-/**
- * @author Hodur
- * @date 2020/10/26
- */
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -27,6 +23,7 @@ class AsyncTaskTest {
         asyncTask.doTaskOne();
         asyncTask.doTaskTwo();
         asyncTask.doTaskThree();
+        Thread.sleep(10000);
     }
 
     @Test

@@ -12,12 +12,12 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
     public MyBeanFactoryPostProcessor() {
         super();
-        System.out.println("这是BeanFactoryPostProcessor实现类构造器！！");
+        System.out.println("BeanFactoryPostProcessor constructor");
     }
 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory arg0) throws BeansException {
-        System.out.println("BeanFactoryPostProcessor调用postProcessBeanFactory方法");
+        System.out.println("BeanFactoryPostProcessor#postProcessBeanFactory");
         BeanDefinition bd = arg0.getBeanDefinition("person");
         bd.getPropertyValues().addPropertyValue("name", "张三");
     }

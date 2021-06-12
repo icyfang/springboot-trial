@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class PersonConfig {
 
-    @Bean(initMethod = "myInit", destroyMethod = "myDestory")
+    @Bean(initMethod = "myInit", destroyMethod = "myDestroy")
     public Person person() {
 
         Person person = new Person();

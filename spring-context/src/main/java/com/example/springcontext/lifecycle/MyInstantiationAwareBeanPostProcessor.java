@@ -13,7 +13,7 @@ import java.beans.PropertyDescriptor;
 public class MyInstantiationAwareBeanPostProcessor extends InstantiationAwareBeanPostProcessorAdapter {
     public MyInstantiationAwareBeanPostProcessor() {
         super();
-        System.out.println("这是InstantiationAwareBeanPostProcessorAdapter实现类构造器！！");
+        System.out.println("InstantiationAwareBeanPostProcessorAdapter constructor");
     }
 
     /**
@@ -21,7 +21,9 @@ public class MyInstantiationAwareBeanPostProcessor extends InstantiationAwareBea
      */
     @Override
     public Object postProcessBeforeInstantiation(Class beanClass, String beanName) throws BeansException {
-        System.out.println("InstantiationAwareBeanPostProcessor调用postProcessBeforeInstantiation方法");
+        if (beanName.equals("person")) {
+            System.out.println("InstantiationAwareBeanPostProcessor#postProcessBeforeInstantiation");
+        }
         return null;
     }
 
@@ -30,7 +32,9 @@ public class MyInstantiationAwareBeanPostProcessor extends InstantiationAwareBea
      */
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        System.out.println("InstantiationAwareBeanPostProcessor调用postProcessAfterInitialization方法");
+        if (beanName.equals("person")) {
+            System.out.println("InstantiationAwareBeanPostProcessor#postProcessAfterInitialization");
+        }
         return bean;
     }
 
@@ -41,7 +45,9 @@ public class MyInstantiationAwareBeanPostProcessor extends InstantiationAwareBea
     public PropertyValues postProcessPropertyValues(PropertyValues pvs,
                                                     PropertyDescriptor[] pds, Object bean, String beanName)
             throws BeansException {
-        System.out.println("InstantiationAwareBeanPostProcessor调用postProcessPropertyValues方法");
+        if (beanName.equals("person")) {
+            System.out.println("InstantiationAwareBeanPostProcessor#postProcessPropertyValues");
+        }
         return pvs;
     }
 }

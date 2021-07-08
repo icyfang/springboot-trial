@@ -1,7 +1,7 @@
 package com.example.jpa.audit;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
-import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
@@ -9,7 +9,7 @@ import java.util.Optional;
  * @author Hodur
  * @date 2021-01-06
  */
-@Component
+@Configuration
 public class AuditorAwareForUser implements AuditorAware<User> {
 
     @Override

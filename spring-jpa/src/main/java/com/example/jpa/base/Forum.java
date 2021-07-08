@@ -1,6 +1,7 @@
 package com.example.jpa.base;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Proxy;
@@ -28,6 +29,7 @@ import java.math.BigDecimal;
 @Table(name = "t_forum")
 @NamedQuery(name = "Forum.findNameNotEmpty", query = "select o from Forum o where o.userName is not null")
 @Proxy(lazy = false)
+@Builder
 public class Forum implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,8 +51,8 @@ public class Forum implements Serializable {
     @Column(table = "comments")
     private String title;
     @Column(table = "comments")
-    private String Comments;
+    private String comments;
     @Column(table = "comments")
-    private Integer comments_length;
+    private Integer commentsLength;
 
 }

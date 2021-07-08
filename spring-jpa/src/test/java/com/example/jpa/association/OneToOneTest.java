@@ -1,6 +1,7 @@
 package com.example.jpa.association;
 
 import com.example.jpa.association.onetoone.MainPO;
+import com.example.jpa.association.onetoone.MainSubPO;
 import com.example.jpa.association.onetoone.OneToOneMainRepository;
 import com.example.jpa.association.onetoone.OneToOneSubRepository;
 import com.example.jpa.association.onetoone.SubPO;
@@ -66,6 +67,39 @@ public class OneToOneTest {
     }
 
     @Order(3)
+    @Test
+    public void testGetMainSubPO() {
+
+        MainSubPO mainSubByMainId = mainRepository.getMainSubByMainId((long) 1);
+        Assertions.assertEquals(1, (long) mainSubByMainId.getId());
+        Assertions.assertEquals("main2", mainSubByMainId.getContent());
+        Assertions.assertEquals(1002, (long) mainSubByMainId.getSubId());
+        Assertions.assertEquals("sub1002", mainSubByMainId.getName());
+    }
+
+    @Order(3)
+    @Test
+    public void testGetMainSubPOLeftJoin() {
+
+        MainSubPO mainSubByMainId = mainRepository.getMainSubByMainIdLeftJoin((long) 1);
+        Assertions.assertEquals(1, (long) mainSubByMainId.getId());
+        Assertions.assertEquals("main2", mainSubByMainId.getContent());
+        Assertions.assertEquals(1002, (long) mainSubByMainId.getSubId());
+        Assertions.assertEquals("sub1002", mainSubByMainId.getName());
+    }
+
+    @Order(4)
+    @Test
+    public void testQueryMainSubPO() {
+
+        MainSubPO mainSubByMainId = mainRepository.queryMainSubByMainId((long) 1);
+        Assertions.assertEquals(1, (long) mainSubByMainId.getId());
+        Assertions.assertEquals("main2", mainSubByMainId.getContent());
+        Assertions.assertEquals(1002, (long) mainSubByMainId.getSubId());
+        Assertions.assertEquals("sub1002", mainSubByMainId.getName());
+    }
+
+    @Order(5)
     @Test
     public void testDelete() {
         Optional<MainPO> main = mainRepository.findById((long) 1);

@@ -37,11 +37,15 @@ Log the experience of studying Spring Boot.
 - [x] JpaRepository 方法名解析
 - [x] 使用 @NamedQuery、@Query 编写 SQL
     - [] 条件判断 
+    - [] 分页排序
 - [x] 审计功能，记录 createTime、createUser 和 updateTime、updateUser
 - [x] 多数据源
 - [ ] @Transactional 传播属性
 - [x] @Version 实现乐观锁
+- [x] Query by example
+- [x] Native query 结果转对象
 - [ ] Criteria 进行复杂条件查询
+
 ### Spring Security
 
 #### Spring Security OAuth2

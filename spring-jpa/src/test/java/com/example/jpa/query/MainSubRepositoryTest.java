@@ -83,6 +83,16 @@ public class MainSubRepositoryTest {
     }
 
     @Test
+    @Order(5)
+    void queryMainSubByNullMainId() {
+        MainSubPO mainSubByMainId = mainSubRepository.queryMainSubByMainId(null);
+        Assertions.assertEquals(1, (long) mainSubByMainId.getId());
+        Assertions.assertEquals("main1", mainSubByMainId.getContent());
+        Assertions.assertEquals(1001, (long) mainSubByMainId.getSubId());
+        Assertions.assertEquals("sub1001", mainSubByMainId.getName());
+    }
+
+    @Test
     @Order(6)
     void listMainSub() {
 

@@ -55,12 +55,13 @@ public interface MainSubRepository {
 
     /**
      * association query using native query, implicit join
+     * query by mainId if mainId not equals null or ''
      *
      * @param mainId
      * @return
      */
     @Query(value = "select main.id, main.content, sub.id as subId, sub.name from onetoone_main main, onetoone_sub sub" +
-            " where main.sub_id = sub.id and main.id = :mainId"
+            " where main.sub_id = sub.id and (main.id = :mainId or (:mainId is null or :mainId = ''))"
             , nativeQuery = true
             , name = "queryMainSubByMainId")
     MainSubPO queryMainSubByMainId(Long mainId);

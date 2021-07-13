@@ -1,4 +1,4 @@
-package com.example.jpa.namegraph;
+package com.example.jpa.nameGraph;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;

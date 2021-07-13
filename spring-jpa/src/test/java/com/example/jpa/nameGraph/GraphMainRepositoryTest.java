@@ -1,4 +1,4 @@
-package com.example.jpa.namegraph;
+package com.example.jpa.nameGraph;
 
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -7,6 +7,8 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
@@ -20,11 +22,11 @@ import java.util.List;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-//@Transactional
 public class GraphMainRepositoryTest {
 
     @Autowired
     private GraphMainRepository graphMainRepository;
+
     @Autowired
     private GraphSubRepository graphSubRepository;
 
@@ -66,4 +68,10 @@ public class GraphMainRepositoryTest {
         List<GraphSubPO> all = graphSubRepository.findAll();
     }
 
+    @Test
+    @Order(4)
+    public void queryPage() {
+        Page<GraphMainPO> all = graphMainRepository.findAll(PageRequest.of(0, 1));
+        System.out.println(all.getContent().size());
+    }
 }

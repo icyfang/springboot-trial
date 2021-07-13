@@ -6,15 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Proxy;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.SecondaryTable;
-import javax.persistence.SecondaryTables;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -26,7 +18,7 @@ import java.math.BigDecimal;
         @SecondaryTable(name = "Address"),
         @SecondaryTable(name = "Comments")
 })
-@Table(name = "t_forum")
+@Table(name = "t_forum", uniqueConstraints = {@UniqueConstraint(columnNames = "id")})
 @NamedQuery(name = "Forum.findNameNotEmpty", query = "select o from Forum o where o.userName is not null")
 @Proxy(lazy = false)
 @Builder

@@ -29,22 +29,23 @@ Log the experience of studying Spring Boot.
 
 集成功能：
 
+- [x] 基础 crud
 - [x] 实体类的继承
 - [x] 多表关联
     - [x] 多对多
     - [x] 一对多
     - [x] 一对一
 - [x] JpaRepository 方法名解析
-- [x] 使用 @NamedQuery、@Query 编写 SQL
-    - [] 条件判断 
-    - [] 分页排序
+- [x] native query
+    - [x] 条件判断 
+    - [x] 分页排序
+- [x] JPQL
 - [x] 审计功能，记录 createTime、createUser 和 updateTime、updateUser
 - [x] 多数据源
-- [ ] @Transactional 传播属性
 - [x] @Version 实现乐观锁
-- [x] Query by example
-- [x] Native query 结果转对象
+- [ ] @Transactional 传播属性
 - [ ] Criteria 进行复杂条件查询
+- [x] N+1
 
 ### Spring Security
 

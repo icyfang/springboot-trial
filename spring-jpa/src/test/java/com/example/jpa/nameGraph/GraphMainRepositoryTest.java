@@ -1,5 +1,6 @@
 package com.example.jpa.nameGraph;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -59,7 +60,9 @@ public class GraphMainRepositoryTest {
     @Order(3)
     public void query() {
         List<GraphMainPO> all = graphMainRepository.findAll();
-
+        GraphSubPO graphSubPO = all.get(0).getSubPOList().get(0);
+        Assertions.assertEquals(1001, graphSubPO.getId());
+        Assertions.assertEquals("sub1001", graphSubPO.getName());
     }
 
     @Test

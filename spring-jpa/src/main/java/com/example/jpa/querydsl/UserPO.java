@@ -1,4 +1,4 @@
-package com.example.jpa.audit;
+package com.example.jpa.querydsl;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,7 +24,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Table(name = "t_user")
 //@EntityListeners(value = AuditingEntityListener.class)
-public class User {
+public class UserPO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,4 +1,4 @@
-package com.example.jpa.queryDSL;
+package com.example.jpa.querydsl;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.context.annotation.Bean;

@@ -1,5 +1,6 @@
 package com.example.jpa.audit;
 
+import com.example.jpa.querydsl.UserPO;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
 
@@ -10,14 +11,14 @@ import java.util.Optional;
  * @date 2021-01-06
  */
 @Configuration
-public class AuditorAwareForUser implements AuditorAware<User> {
+public class AuditorAwareForUser implements AuditorAware<UserPO> {
 
     @Override
-    public Optional<User> getCurrentAuditor() {
+    public Optional<UserPO> getCurrentAuditor() {
         //要使用的当前用户
-        User user = new User();
-        user.setId((long) 1);
-        return Optional.of(user);
+        UserPO userPO = new UserPO();
+        userPO.setId((long) 1);
+        return Optional.of(userPO);
     }
 
 }

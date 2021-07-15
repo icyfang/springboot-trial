@@ -1,8 +1,8 @@
 package com.example.jpa;
 
-import com.example.jpa.multiDatasource.primary.PrimaryBean;
+import com.example.jpa.multiDatasource.primary.PrimaryPO;
 import com.example.jpa.multiDatasource.primary.PrimaryRepository;
-import com.example.jpa.multiDatasource.secondary.SecondaryBean;
+import com.example.jpa.multiDatasource.secondary.SecondaryPO;
 import com.example.jpa.multiDatasource.secondary.SecondaryRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,11 +23,11 @@ public class MultiDataSourceTest {
     @Test
     public void save() {
 
-        SecondaryBean s = new SecondaryBean();
+        SecondaryPO s = new SecondaryPO();
         s.setName("second");
         secondaryRepository.save(s);
 
-        PrimaryBean p = new PrimaryBean();
+        PrimaryPO p = new PrimaryPO();
         p.setName("primary");
         primaryRepository.save(p);
     }

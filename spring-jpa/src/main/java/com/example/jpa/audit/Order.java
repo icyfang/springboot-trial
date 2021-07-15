@@ -1,5 +1,6 @@
 package com.example.jpa.audit;
 
+import com.example.jpa.querydsl.UserPO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -45,10 +46,10 @@ public class Order {
     @CreatedBy
     @JoinColumn(name = "create_userId")
     @OneToOne
-    private User createUser;
+    private UserPO createUser;
 
     @LastModifiedBy
     @JoinColumn(name = "update_userId")
     @OneToOne
-    private User updateUser;
+    private UserPO updateUser;
 }

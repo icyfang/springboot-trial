@@ -1,5 +1,6 @@
 package com.example.jpa.audit;
 
+import com.example.jpa.querydsl.UserPO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,5 +38,5 @@ public class Record {
     @CreatedBy
     @OneToOne
     @JoinColumn(name = "create_userId", foreignKey = @ForeignKey(name = "none"))
-    private User createUser;
+    private UserPO createUser;
 }

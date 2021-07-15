@@ -1,6 +1,6 @@
 package com.example.jpa.audit;
 
-import com.example.jpa.querydsl.UserPO;
+import com.example.jpa.querydsl.singleTable.UserPO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

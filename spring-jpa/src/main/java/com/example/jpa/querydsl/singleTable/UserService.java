@@ -1,9 +1,12 @@
-package com.example.jpa.querydsl;
+package com.example.jpa.querydsl.singleTable;
 
 import com.querydsl.core.QueryResults;
+import com.querydsl.core.types.ExpressionUtils;
+import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +28,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public UserPO findByFirstNameAndLastName(String firstName, String lastName) {
+    public UserPO queryByFirstNameAndLastName(String firstName, String lastName) {
 
         QUser user = QUser.user;
         return jpaQueryFactory
@@ -38,32 +41,7 @@ public class UserService {
 
     }
 
-    public List<UserPO> findByFirstNameOrLastName(String firstName, String lastName) {
-        QUser user = QUser.user;
-        return (List<UserPO>) userRepository.findAll(
-                user.firstName.eq(firstName).and(user.lastName.eq(lastName)),
-                user.id.asc()
-        );
-    }
-
-    public long countByFirstNameLike(String firstName) {
-        QUser user = QUser.user;
-        return userRepository.count(
-                user.firstName.like("%" + firstName + "%")
-        );
-    }
-
-    public List<UserPO> findAll() {
-        QUser user = QUser.user;
-        return jpaQueryFactory
-                .selectFrom(user)
-                .orderBy(
-                        user.firstName.asc()
-                )
-                .fetch();
-    }
-
-    public List<UserPO> findByBirthdayBetween(LocalDate start, LocalDate end) {
+    public List<UserPO> queryByBirthdayBetween(LocalDate start, LocalDate end) {
         QUser user = QUser.user;
         return jpaQueryFactory
                 .selectFrom(user)
@@ -73,7 +51,17 @@ public class UserService {
                 .fetch();
     }
 
-    public QueryResults<UserPO> findAll(Pageable pageable) {
+    public List<UserPO> queryAll() {
+        QUser user = QUser.user;
+        return jpaQueryFactory
+                .selectFrom(user)
+                .orderBy(
+                        user.firstName.asc()
+                )
+                .fetch();
+    }
+
+    public QueryResults<UserPO> queryAll(Pageable pageable) {
         QUser user = QUser.user;
         return jpaQueryFactory
                 .selectFrom(user)
@@ -85,7 +73,7 @@ public class UserService {
                 .fetchResults();
     }
 
-    public List<UserDTO> findAllUserDto(Pageable pageable) {
+    public List<UserDTO> queryAllUserDto(Pageable pageable) {
         QUser user = QUser.user;
 
         return jpaQueryFactory
@@ -116,7 +104,7 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    public List<UserDTO> findAllUserDtoByProjections() {
+    public List<UserDTO> queryAllUserDtoByProjections() {
         QUser user = QUser.user;
         return jpaQueryFactory
                 .select(
@@ -135,4 +123,54 @@ public class UserService {
                 .fetch();
 
     }
+
+    public List<UserPO> queryByUserPropertiesGroupByAddress(String firstName, String lastName, String phoneNum, LocalDate birthday, String address) {
+
+        QUser user = QUser.user;
+        Predicate predicate = user.isNotNull().or(user.isNull());
+
+        //执行动态条件拼装
+        predicate = firstName == null ? predicate : ExpressionUtils.and(predicate, user.firstName.eq(firstName));
+        predicate = lastName == null ? predicate : ExpressionUtils.and(predicate, user.lastName.eq(lastName));
+        predicate = phoneNum == null ? predicate : ExpressionUtils.and(predicate, user.phoneNum.eq(phoneNum));
+        predicate = birthday == null ? predicate : ExpressionUtils.and(predicate, user.birthday.eq(birthday));
+        predicate = address == null ? predicate : ExpressionUtils.and(predicate, user.address.eq(address));
+
+        return jpaQueryFactory
+                .selectFrom(user)
+                .where(predicate)               //执行条件
+                .orderBy(user.id.asc())     //执行排序
+                .groupBy(user.address)           //执行分组
+                .fetch();
+    }
+
+    public List<UserPO> findByFirstNameOrLastName(String firstName, String lastName) {
+        QUser user = QUser.user;
+        return (List<UserPO>) userRepository.findAll(
+                user.firstName.eq(firstName).and(user.lastName.eq(lastName)),
+                user.id.asc()
+        );
+    }
+
+    public long countByFirstNameLike(String firstName) {
+        QUser user = QUser.user;
+        return userRepository.count(
+                user.firstName.like("%" + firstName + "%")
+        );
+    }
+
+    public Page<UserPO> findByUserProperties(Pageable pageable, String firstName, String lastName, String phoneNum, LocalDate birthday) {
+
+        QUser user = QUser.user;
+        Predicate predicate = user.isNotNull().or(user.isNull());
+
+        //执行动态条件拼装
+        predicate = firstName == null ? predicate : ExpressionUtils.and(predicate, user.firstName.eq(firstName));
+        predicate = lastName == null ? predicate : ExpressionUtils.and(predicate, user.lastName.eq(lastName));
+        predicate = phoneNum == null ? predicate : ExpressionUtils.and(predicate, user.phoneNum.eq(phoneNum));
+        predicate = birthday == null ? predicate : ExpressionUtils.and(predicate, user.birthday.eq(birthday));
+
+        return userRepository.findAll(predicate, pageable);
+    }
+
 }

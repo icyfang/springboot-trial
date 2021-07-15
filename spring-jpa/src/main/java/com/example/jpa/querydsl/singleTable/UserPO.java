@@ -1,4 +1,4 @@
-package com.example.jpa.querydsl;
+package com.example.jpa.querydsl.singleTable;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.example.jpa.querydsl;
+package com.example.jpa.querydsl.singleTable;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;

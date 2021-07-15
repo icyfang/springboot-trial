@@ -1,4 +1,4 @@
-package com.example.jpa.querydsl;
+package com.example.jpa.querydsl.singleTable;
 
 import com.querydsl.core.types.Path;
 import com.querydsl.core.types.PathMetadata;

@@ -1,4 +1,4 @@
-package com.example.jpa.attrOverride;
+package com.example.jpa.attroverride;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

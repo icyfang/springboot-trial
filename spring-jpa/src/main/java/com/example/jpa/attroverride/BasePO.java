@@ -1,4 +1,4 @@
-package com.example.jpa.attrOverride;
+package com.example.jpa.attroverride;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;

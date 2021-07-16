@@ -1,9 +1,9 @@
 package com.example.jpa.base;
 
-import com.example.jpa.multiDatasource.primary.PrimaryPO;
-import com.example.jpa.multiDatasource.primary.PrimaryRepository;
-import com.example.jpa.multiDatasource.secondary.SecondaryPO;
-import com.example.jpa.multiDatasource.secondary.SecondaryRepository;
+import com.example.jpa.multidatasource.primary.PrimaryPO;
+import com.example.jpa.multidatasource.primary.PrimaryRepository;
+import com.example.jpa.multidatasource.secondary.SecondaryPO;
+import com.example.jpa.multidatasource.secondary.SecondaryRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

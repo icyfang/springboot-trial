@@ -1,4 +1,4 @@
-package com.example.jpa.multiDatasource.primary;
+package com.example.jpa.multidatasource.primary;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;

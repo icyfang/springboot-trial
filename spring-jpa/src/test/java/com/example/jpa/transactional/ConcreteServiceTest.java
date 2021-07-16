@@ -1,7 +1,7 @@
 package com.example.jpa.transactional;
 
-import com.example.jpa.attrOverride.ConcreteRepository;
-import com.example.jpa.attrOverride.ConcreteRepository2;
+import com.example.jpa.attroverride.ConcreteRepository;
+import com.example.jpa.attroverride.ConcreteRepository2;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,6 +14,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
  * @author Hodur
  * @date 2021-04-28
  */
+@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class ConcreteServiceTest {

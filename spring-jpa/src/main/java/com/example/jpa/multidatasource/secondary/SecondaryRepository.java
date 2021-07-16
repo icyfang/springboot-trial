@@ -1,4 +1,4 @@
-package com.example.jpa.multiDatasource.secondary;
+package com.example.jpa.multidatasource.secondary;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

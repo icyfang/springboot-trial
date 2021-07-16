@@ -1,7 +1,7 @@
 package com.example.jpa.transactional;
 
-import com.example.jpa.attrOverride.ConcretePO;
-import com.example.jpa.attrOverride.ConcreteRepository;
+import com.example.jpa.attroverride.ConcretePO;
+import com.example.jpa.attroverride.ConcreteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;

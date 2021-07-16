@@ -1,4 +1,4 @@
-package com.example.jpa.multiDatasource;
+package com.example.jpa.multidatasource;
 
 import org.springframework.context.annotation.Configuration;
 

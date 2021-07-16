@@ -1,9 +1,9 @@
 package com.example.jpa.base;
 
-import com.example.jpa.attrOverride.ConcretePO;
-import com.example.jpa.attrOverride.ConcretePO2;
-import com.example.jpa.attrOverride.ConcreteRepository;
-import com.example.jpa.attrOverride.ConcreteRepository2;
+import com.example.jpa.attroverride.ConcretePO;
+import com.example.jpa.attroverride.ConcretePO2;
+import com.example.jpa.attroverride.ConcreteRepository;
+import com.example.jpa.attroverride.ConcreteRepository2;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

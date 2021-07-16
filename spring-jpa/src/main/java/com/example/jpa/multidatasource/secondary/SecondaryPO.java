@@ -1,4 +1,4 @@
-package com.example.jpa.multiDatasource.primary;
+package com.example.jpa.multidatasource.secondary;
 
 import lombok.Data;
 
@@ -11,12 +11,11 @@ import javax.persistence.Table;
 
 @Entity
 @Data
-@Table(name = "t_primary")
-public class PrimaryPO {
+@Table(name = "t_secondary")
+public class SecondaryPO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     @Column(name = "col_name")
     private String name;
 

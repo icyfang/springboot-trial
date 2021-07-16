@@ -30,7 +30,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Table(name = "t_order")
 @EntityListeners(value = {AuditingEntityListener.class, RecordEntityListener.class})
-public class Order {
+public class OrderPO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

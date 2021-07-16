@@ -55,7 +55,6 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 
-
             <!--因为是类型安全的，所以还需要加上Maven APT plugin，使用 APT 自动生成一些类:-->
             <plugin>
                 <groupId>com.mysema.maven</groupId>

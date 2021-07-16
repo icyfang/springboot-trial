@@ -1,4 +1,4 @@
-package com.example.jpa.nameGraph;
+package com.example.jpa.graph;
 
 import lombok.Getter;
 import lombok.Setter;

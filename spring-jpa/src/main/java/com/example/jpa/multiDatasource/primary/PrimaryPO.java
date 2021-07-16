@@ -16,6 +16,7 @@ public class PrimaryPO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column(name = "col_name")
     private String name;
 

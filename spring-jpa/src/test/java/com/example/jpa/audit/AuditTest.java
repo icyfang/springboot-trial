@@ -13,6 +13,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
  * @author Hodur
  * @date 2021-01-06
  */
+@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -26,10 +27,10 @@ public class AuditTest {
     @Test
     @org.junit.jupiter.api.Order(1)
     public void testAutoFill() {
-        Order order = new Order();
-        orderRepository.save(order);
+        OrderPO orderPO = new OrderPO();
+        orderRepository.save(orderPO);
 
-        Order o = orderRepository.findFirstByOrderByIdDesc();
+        OrderPO o = orderRepository.findFirstByOrderByIdDesc();
         Assertions.assertEquals(1, o.getCreateUser().getId());
         Assertions.assertEquals(1, o.getUpdateUser().getId());
         Assertions.assertNotNull(o.getCreateTime());
@@ -39,10 +40,10 @@ public class AuditTest {
     @Test
     @org.junit.jupiter.api.Order(2)
     public void testPersist() {
-        Order order = new Order();
-        orderRepository.save(order);
+        OrderPO orderPO = new OrderPO();
+        orderRepository.save(orderPO);
 
-        Record o = recordRepository.findFirstByOrderByIdDesc();
+        RecordPO o = recordRepository.findFirstByOrderByIdDesc();
         Assertions.assertEquals("persist", o.getMethod());
         Assertions.assertNotNull(o.getContent());
     }
@@ -51,14 +52,14 @@ public class AuditTest {
     @org.junit.jupiter.api.Order(3)
     public void testGetAndUpdate() {
 
-        Order order = orderRepository.findFirstByOrderByIdDesc();
+        OrderPO orderPO = orderRepository.findFirstByOrderByIdDesc();
 
-        Record o = recordRepository.findFirstByOrderByIdDesc();
+        RecordPO o = recordRepository.findFirstByOrderByIdDesc();
         Assertions.assertEquals("query", o.getMethod());
-        Assertions.assertEquals(order.toString(), o.getContent());
+        Assertions.assertEquals(orderPO.toString(), o.getContent());
 
-        order.setStatus(1);
-        orderRepository.save(order);
+        orderPO.setStatus(1);
+        orderRepository.save(orderPO);
 
         o = recordRepository.findFirstByOrderByIdDesc();
         Assertions.assertEquals("update", o.getMethod());
@@ -70,11 +71,11 @@ public class AuditTest {
     @org.junit.jupiter.api.Order(4)
     public void testRemove() {
 
-        Order order = orderRepository.findFirstByOrderByIdDesc();
-        orderRepository.delete(order);
+        OrderPO orderPO = orderRepository.findFirstByOrderByIdDesc();
+        orderRepository.delete(orderPO);
 
-        Record o = recordRepository.findFirstByOrderByIdDesc();
+        RecordPO o = recordRepository.findFirstByOrderByIdDesc();
         Assertions.assertEquals("remove", o.getMethod());
-        Assertions.assertEquals(order.toString(), o.getContent());
+        Assertions.assertEquals(orderPO.toString(), o.getContent());
     }
 }

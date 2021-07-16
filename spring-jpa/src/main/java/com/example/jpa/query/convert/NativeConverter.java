@@ -1,4 +1,4 @@
-package com.example.jpa.convert;
+package com.example.jpa.query.convert;
 
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
@@ -10,7 +10,12 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * @author Hodur
+ * @date 2021/7/9
+ */
 public class NativeConverter implements GenericConverter {
+
     @Override
     public Set<ConvertiblePair> getConvertibleTypes() {
         return Collections.singleton(new ConvertiblePair(Map.class, Object.class));

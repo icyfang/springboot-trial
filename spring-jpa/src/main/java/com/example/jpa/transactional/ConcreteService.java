@@ -14,32 +14,33 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class ConcreteService {
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     private ConcreteRepository concreteRepository;
     @Autowired
     private ConcreteService2 concreteService2;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void requireNew1() {
         saveConcretePO();
         concreteService2.saveConcretePO2(false);
         throw new RuntimeException();
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void requireNew2() {
         saveConcretePO();
         concreteService2.saveConcretePO2(true);
     }
 
-    @Transactional(propagation = Propagation.NESTED)
+    @Transactional(propagation = Propagation.NESTED, rollbackFor = Exception.class)
     public void nested1() {
         saveConcretePO();
         concreteService2.saveConcretePO2(false);
         throw new RuntimeException();
     }
 
-    @Transactional(propagation = Propagation.NESTED)
+    @Transactional(propagation = Propagation.NESTED, rollbackFor = Exception.class)
     public void nested2() {
         saveConcretePO();
         concreteService2.saveConcretePO2(false);

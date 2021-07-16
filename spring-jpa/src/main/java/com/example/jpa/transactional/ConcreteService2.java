@@ -14,10 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class ConcreteService2 {
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     private ConcreteRepository2 concreteRepository2;
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
     public void saveConcretePO2(boolean ex) {
         ConcretePO2 concretePO2 = new ConcretePO2();
         concretePO2.setDesp("a");

@@ -10,6 +10,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+/**
+ * @author Hodur
+ * @date 2020/6/20
+ */
 @Data
 @Entity
 @AllArgsConstructor
@@ -19,17 +23,19 @@ import java.math.BigDecimal;
         @SecondaryTable(name = "Comments")
 })
 @Table(name = "t_forum", uniqueConstraints = {@UniqueConstraint(columnNames = "id")})
-@NamedQuery(name = "Forum.findNameNotEmpty", query = "select o from Forum o where o.userName is not null")
+@NamedQuery(name = "ForumPO.findNameNotEmpty", query = "select o from ForumPO o where o.username is not null")
 @Proxy(lazy = false)
 @Builder
-public class Forum implements Serializable {
+public class ForumPO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String userName;
+
+    @Column(name = "userName")
+    private String username;
     private String password;
     @Column(columnDefinition = "DECIMAL(19, 2)")
     private BigDecimal account;

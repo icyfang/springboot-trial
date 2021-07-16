@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Table(name = "t_record")
 @EntityListeners(value = {AuditingEntityListener.class})
-public class Record {
+public class RecordPO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

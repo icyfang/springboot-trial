@@ -1,4 +1,4 @@
-package com.example.jpa.nameGraph;
+package com.example.jpa.graph;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

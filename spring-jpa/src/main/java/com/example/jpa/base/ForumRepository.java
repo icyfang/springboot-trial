@@ -4,28 +4,26 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-@Component
-public interface ForumRepository extends JpaRepository<Forum, Long> {
+public interface ForumRepository extends JpaRepository<ForumPO, Long> {
 
-    @Query(value = "select u from Forum u where u.userName=:userName")
-    Forum findForum(@Param("userName") String name);
+    @Query(value = "select u from ForumPO u where u.username=:username")
+    ForumPO findForum(@Param("username") String name);
 
-    List<Forum> findNameNotEmpty();
+    List<ForumPO> findNameNotEmpty();
 
-    Forum findByUserNameAndAccount(String name, BigDecimal account);
+    ForumPO findByUsernameAndAccount(String name, BigDecimal account);
 
-    List<Forum> findByUserName(String name, Sort sort);
+    List<ForumPO> findByUsername(String name, Sort sort);
 
-    List<Forum> findByAccountBetween(BigDecimal off, BigDecimal end);
+    List<ForumPO> findByAccountBetween(BigDecimal off, BigDecimal end);
 
-    List<Forum> findTop3ByUserName(String name);
+    List<ForumPO> findTop3ByUsername(String name);
 
-    List<Forum> findLast3ByUserName(String name);
+    List<ForumPO> findLast3ByUsername(String name);
 
 }
 

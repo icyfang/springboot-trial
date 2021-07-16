@@ -1,4 +1,4 @@
-package com.example.jpa.nameGraph;
+package com.example.jpa.graph;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,4 +16,5 @@ public interface GraphMainRepository extends JpaRepository<GraphMainPO, Long> {
     @Override
     @EntityGraph(value = "GraphMainPO.Graph", type = EntityGraph.EntityGraphType.FETCH)
     Page<GraphMainPO> findAll(Pageable pageable);
+
 }

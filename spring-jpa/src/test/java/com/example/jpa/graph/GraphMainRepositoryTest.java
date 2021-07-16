@@ -1,6 +1,5 @@
-package com.example.jpa.nameGraph;
+package com.example.jpa.graph;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -20,6 +19,7 @@ import java.util.List;
  * @date 2021/7/13
  */
 
+@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -27,7 +27,6 @@ public class GraphMainRepositoryTest {
 
     @Autowired
     private GraphMainRepository graphMainRepository;
-
     @Autowired
     private GraphSubRepository graphSubRepository;
 
@@ -60,9 +59,7 @@ public class GraphMainRepositoryTest {
     @Order(3)
     public void query() {
         List<GraphMainPO> all = graphMainRepository.findAll();
-        GraphSubPO graphSubPO = all.get(0).getSubPOList().get(0);
-        Assertions.assertEquals(1001, graphSubPO.getId());
-        Assertions.assertEquals("sub1001", graphSubPO.getName());
+
     }
 
     @Test

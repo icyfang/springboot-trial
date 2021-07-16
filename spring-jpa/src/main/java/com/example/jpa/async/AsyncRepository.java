@@ -1,6 +1,6 @@
 package com.example.jpa.async;
 
-import com.example.jpa.base.Forum;
+import com.example.jpa.base.ForumPO;
 import com.example.jpa.base.ForumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public class AsyncRepository {
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     private ForumRepository forumRepository;
 
@@ -21,9 +22,9 @@ public class AsyncRepository {
     @Transactional(rollbackFor = Exception.class)
     public void saveForum(long id) {
 
-        Forum entity = new Forum();
+        ForumPO entity = new ForumPO();
         entity.setId(id);
-        entity.setUserName("username");
+        entity.setUsername("username");
         forumRepository.save(entity);
     }
 
@@ -31,9 +32,9 @@ public class AsyncRepository {
     @Transactional(rollbackFor = Exception.class)
     public void saveForumWithException(long id) {
 
-        Forum entity = new Forum();
+        ForumPO entity = new ForumPO();
         entity.setId(id);
-        entity.setUserName("username");
+        entity.setUsername("username");
         forumRepository.save(entity);
         throw new RuntimeException();
     }

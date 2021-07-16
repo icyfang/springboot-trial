@@ -1,4 +1,4 @@
-package com.example.jpa.convert;
+package com.example.jpa.query.convert;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.support.DefaultConversionService;

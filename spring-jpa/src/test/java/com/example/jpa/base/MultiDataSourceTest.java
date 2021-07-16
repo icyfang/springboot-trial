@@ -1,4 +1,4 @@
-package com.example.jpa;
+package com.example.jpa.base;
 
 import com.example.jpa.multiDatasource.primary.PrimaryPO;
 import com.example.jpa.multiDatasource.primary.PrimaryRepository;
@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class MultiDataSourceTest {

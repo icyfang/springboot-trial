@@ -22,7 +22,6 @@ public interface MainSubRepository {
 
     /**
      * association query using jpql, implicit join
-     *
      * @param mainId
      * @return
      */
@@ -36,7 +35,6 @@ public interface MainSubRepository {
 
     /**
      * association query using jpql, left join
-     *
      * @param mainId
      * @return
      */
@@ -46,7 +44,6 @@ public interface MainSubRepository {
 
     /**
      * jpql query using attribute of sub entity
-     *
      * @param
      * @return
      */
@@ -55,8 +52,6 @@ public interface MainSubRepository {
 
     /**
      * association query using native query, implicit join
-     * query by mainId if mainId not equals null or ''
-     *
      * @param mainId
      * @return
      */

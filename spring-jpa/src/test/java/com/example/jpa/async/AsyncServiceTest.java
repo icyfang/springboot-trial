@@ -1,6 +1,6 @@
 package com.example.jpa.async;
 
-import com.example.jpa.base.Forum;
+import com.example.jpa.base.ForumPO;
 import com.example.jpa.base.ForumRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.MethodOrderer;
@@ -20,6 +20,7 @@ class AsyncServiceTest {
     @Autowired
     private AsyncService asyncService;
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     private ForumRepository forumRepository;
 
@@ -60,10 +61,10 @@ class AsyncServiceTest {
         Assertions.assertNull(forumRepository.findById((long) 4).orElse(null));
     }
 
-    private Forum getForum(long i) {
-        Forum entity = new Forum();
+    private ForumPO getForum(long i) {
+        ForumPO entity = new ForumPO();
         entity.setId(i);
-        entity.setUserName("username");
+        entity.setUsername("username");
         return entity;
     }
 }

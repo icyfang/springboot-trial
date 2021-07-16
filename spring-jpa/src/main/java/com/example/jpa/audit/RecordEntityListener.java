@@ -23,18 +23,18 @@ public class RecordEntityListener {
     private static RecordRepository recordRepository;
 
     @Autowired
-    public void init(RecordRepository recordRepository) {
+    public void init(@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection") RecordRepository recordRepository) {
         RecordEntityListener.recordRepository = recordRepository;
         log.info("Initializing with dependency [" + recordRepository + "]");
     }
 
     @PrePersist
     public void prePersist(Object t) {
-        Record record = new Record();
-        record.setMethod("persist");
-        record.setContent(t.toString());
+        RecordPO recordPO = new RecordPO();
+        recordPO.setMethod("persist");
+        recordPO.setContent(t.toString());
 
-        recordRepository.save(record);
+        recordRepository.save(recordPO);
     }
 
     @PostPersist
@@ -45,19 +45,19 @@ public class RecordEntityListener {
     @PostLoad
     public void postLoad(Object t) {
 
-        Record record = new Record();
-        record.setMethod("query");
-        record.setContent(t.toString());
-        recordRepository.save(record);
+        RecordPO recordPO = new RecordPO();
+        recordPO.setMethod("query");
+        recordPO.setContent(t.toString());
+        recordRepository.save(recordPO);
     }
 
     @PreUpdate
     public void preUpdate(Object t) {
-        Record record = new Record();
-        record.setMethod("update");
-        record.setContent(t.toString());
+        RecordPO recordPO = new RecordPO();
+        recordPO.setMethod("update");
+        recordPO.setContent(t.toString());
 
-        recordRepository.save(record);
+        recordRepository.save(recordPO);
     }
 
     @PostUpdate
@@ -67,11 +67,11 @@ public class RecordEntityListener {
 
     @PreRemove
     public void preRemove(Object t) {
-        Record record = new Record();
-        record.setMethod("remove");
-        record.setContent(t.toString());
+        RecordPO recordPO = new RecordPO();
+        recordPO.setMethod("remove");
+        recordPO.setContent(t.toString());
 
-        recordRepository.save(record);
+        recordRepository.save(recordPO);
     }
 
     @PostRemove

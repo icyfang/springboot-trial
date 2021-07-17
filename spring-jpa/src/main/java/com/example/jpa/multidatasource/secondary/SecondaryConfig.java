@@ -22,7 +22,7 @@ import java.util.Objects;
 @EnableJpaRepositories(
         entityManagerFactoryRef = "entityManagerFactorySecondary",
         transactionManagerRef = "transactionManagerSecondary",
-        basePackages = {"com.example.jpa.multiDatasource.secondary"})
+        basePackages = {"com.example.jpa.multidatasource.secondary"})
 public class SecondaryConfig {
 
     @Autowired
@@ -44,7 +44,7 @@ public class SecondaryConfig {
         return builder
                 .dataSource(secondaryDataSource())
                 .properties(jpaProperties.getProperties())
-                .packages("com.example.jpa.multiDatasource.secondary") //设置实体类所在位置
+                .packages("com.example.jpa.multidatasource.secondary") //设置实体类所在位置
                 .persistenceUnit("secondaryPersistenceUnit")
                 .build();
     }

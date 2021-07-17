@@ -1,4 +1,4 @@
-package com.example.jpa.querydsl.singleTable;
+package com.example.jpa.querydsl.singletable;
 
 import com.querydsl.core.QueryResults;
 import com.querydsl.core.types.ExpressionUtils;
@@ -30,7 +30,7 @@ public class UserService {
 
     public UserPO queryByFirstNameAndLastName(String firstName, String lastName) {
 
-        QUserPO user = QUserPO.user;
+        QUserPO user = QUserPO.userPO;
         return jpaQueryFactory
                 .selectFrom(user)
                 .where(
@@ -42,7 +42,7 @@ public class UserService {
     }
 
     public List<UserPO> queryByBirthdayBetween(LocalDate start, LocalDate end) {
-        QUserPO user = QUserPO.user;
+        QUserPO user = QUserPO.userPO;
         return jpaQueryFactory
                 .selectFrom(user)
                 .where(
@@ -52,7 +52,7 @@ public class UserService {
     }
 
     public List<UserPO> queryAll() {
-        QUserPO user = QUserPO.user;
+        QUserPO user = QUserPO.userPO;
         return jpaQueryFactory
                 .selectFrom(user)
                 .orderBy(
@@ -62,7 +62,7 @@ public class UserService {
     }
 
     public QueryResults<UserPO> queryAll(Pageable pageable) {
-        QUserPO user = QUserPO.user;
+        QUserPO user = QUserPO.userPO;
         return jpaQueryFactory
                 .selectFrom(user)
                 .orderBy(
@@ -74,7 +74,7 @@ public class UserService {
     }
 
     public List<UserDTO> queryAllUserDto(Pageable pageable) {
-        QUserPO user = QUserPO.user;
+        QUserPO user = QUserPO.userPO;
 
         return jpaQueryFactory
                 .select(
@@ -105,7 +105,7 @@ public class UserService {
     }
 
     public List<UserDTO> queryAllUserDtoByProjections() {
-        QUserPO user = QUserPO.user;
+        QUserPO user = QUserPO.userPO;
         return jpaQueryFactory
                 .select(
                         Projections.bean(
@@ -126,7 +126,7 @@ public class UserService {
 
     public List<UserPO> queryByUserPropertiesGroupByAddress(String firstName, String lastName, String phoneNum, LocalDate birthday, String address) {
 
-        QUserPO user = QUserPO.user;
+        QUserPO user = QUserPO.userPO;
         Predicate predicate = user.isNotNull().or(user.isNull());
 
         //执行动态条件拼装
@@ -145,7 +145,7 @@ public class UserService {
     }
 
     public List<UserPO> findByFirstNameOrLastName(String firstName, String lastName) {
-        QUserPO user = QUserPO.user;
+        QUserPO user = QUserPO.userPO;
         return (List<UserPO>) userRepository.findAll(
                 user.firstName.eq(firstName).and(user.lastName.eq(lastName)),
                 user.id.asc()
@@ -153,7 +153,7 @@ public class UserService {
     }
 
     public long countByFirstNameLike(String firstName) {
-        QUserPO user = QUserPO.user;
+        QUserPO user = QUserPO.userPO;
         return userRepository.count(
                 user.firstName.like("%" + firstName + "%")
         );
@@ -161,7 +161,7 @@ public class UserService {
 
     public Page<UserPO> findByUserProperties(Pageable pageable, String firstName, String lastName, String phoneNum, LocalDate birthday) {
 
-        QUserPO user = QUserPO.user;
+        QUserPO user = QUserPO.userPO;
         Predicate predicate = user.isNotNull().or(user.isNull());
 
         //执行动态条件拼装

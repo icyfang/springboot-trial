@@ -1,4 +1,4 @@
-package com.example.jpa.querydsl.singleTable;
+package com.example.jpa.querydsl.singletable;
 
 import lombok.Builder;
 import lombok.Data;

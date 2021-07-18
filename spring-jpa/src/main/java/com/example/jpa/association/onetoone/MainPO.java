@@ -1,6 +1,8 @@
 package com.example.jpa.association.onetoone;
 
 import lombok.Data;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.CascadeType;
@@ -23,5 +25,6 @@ public class MainPO {
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "sub_id")
+    @NotFound(action = NotFoundAction.IGNORE)
     private SubPO subPO;
 }

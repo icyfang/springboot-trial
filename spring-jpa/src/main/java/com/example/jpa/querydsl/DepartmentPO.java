@@ -1,4 +1,4 @@
-package com.example.jpa.querydsl.multitable;
+package com.example.jpa.querydsl;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

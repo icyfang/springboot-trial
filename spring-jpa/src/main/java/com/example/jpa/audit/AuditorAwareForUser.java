@@ -1,6 +1,6 @@
 package com.example.jpa.audit;
 
-import com.example.jpa.querydsl.singletable.UserPO;
+import com.example.jpa.querydsl.UserPO;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
 

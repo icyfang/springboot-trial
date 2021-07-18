@@ -1,4 +1,4 @@
-package com.example.jpa.querydsl.multitable;
+package com.example.jpa.querydsl;
 
 import lombok.Builder;
 import lombok.Data;
@@ -11,11 +11,15 @@ import java.time.LocalDate;
  */
 @Data
 @Builder
-public class EmployeeDTO {
+public class UserDTO {
 
     //用户基础信息
-    private String username;    //用户名
-    private String nickname;    //昵称
+    private Long id;
+    private String firstName;    //用户名
+    private String lastName;    //昵称
+    private String phoneNum;
+    private String email;
+    private String address;
     private LocalDate birthday;    //用户生日
     //用户的部门信息
     private String deptName;    //用户所属部门

@@ -1,4 +1,4 @@
-package com.example.jpa.querydsl.singletable;
+package com.example.jpa.querydsl;
 
 import com.querydsl.core.QueryResults;
 import com.querydsl.core.types.ExpressionUtils;
@@ -16,17 +16,91 @@ import java.util.stream.Collectors;
 
 /**
  * @author Hodur
- * @date 2021/7/15
+ * @date 2021/7/17
  */
 @Service
 public class UserService {
 
-    @Autowired
-    private JPAQueryFactory jpaQueryFactory;
-
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private JPAQueryFactory jpaQueryFactory;
+
+    public List<UserDTO> findUserDTOByDepartmentId(Long departmentId) {
+        QUserPO user = QUserPO.userPO;
+        QDepartmentPO department = QDepartmentPO.departmentPO;
+        //直接返回
+        return jpaQueryFactory
+                //投影只去部分字段
+                .select(
+                        user.firstName,
+                        user.lastName,
+                        user.birthday,
+                        department.deptName,
+                        department.createDate
+
+                )
+                .from(user)
+                //联合查询
+                .join(user.department, department)
+                .where(department.id.eq(departmentId))
+                .fetch()
+                //lambda开始
+                .stream()
+                .map(tuple ->
+                        //需要做类型转换，所以使用map函数非常适合
+                        UserDTO.builder()
+                               .firstName(tuple.get(user.firstName))
+                               .lastName(tuple.get(user.lastName))
+                               .birthday(tuple.get(user.birthday))
+                               .deptName(tuple.get(department.deptName))
+                               .deptBirth(tuple.get(department.createDate))
+                               .build()
+                )
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * @param departmentId
+     * @return
+     */
+    public List<UserDTO> queryUserDTOByDepartmentId(Long departmentId) {
+
+        QUserWithoutFKPO user = QUserWithoutFKPO.userWithoutFKPO;
+        QDepartmentPO department = QDepartmentPO.departmentPO;
+        //直接返回
+        return jpaQueryFactory
+                //投影只去部分字段
+                .select(
+                        user.firstName,
+                        user.lastName,
+                        user.birthday,
+                        department.deptName,
+                        department.createDate
+
+                )
+                .from(user, department)
+                //联合查询
+                .where(
+                        user.departmentId.eq(department.id).and(department.id.eq(departmentId))
+                )
+                .fetch()
+                //lambda开始
+                .stream()
+                .map(tuple ->
+                        //需要做类型转换，所以使用map函数非常适合
+                        UserDTO.builder()
+                               .firstName(tuple.get(user.firstName))
+                               .lastName(tuple.get(user.lastName))
+                               .birthday(tuple.get(user.birthday))
+                               .deptName(tuple.get(department.deptName))
+                               .deptBirth(tuple.get(department.createDate))
+                               .build()
+                )
+                .collect(Collectors.toList());
+    }
 
     public UserPO queryByFirstNameAndLastName(String firstName, String lastName) {
 

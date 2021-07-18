@@ -1,4 +1,4 @@
-package com.example.jpa.querydsl.multitable;
+package com.example.jpa.querydsl;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,17 +21,20 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-@Table(name = "t_employee")
+@Table(name = "t_user")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class EmployeePO {
+public class UserPO {
 
     @Id
     private Long id;
-    private String username;
-    private String nickName;
+    private String firstName;
+    private String lastName;
     private String password;
+    private String phoneNum;
+    private String email;
+    private String address;
     private LocalDate birthday;
 
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)

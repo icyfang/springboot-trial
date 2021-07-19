@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class AccountWithVersionService {
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     private AccountWithVersionRepository accountWithVersionRepository;
 
@@ -30,6 +31,7 @@ public class AccountWithVersionService {
 
     }
 
+    @SuppressWarnings("DuplicatedCode")
     @Transactional(rollbackFor = Exception.class)
     public void updateAccount(Long id, BigDecimal money) {
         System.out.println(Thread.currentThread().getName() + ",addAccountMoney start...");

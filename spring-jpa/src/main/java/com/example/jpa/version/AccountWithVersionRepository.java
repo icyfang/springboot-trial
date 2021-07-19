@@ -8,5 +8,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface AccountWithVersionRepository extends JpaRepository<AccountWithVersion, Long> {
 
-    Account findByAccountName(String accountName);
 }

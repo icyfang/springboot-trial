@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import java.util.List;
 
 @Data
@@ -22,5 +23,6 @@ public class MainPO {
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "main_id")
+    @OrderBy("name")
     private List<SubPO> subPOS;
 }

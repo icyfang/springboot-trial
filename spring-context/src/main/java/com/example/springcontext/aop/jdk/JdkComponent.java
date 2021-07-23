@@ -1,5 +1,6 @@
 package com.example.springcontext.aop.jdk;
 
+import org.springframework.aop.framework.AopContext;
 import org.springframework.stereotype.Component;
 
 /**
@@ -22,4 +23,9 @@ public class JdkComponent implements JdkInterface {
         return a.length;
     }
 
+    @Override
+    public Integer actProxy(Integer... a) {
+        JdkComponent o = ((JdkComponent) AopContext.currentProxy());
+        return o.doAct(a);
+    }
 }

@@ -24,6 +24,11 @@ class JdkComponentTest {
     }
 
     @Test
+    void actProxy() {
+        jdkInterface.actProxy(1, 2, 3, 4, 5, 6, 7, 8, 9, 0);
+    }
+
+    @Test
     void actException() {
         jdkInterface.act(1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1);
     }

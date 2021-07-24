@@ -1,9 +1,12 @@
 package com.example.jpa.querydsl;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,7 @@ import java.util.List;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class UserServiceTest {
 
     @Autowired
@@ -30,8 +34,7 @@ public class UserServiceTest {
 
     private LocalDate now = LocalDate.now();
 
-    @Test
-    @Order(1)
+    @BeforeAll
     public void initData() {
 
         DepartmentPO departmentPO = DepartmentPO.builder().createDate(now)
@@ -87,8 +90,7 @@ public class UserServiceTest {
         Assertions.assertEquals("last name  of employee 1", userDTO.getFirstName());
     }
 
-    @Test
-    @Order(4)
+    @AfterAll
     void emptyData() {
         userRepository.deleteAll();
         userWithoutFKRepository.deleteAll();

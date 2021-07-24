@@ -1,8 +1,10 @@
 package com.example.jpa.graph;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,7 @@ import java.util.List;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class GraphMainRepositoryTest {
 
     @Autowired
@@ -30,8 +33,7 @@ public class GraphMainRepositoryTest {
     @Autowired
     private GraphSubRepository graphSubRepository;
 
-    @Test
-    @Order(2)
+    @BeforeAll
     public void initGraph() {
 
         GraphSubPO subPO = new GraphSubPO();
@@ -56,20 +58,19 @@ public class GraphMainRepositoryTest {
     }
 
     @Test
-    @Order(3)
+    @Order(1)
     public void query() {
         List<GraphMainPO> all = graphMainRepository.findAll();
-
     }
 
     @Test
-    @Order(4)
+    @Order(2)
     public void querySub() {
         List<GraphSubPO> all = graphSubRepository.findAll();
     }
 
     @Test
-    @Order(4)
+    @Order(3)
     public void queryPage() {
         Page<GraphMainPO> all = graphMainRepository.findAll(PageRequest.of(0, 1));
         System.out.println(all.getContent().size());

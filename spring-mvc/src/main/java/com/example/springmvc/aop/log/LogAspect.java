@@ -90,7 +90,7 @@ public class LogAspect {
      * 获取方法参数名和参数值
      *
      * @param joinPoint
-     * @return
+     * @return Map<String, Object>
      */
     private Map<String, Object> getNameAndValue(ProceedingJoinPoint joinPoint) {
 

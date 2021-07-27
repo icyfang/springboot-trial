@@ -23,7 +23,7 @@ Log the experience of studying Spring Boot.
 - [x] 通过 @Component、@WebFilter、ServletContextInitializer 三种方式配置 Filter
 - [x] jsr303
 - [x] Swagger 
-- [ ] AOP 记录请求参数
+- [x] AOP 记录请求参数
 
 ### Spring JPA
 
@@ -39,13 +39,16 @@ Log the experience of studying Spring Boot.
 - [x] native query
     - [x] 条件判断 
     - [x] 分页排序
+- [x] Criteria 进行复杂条件查询
+- [x] QueryDSL
 - [x] JPQL
-- [x] 审计功能，记录 createTime、createUser 和 updateTime、updateUser
+- [x] 通过 entity graph 解决 N+1 问题 
+- [x] 自动插入审计字段，记录 createTime、createUser 和 updateTime、updateUser
+- [x] 实体操作监听
 - [x] 多数据源
-- [x] @Version 实现乐观锁
 - [ ] @Transactional 传播属性
-- [ ] Criteria 进行复杂条件查询
-- [x] N+1
+- [x] @Version 实现乐观锁
+- [x] 逻辑删除
 
 ### Spring Security
 

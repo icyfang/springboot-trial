@@ -54,7 +54,7 @@ public class LogAspect {
      * @throws Throwable 异常信息
      */
     @Around("log()")
-    public void beforeLog(ProceedingJoinPoint point) throws Throwable {
+    public Object beforeLog(ProceedingJoinPoint point) throws Throwable {
 
         // 开始打印请求日志
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
@@ -83,6 +83,7 @@ public class LogAspect {
                          .os(userAgent.getOperatingSystem().toString()).build();
 
         log.info("Request Log Info : {}", new ObjectMapper().writeValueAsString(l));
+        return proceed;
     }
 
     /**

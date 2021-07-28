@@ -66,7 +66,6 @@ public class UserController {
      */
     @GetMapping("/{id}")
     @ApiOperation(value = "获取用户详细信息", notes = "根据url的id来获取用户详细信息")
-
     public User getUser(@PathVariable Long id) {
         // url中的id可通过@PathVariable绑定到函数的参数中
         return users.get(id);

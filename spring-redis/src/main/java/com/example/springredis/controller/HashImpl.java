@@ -1,6 +1,6 @@
 package com.example.springredis.controller;
 
-import com.example.springredis.model.User;
+import com.example.basic.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.hash.BeanUtilsHashMapper;
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  * @date 2020-09-04
  */
 @Component
-public class HashBean implements CrudInterface {
+public class HashImpl implements CrudInterface {
 
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;

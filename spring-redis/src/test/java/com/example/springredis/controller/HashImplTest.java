@@ -1,6 +1,6 @@
 package com.example.springredis.controller;
 
-import com.example.springredis.model.User;
+import com.example.basic.model.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -14,38 +14,38 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class StringBeanTest {
+class HashImplTest {
 
     @Autowired
-    private StringBean stringBean;
+    private HashImpl hashImpl;
 
     @Test
     @Order(1)
     void insert() {
-        stringBean.insert(new User("user1", "name1"));
+        hashImpl.insert(new User((long) 1, "user1", 20));
     }
 
     @Test
     @Order(2)
     void get() {
-        User user1 = stringBean.get("user1");
-        Assertions.assertEquals(user1, new User("user1", "name1"));
+        User user1 = hashImpl.get("user1");
+        Assertions.assertEquals(user1, new User((long) 1, "user1", 20));
     }
 
     @Order(3)
     @Test
     void update() {
-        stringBean.update("user1", new User("user1", "name2"));
-        User user1 = stringBean.get("user1");
-        Assertions.assertEquals(user1, new User("user1", "name2"));
+        hashImpl.update("user1", new User((long) 1, "user1", 30));
+        User user1 = hashImpl.get("user1");
+        Assertions.assertEquals(user1, new User((long) 1, "user1", 30));
     }
 
     @Order(4)
     @Test
     void delete() {
-        stringBean.delete("user1");
-        User user1 = stringBean.get("user1");
-        Assertions.assertNull(user1);
+        hashImpl.delete("user1");
+        User user1 = hashImpl.get("user1");
+        Assertions.assertEquals(user1, new User());
     }
 
 }

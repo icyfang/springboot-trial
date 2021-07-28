@@ -1,6 +1,6 @@
 package com.example.springredis.controller;
 
-import com.example.springredis.model.User;
+import com.example.basic.model.User;
 
 /**
  * @author Hodur

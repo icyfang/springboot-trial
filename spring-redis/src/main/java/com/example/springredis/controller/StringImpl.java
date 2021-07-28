@@ -1,6 +1,6 @@
 package com.example.springredis.controller;
 
-import com.example.springredis.model.User;
+import com.example.basic.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * @date 2020-10-22
  */
 @Component
-public class StringBean implements CrudInterface {
+public class StringImpl implements CrudInterface {
 
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;

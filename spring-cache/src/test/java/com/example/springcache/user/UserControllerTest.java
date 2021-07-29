@@ -25,7 +25,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -57,8 +56,7 @@ class UserControllerTest {
     private void assertUser(String content) throws Exception {
         ResultActions perform = mockMvc.perform(get("/user/{id}", 1));
         perform.andReturn().getResponse().setCharacterEncoding("UTF-8");
-        perform.andDo(print())
-               .andExpect(status().isOk())
+        perform.andExpect(status().isOk())
                .andExpect(content().string(equalTo(content)));
     }
 
@@ -74,10 +72,10 @@ class UserControllerTest {
                 .content(content));
         perform.andReturn().getResponse().setCharacterEncoding("UTF-8");
         perform.andExpect(content().string(equalTo(content)));
-        assertUser(content);
-        String o = ((String) redisTemplate.opsForValue().get("user::1"));
-        System.out.println(o);
+
+        User o = ((User) redisTemplate.opsForValue().get("user::1"));
         Assertions.assertEquals(u, o);
+        assertUser(content);
     }
 
     @Test
@@ -90,10 +88,11 @@ class UserControllerTest {
                 .content(content)
                 .characterEncoding("utf-8")
                 .accept(MediaType.APPLICATION_JSON)
-                .contentType(MediaType.APPLICATION_JSON)).andExpect(content().string(equalTo("true")));
-        assertUser(content);
+                .contentType(MediaType.APPLICATION_JSON))
+               .andExpect(content().string(equalTo("true")));
         User o = ((User) redisTemplate.opsForValue().get("user::1"));
         Assertions.assertNull(o);
+        assertUser(content);
     }
 
     @Test
@@ -101,11 +100,10 @@ class UserControllerTest {
     void deleteUser() throws Exception {
 
         mockMvc.perform(delete("/user/{id}", 1))
-               .andDo(print())
                .andExpect(content().string(equalTo("true")));
 
-        assertUser("");
         User o = ((User) redisTemplate.opsForValue().get("user::1"));
         Assertions.assertNull(o);
+        assertUser("");
     }
 }

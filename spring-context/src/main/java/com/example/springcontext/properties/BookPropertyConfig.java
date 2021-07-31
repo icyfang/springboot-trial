@@ -9,6 +9,10 @@ import org.springframework.format.support.FormattingConversionServiceFactoryBean
 
 import java.util.Collections;
 
+/**
+ * @author Hodur
+ * @since 2021-05-28
+ */
 @Configuration
 public class BookPropertyConfig {
 

@@ -19,7 +19,9 @@ public class ArgsAspect {
     private void argsPoint(String a, String b) {
     }
 
-    // too generic poincut may cause unexpected proxy
+    /**
+     * too generic poincut may cause unexpected proxy
+     */
     @Pointcut("execution(* com.example.springcontext.aop.args.*.*(..))")
     private void argsComponentPoint() {
     }
@@ -43,7 +45,11 @@ public class ArgsAspect {
         System.out.println("before args advice");
     }
 
-    // can not inject parameter
+    /**
+     * can not inject parameter
+     *
+     * @param j j
+     */
     @Before("argsPointByType() && argsComponentPoint()")
     public void beforeArgsByType(JoinPoint j) {
         System.out.println("before argsByType advice");

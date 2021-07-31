@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
- * @author hodur
+ * @author Hodur
  * @date 2021/7/26
  */
 public class WebUTGenerator {
@@ -58,7 +58,7 @@ public class WebUTGenerator {
         if (annotation == null && clazz.getAnnotation(RestController.class) == null) {
             throw new RuntimeException("not a controller");
         }
-        String testClassName = clazz.getSimpleName() + "Test1";
+        String testClassName = clazz.getSimpleName() + "Test";
 
         String packageName = clazz.getPackage().getName();
         LINES.add("package " + packageName + ";");

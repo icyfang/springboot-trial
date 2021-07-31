@@ -5,7 +5,10 @@ import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
 import org.springframework.core.type.AnnotationMetadata;
 
-
+/**
+ * @author Hodur
+ * @since 2021-05-28
+ */
 public class BeanABeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar {
 
     @Override

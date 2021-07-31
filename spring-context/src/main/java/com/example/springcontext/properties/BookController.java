@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 
+/**
+ * @author Hodur
+ * @since 2021-05-28
+ */
 @RestController
 @RequestMapping("/book")
 public class BookController {

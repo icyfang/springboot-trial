@@ -6,8 +6,14 @@ package com.example.springcontext.aop.thisPoint;
  */
 public interface ThisInterface {
 
+    /**
+     * act
+     */
     void act();
 
+    /**
+     * do act
+     */
     default void doAct() {
         System.out.println("default act");
     }

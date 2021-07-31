@@ -6,9 +6,27 @@ package com.example.springcontext.aop.jdk;
  */
 public interface JdkInterface {
 
+    /**
+     * act
+     *
+     * @param a a
+     * @return java.lang.Integer
+     */
     Integer act(Integer... a);
 
+    /**
+     * act proxy
+     *
+     * @param a a
+     * @return java.lang.Integer
+     */
     Integer actProxy(Integer... a);
 
+    /**
+     * do act
+     *
+     * @param a a
+     * @return java.lang.Integer
+     */
     Integer doAct(Integer... a);
 }

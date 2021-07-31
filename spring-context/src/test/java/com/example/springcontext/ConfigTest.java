@@ -9,15 +9,15 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class ConfigTest {
 
     @Test
-    public void test() {
+    public void getBeanA() {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
-        BeanA userService = context.getBean(BeanA.class);
-        userService.save();
+        BeanA beanA = context.getBean(BeanA.class);
+        beanA.save();
         context.close();
     }
 
     @Test
-    public void test1() {
+    public void getBeanB() {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ConfigB.class);
         BeanB beanB = context.getBean(BeanB.class);
         beanB.run();

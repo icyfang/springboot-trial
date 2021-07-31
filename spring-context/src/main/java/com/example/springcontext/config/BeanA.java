@@ -1,8 +1,10 @@
 package com.example.springcontext.config;
 
+/**
+ * @author Hodur
+ * @since 2021-05-28
+ */
 public class BeanA {
-
-    private String a;
 
     public void save() {
         System.out.println("save1");

@@ -21,7 +21,7 @@ public class MyInstantiationAwareBeanPostProcessor extends InstantiationAwareBea
      */
     @Override
     public Object postProcessBeforeInstantiation(Class beanClass, String beanName) throws BeansException {
-        if (beanName.equals("person")) {
+        if ("person".equals(beanName)) {
             System.out.println("InstantiationAwareBeanPostProcessor#postProcessBeforeInstantiation");
         }
         return null;
@@ -32,7 +32,7 @@ public class MyInstantiationAwareBeanPostProcessor extends InstantiationAwareBea
      */
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        if (beanName.equals("person")) {
+        if ("person".equals(beanName)) {
             System.out.println("InstantiationAwareBeanPostProcessor#postProcessAfterInitialization");
         }
         return bean;
@@ -45,7 +45,7 @@ public class MyInstantiationAwareBeanPostProcessor extends InstantiationAwareBea
     public PropertyValues postProcessPropertyValues(PropertyValues pvs,
                                                     PropertyDescriptor[] pds, Object bean, String beanName)
             throws BeansException {
-        if (beanName.equals("person")) {
+        if ("person".equals(beanName)) {
             System.out.println("InstantiationAwareBeanPostProcessor#postProcessPropertyValues");
         }
         return pvs;

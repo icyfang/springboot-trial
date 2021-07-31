@@ -15,7 +15,7 @@ public class MyBeanPostProcessor implements BeanPostProcessor {
 
     @Override
     public Object postProcessAfterInitialization(Object arg0, String arg1) throws BeansException {
-        if (arg1.equals("person")) {
+        if ("person".equals(arg1)) {
             System.out.println("BeanPostProcessor#postProcessAfterInitialization");
         }
         return arg0;
@@ -23,7 +23,7 @@ public class MyBeanPostProcessor implements BeanPostProcessor {
 
     @Override
     public Object postProcessBeforeInitialization(Object arg0, String arg1) throws BeansException {
-        if (arg1.equals("person")) {
+        if ("person".equals(arg1)) {
             System.out.println("BeanPostProcessor#postProcessBeforeInitialization");
         }
         return arg0;

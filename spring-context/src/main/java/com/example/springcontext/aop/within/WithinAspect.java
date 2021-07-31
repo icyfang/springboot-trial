@@ -26,7 +26,9 @@ public class WithinAspect {
     public void componentAnnotationPoint() {
     }
 
-    // not work for method annotation
+    /**
+     * not work for method annotation
+     */
     @Pointcut(value = "@within(com.example.springcontext.aop.CustomAnn)")
     public void customAnnotationPoint() {
     }

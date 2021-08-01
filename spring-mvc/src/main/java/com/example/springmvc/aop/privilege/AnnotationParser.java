@@ -8,7 +8,7 @@ import java.lang.reflect.Method;
  * @create 2020-07-20 21:36
  */
 public class AnnotationParser {
-    public static String parse(Class clazz, String methodName) throws Exception {
+    public static String parse(Class<?> clazz, String methodName) throws Exception {
         String privilegeName = "";
         //目标方法
         Method method = clazz.getMethod(methodName);

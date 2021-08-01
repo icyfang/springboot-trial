@@ -16,7 +16,7 @@ public class AsyncExampleController {
     @RequestMapping("/deferredResult")
     @ResponseBody
     public DeferredResult<String> getDeferredResult() {
-        DeferredResult<String> deferredResult = new DeferredResult<String>();
+        DeferredResult<String> deferredResult = new DeferredResult<>();
 
         deferredResult.setResult(getResult());
         System.out.println("return result");

@@ -25,7 +25,7 @@ public class ValidUserController {
     /**
      * 创建线程安全的Map，模拟users信息的存储
      */
-    static Map<Long, ValidUser> users = Collections.synchronizedMap(new HashMap<>());
+    final static Map<Long, ValidUser> users = Collections.synchronizedMap(new HashMap<>());
 
     @GetMapping("/userList")
     public List<ValidUser> getUserList() {

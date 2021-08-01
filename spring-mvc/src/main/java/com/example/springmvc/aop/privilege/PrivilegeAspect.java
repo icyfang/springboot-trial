@@ -17,8 +17,8 @@ public class PrivilegeAspect {
 
     public Object controlTargetMethod(ProceedingJoinPoint joinPoint) throws Throwable {
 
-        Class targetClass = joinPoint.getTarget()
-                                     .getClass();
+        Class<?> targetClass = joinPoint.getTarget()
+                                        .getClass();
         String methodName = joinPoint.getSignature()
                                      .getName();
         String privilegeName = AnnotationParser.parse(targetClass, methodName);

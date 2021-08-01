@@ -30,7 +30,7 @@ public class UserController {
     /**
      * 创建线程安全的Map，模拟users信息的存储
      */
-    static Map<Long, User> users = Collections.synchronizedMap(new HashMap<>());
+    final static Map<Long, User> users = Collections.synchronizedMap(new HashMap<>());
 
     /**
      * 处理"/users/"的GET请求，用来获取用户列表

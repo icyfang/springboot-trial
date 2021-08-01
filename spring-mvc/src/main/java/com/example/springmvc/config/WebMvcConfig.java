@@ -33,7 +33,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(new HandlerInterceptor() {
             @Override
             public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
-                                     Object handler) throws Exception {
+                                     Object handler) {
                 System.out.println("enter HandlerInterceptor");
                 return true;
             }

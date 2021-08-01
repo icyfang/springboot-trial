@@ -46,6 +46,9 @@ public class WebUTGenerator {
     private static final String ROOT_PATH = "";
     private static final String SECONDARY_PATH = "\\src\\test\\java\\";
 
+    static final Pattern p1 = Pattern.compile("[<>,]+");
+    static final Pattern p = Pattern.compile("[^<>,]+");
+
     private static final List<String> LINES = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
@@ -228,9 +231,6 @@ public class WebUTGenerator {
         LINES.add("});");
         LINES.add("Assertions.assertEquals(jsonEntity.getStatus(), 200);");
     }
-
-    static Pattern p1 = Pattern.compile("[<>,]+");
-    static Pattern p = Pattern.compile("[^<>,]+");
 
     private static String getReturnTypeStr(Type genericReturnType) {
         String typeName = genericReturnType.getTypeName();

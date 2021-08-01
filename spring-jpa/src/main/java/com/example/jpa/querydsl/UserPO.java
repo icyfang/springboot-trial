@@ -39,7 +39,7 @@ public class UserPO {
 
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "department_id")
-    private DepartmentPO department; //部门实体
+    private DepartmentPO department;
 
 //    @Column(name = "department_id")
 //    private Long departmentId;

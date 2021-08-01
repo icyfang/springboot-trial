@@ -23,7 +23,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class DepartmentPO {
     @Id
-    private Long id;    //部门id
-    private String deptName;   //部门名称
-    private LocalDate createDate;   //创建时间
+    private Long id;
+    private String deptName;
+    private LocalDate createDate;
 }

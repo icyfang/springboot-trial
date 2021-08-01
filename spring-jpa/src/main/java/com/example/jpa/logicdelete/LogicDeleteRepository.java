@@ -15,12 +15,12 @@ public interface LogicDeleteRepository extends JpaRepository<MainPO, Long> {
     Long countAll();
 
     @Modifying
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Query(value = "delete from logic_delete_sub", nativeQuery = true)
     void emptySub();
 
     @Modifying
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Query(value = "delete from logic_delete_main", nativeQuery = true)
     void emptyMain();
 }

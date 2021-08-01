@@ -44,7 +44,8 @@ public class SecondaryConfig {
         return builder
                 .dataSource(secondaryDataSource())
                 .properties(jpaProperties.getProperties())
-                .packages("com.example.jpa.multidatasource.secondary") //设置实体类所在位置
+                //设置实体类所在包
+                .packages("com.example.jpa.multidatasource.secondary")
                 .persistenceUnit("secondaryPersistenceUnit")
                 .build();
     }

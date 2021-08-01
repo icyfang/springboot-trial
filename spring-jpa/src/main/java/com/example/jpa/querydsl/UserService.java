@@ -63,8 +63,10 @@ public class UserService {
     }
 
     /**
-     * @param departmentId
-     * @return
+     * query user dto by department id
+     *
+     * @param departmentId departmentId
+     * @return java.util.List<com.example.jpa.querydsl.UserDTO>
      */
     public List<UserDTO> queryUserDTOByDepartmentId(Long departmentId) {
 
@@ -212,9 +214,9 @@ public class UserService {
 
         return jpaQueryFactory
                 .selectFrom(user)
-                .where(predicate)               //执行条件
-                .orderBy(user.id.asc())     //执行排序
-                .groupBy(user.address)           //执行分组
+                .where(predicate)
+                .orderBy(user.id.asc())
+                .groupBy(user.address)
                 .fetch();
     }
 

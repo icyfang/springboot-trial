@@ -26,13 +26,10 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * <p>
  * 使用 aop 切面记录请求日志信息
- * </p>
  *
- * @author yangkai.shen
- * @author chen qi
- * @date Created in 2018-10-01 22:05
+ * @author Hodur
+ * @date 2021-5-20
  */
 @Aspect
 @Component

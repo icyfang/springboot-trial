@@ -15,7 +15,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 /**
  * @author Hodur
- * @date 2020-07-23 11:38
+ * @date 2020-07-23
  */
 @Configuration
 @EnableAuthorizationServer

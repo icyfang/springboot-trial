@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author Hodur
- * @date 2020-07-26 16:28
+ * @date 2020-07-26
  */
 @RestController
 @RequestMapping("/")

@@ -14,7 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * @author Hodur
- * @date 2020-07-23 11:37
+ * @date 2020-07-23
  */
 @Configuration
 @EnableWebSecurity

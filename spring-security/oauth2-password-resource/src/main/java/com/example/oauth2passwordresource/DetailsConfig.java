@@ -10,7 +10,7 @@ import org.springframework.security.oauth2.client.token.grant.password.ResourceO
 
 /**
  * @author Hodur
- * @date 2020-07-27 00:12
+ * @date 2020-07-27
  */
 @Configuration
 public class DetailsConfig {

@@ -8,12 +8,8 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- * <p>
- * 测试消息体
- * </p>
- *
- * @author yangkai.shen
- * @date Created in 2018-12-29 16:22
+ * @author Hodur
+ * @date 2021-01-18
  */
 @Data
 @Builder

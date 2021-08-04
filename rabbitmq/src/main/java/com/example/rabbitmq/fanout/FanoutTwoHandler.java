@@ -1,7 +1,8 @@
 package com.example.rabbitmq.fanout;
 
-import com.alibaba.fastjson.JSON;
 import com.example.rabbitmq.model.MessageStruct;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
@@ -25,23 +26,23 @@ public class FanoutTwoHandler {
      * @param message
      */
     // @RabbitHandler
-    public void directHandlerAutoAck(MessageStruct message) {
-        log.info("direct queue 1, receive message:{}", JSON.toJSONString(message));
+    public void directHandlerAutoAck(MessageStruct message) throws JsonProcessingException {
+        log.info("direct queue 1, receive message:{}", new ObjectMapper().writeValueAsBytes(message));
     }
 
     /**
      * manual ack
      *
-     * @param messageStruct
-     * @param message
-     * @param channel
+     * @param messageStruct messageStruct
+     * @param message       message
+     * @param channel       channel
      */
     @RabbitHandler
     public void directHandlerManualAck(MessageStruct messageStruct, Message message, Channel channel) {
 
         final long deliveryTag = message.getMessageProperties().getDeliveryTag();
         try {
-            log.info("fanout queue 2, manual ack, receive message:{}", JSON.toJSONString(messageStruct));
+            log.info("fanout queue 2, manual ack, receive message:{}", new ObjectMapper().writeValueAsBytes(messageStruct));
             channel.basicAck(deliveryTag, false);
         } catch (IOException e) {
             try {

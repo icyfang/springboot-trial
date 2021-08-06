@@ -1,6 +1,8 @@
 package com.example.springmvc.utils;
 
 import com.example.springmvc.swagger.UserController;
+import com.google.common.base.CaseFormat;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,22 +15,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.lang.reflect.Type;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -40,15 +38,16 @@ import java.util.stream.Collectors;
 public abstract class BaseUnitTestGenerator {
 
     final String sourcePath = Objects.requireNonNull(BaseUnitTestGenerator.class.getResource("/")).getPath();
+
     final String TEST_PATH = sourcePath.replace("/target/classes", "/src/test/java");
-
     final String MAIN_PATH = sourcePath.replace("/target/classes", "/src/main/java");
-
-    final Pattern p1 = Pattern.compile("[<>,]+");
-    final Pattern p = Pattern.compile("[^<>,]+");
-
     final List<String> lines = new ArrayList<>();
-    final List<Class<?>> RETURN_SET = new ArrayList<>();
+    final List<Class<?>> RETURN_LIST = new ArrayList<>();
+    private final Set<String> PARAM_SET = new LinkedHashSet<>();
+    private final Pattern p1 = Pattern.compile("[<>,]+");
+    private final Pattern p = Pattern.compile("[^<>,]+");
+    private final Properties prop = new Properties();
+    private String classFile;
 
     public static void main(String[] args) throws IOException {
         genUnitTest(UserController.class);
@@ -83,14 +82,22 @@ public abstract class BaseUnitTestGenerator {
         String pathname = TEST_PATH + packagePath + "/" + testClassName + ".java";
         FileUtils.writeLines(new File(pathname), lines);
         lines.clear();
-        RETURN_SET.clear();
+        RETURN_LIST.clear();
     }
 
     @SuppressWarnings("ForLoopReplaceableByForEach")
-    private void addInitInstance() {
-        for (int i = 0; i < RETURN_SET.size(); i++) {
-            initInstance(RETURN_SET.get(i));
+    private void addInitInstance() throws IOException {
+//        InputStream resourceAsStream = BaseUnitTestGenerator.class.getResourceAsStream("/param.properties");
+        String propertiesPath = Objects.requireNonNull(BaseUnitTestGenerator.class.getResource("."))
+                                       .getPath()
+                                       .replace("/target/classes", "/src/main/java") + "com/example/springmvc/utils/param.properties";
+        prop.load(new FileInputStream(propertiesPath));
+
+        for (int i = 0; i < RETURN_LIST.size(); i++) {
+            initInstance(RETURN_LIST.get(i));
         }
+        FileUtils.writeLines(new File(propertiesPath), PARAM_SET, true);
+        PARAM_SET.clear();
     }
 
     void mockAutoWiredBean(Class<?> clazz) throws IOException {
@@ -101,11 +108,11 @@ public abstract class BaseUnitTestGenerator {
         lines.add("public void setup() {");
         initMockMvc(clazz);
 
-        String s = readTargetClassFile(clazz);
+        classFile = readTargetClassFile(clazz);
         Map<Field, Set<String>> maps = new HashMap<>(16);
         for (Field field : fieldToMock) {
             Pattern p = Pattern.compile(field.getName() + "\\.[\\d\\D]*?\\(");
-            Matcher m = p.matcher(s);
+            Matcher m = p.matcher(classFile);
             while (m.find()) {
                 String group = m.group();
                 String methodName = group.replace(field.getName() + ".", "").replace("(", "");
@@ -163,6 +170,8 @@ public abstract class BaseUnitTestGenerator {
                 String returnInstanceName1 =
                         getString(genericReturnClass.getActualTypeArguments()[1]);
                 r = "Maps.immutableEntry(" + returnInstanceName + "," + returnInstanceName1 + ")";
+            } else if (rawType.equals(Optional.class)) {
+                r = "Optional.of(" + returnInstanceName + ")";
             }
         } else {
             lines.add("// todo init the return instance manually");
@@ -184,8 +193,8 @@ public abstract class BaseUnitTestGenerator {
         if (!nullStr.equals(v)) {
             return v;
         } else {
-            if (!RETURN_SET.contains(genericReturnClass)) {
-                RETURN_SET.add(genericReturnClass);
+            if (!RETURN_LIST.contains(genericReturnClass)) {
+                RETURN_LIST.add(genericReturnClass);
             }
         }
         return instanceMethodName(genericReturnClass);
@@ -204,12 +213,56 @@ public abstract class BaseUnitTestGenerator {
         lines.add(simpleName + " " + fieldName + " = new " + simpleName + "();");
         for (Field declaredField : type.getDeclaredFields()) {
             Type genericType = declaredField.getGenericType();
-            if (!"serialVersionUID".equals(declaredField.getName()) && !genericType.equals(BigDecimal.class)) {
-                lines.add(fieldName + ".set" + switchCaseOfFirstChar(declaredField.getName()) + ("(" + getString(genericType) + ");"));
+            String name = declaredField.getName();
+            if (!"serialVersionUID".equals(name) && !genericType.equals(BigDecimal.class)) {
+                String string = getString(declaredField);
+                if (StringUtils.isNotBlank(string)) {
+                    lines.add(fieldName + ".set" + switchCaseOfFirstChar(name) + "(" + string + ");");
+                }
             }
         }
         lines.add("return " + fieldName + ";");
         lines.add("}");
+    }
+
+    private String getString(Field declaredField) {
+        Type genericType = declaredField.getGenericType();
+        String string = null;
+        if (declaredField.isAnnotationPresent(ApiModelProperty.class)) {
+            ApiModelProperty annotation = declaredField.getAnnotation(ApiModelProperty.class);
+            String example = annotation.example();
+            if (genericType.equals(String.class)) {
+                string = "\"" + example + "\"";
+            } else if (genericType instanceof ParameterizedTypeImpl
+                    && (((ParameterizedTypeImpl) genericType).getRawType().equals(List.class))) {
+                string = "Arrays.asList(" + example.substring(1, example.length() - 1) + ")";
+            } else {
+                string = example;
+            }
+        } else if (classFile.contains("get" + switchCaseOfFirstChar(declaredField.getName()))
+                || declaredField.isAnnotationPresent(NotBlank.class)
+                || declaredField.isAnnotationPresent(NotNull.class)
+                || declaredField.isAnnotationPresent(NotEmpty.class)) {
+            string = getString(genericType);
+            if ("\"str\"".equals(string)) {
+                String declaredFieldName = declaredField.getName();
+                String o = ((String) prop.get(declaredFieldName));
+
+                if (StringUtils.isNotBlank(o)) {
+                    boolean notNull = declaredField.isAnnotationPresent(NotBlank.class)
+                            || declaredField.isAnnotationPresent(NotNull.class);
+                    if (!"notUsed".equals(o) || notNull) {
+                        string = "\"" + o + "\"";
+                    }
+                } else {
+                    String replace = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, declaredFieldName)
+                                                           .replace("_", " ");
+                    PARAM_SET.add(declaredFieldName + "=" + replace);
+                    string = "\"" + replace + "\"";
+                }
+            }
+        }
+        return string;
     }
 
     String getReturnTypeStr(Type genericReturnType) {
@@ -490,6 +543,7 @@ public abstract class BaseUnitTestGenerator {
             } else {
                 lines.add(".contentType(\"" + produce + "\");");
             }
+
         }
 
         private void addRequestParam(Parameter[] parameters) {
@@ -499,7 +553,10 @@ public abstract class BaseUnitTestGenerator {
                   .filter(i -> i.isAnnotationPresent(RequestParam.class))
                   .forEach(paramParameter -> {
 
-                      String v = getPrimitiveValue(parameters.getClass());
+                      String v = getPrimitiveValue(paramParameter.getType());
+                      if ("\"str\"".equals(v)) {
+                          v = "str";
+                      }
                       String paramName = paramParameter.getAnnotation(RequestParam.class).value();
                       paramStrBuilder.append(".param(\"").append(paramName).append("\",\"").append(v).append("\")\n");
                   });

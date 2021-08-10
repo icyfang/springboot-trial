@@ -15,12 +15,12 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class ArgsAspect {
 
-    @Pointcut("args(a,b)")
+    @Pointcut(value = "args(a,b)", argNames = "a,b")
     private void argsPoint(String a, String b) {
     }
 
     /**
-     * too generic poincut may cause unexpected proxy
+     * too generic pointcut may cause unexpected proxy
      */
     @Pointcut("execution(* com.example.springcontext.aop.args.*.*(..))")
     private void argsComponentPoint() {
@@ -38,7 +38,7 @@ public class ArgsAspect {
     private void multiArgsPointByAnn(CustomAnn ann) {
     }
 
-    @Before("args(a,b) && argsComponentPoint()")
+    @Before(value = "args(a,b) && argsComponentPoint()", argNames = "j,a,b")
     public void beforeArgs(JoinPoint j, String a, String b) {
         System.out.println("a: " + a);
         System.out.println("b: " + b);
@@ -55,13 +55,13 @@ public class ArgsAspect {
         System.out.println("before argsByType advice");
     }
 
-    @Before("argsPointByAnn(ann) && argsComponentPoint()")
+    @Before(value = "argsPointByAnn(ann) && argsComponentPoint()", argNames = "j,ann")
     public void beforeArgsByAnn(JoinPoint j, CustomAnn ann) {
         System.out.println(ann.value());
         System.out.println("before argsByAnn advice");
     }
 
-    @Before("multiArgsPointByAnn(ann) && argsComponentPoint()")
+    @Before(value = "multiArgsPointByAnn(ann) && argsComponentPoint()", argNames = "j,ann")
     public void beforeMultiArgsByAnn(JoinPoint j, CustomAnn ann) {
         System.out.println(ann.value());
         System.out.println("before multiArgsByAnn advice");

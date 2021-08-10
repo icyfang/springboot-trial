@@ -57,15 +57,15 @@ public class Person implements BeanFactoryAware, BeanNameAware, InitializingBean
      * 这是InitializingBean接口方法
      */
     @Override
-    public void afterPropertiesSet() throws Exception {
+    public void afterPropertiesSet() {
         System.out.println("InitializingBean#afterPropertiesSet");
     }
 
     /**
-     * 这是DiposibleBean接口方法
+     * 这是DisposableBean接口方法
      */
     @Override
-    public void destroy() throws Exception {
+    public void destroy() {
         System.out.println("DisposableBean#destory");
     }
 

@@ -35,7 +35,7 @@ public class CglibAspect {
         System.out.println(j.getKind());
         System.out.println(j.toLongString());
         System.out.println(j.toShortString());
-        System.out.println(j.toString());
+        System.out.println(j);
         System.out.println(j.getTarget().getClass());
         System.out.println(j.getThis().getClass());
 
@@ -46,7 +46,7 @@ public class CglibAspect {
         System.out.println(signature.getName());
         System.out.println(signature.toLongString());
         System.out.println(signature.toShortString());
-        System.out.println(signature.toString());
+        System.out.println(signature);
         System.out.println(signature.getDeclaringType());
 
         MethodSignature methodSignature = (MethodSignature) signature;
@@ -69,7 +69,7 @@ public class CglibAspect {
         System.out.println(staticPart.getId());
         System.out.println(staticPart.getSignature().getDeclaringTypeName());
         System.out.println(staticPart.getKind());
-        System.out.println(staticPart.toString());
+        System.out.println(staticPart);
 
     }
 

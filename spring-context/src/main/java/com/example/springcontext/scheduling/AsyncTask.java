@@ -16,7 +16,7 @@ import java.util.concurrent.Future;
 @Component
 public class AsyncTask {
 
-    public static Random random = new Random();
+    public static final Random random = new Random();
 
     @Async("taskExecutor")
     public void doTaskOne() throws Exception {

@@ -21,7 +21,7 @@ public class AnnotationAspect {
     public void customAnnPoint(CustomAnn ann) {
     }
 
-    @Before("customAnnPoint(ann)")
+    @Before(value = "customAnnPoint(ann)", argNames = "j,ann")
     public void beforeAdvice(JoinPoint j, CustomAnn ann) {
         System.out.println("AnnotationAspect before advice");
         System.out.println(ann.value());

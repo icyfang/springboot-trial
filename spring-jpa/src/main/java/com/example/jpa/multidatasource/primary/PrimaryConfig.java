@@ -26,8 +26,10 @@ import java.util.Objects;
         entityManagerFactoryRef = "entityManagerFactoryPrimary",
         transactionManagerRef = "transactionManagerPrimary",
         basePackages = {"com.example.jpa"},
-        excludeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = "com.example.jpa.multidatasource" +
-                ".secondary.*")}
+        excludeFilters = {
+                @ComponentScan.Filter(type = FilterType.REGEX, pattern = "com.example.jpa.multidatasource.secondary.*")
+                , @ComponentScan.Filter(type = FilterType.REGEX, pattern = "com.example.jpa.batch.*")
+        }
         //设置Repository所在位置
 )
 public class PrimaryConfig {
@@ -72,7 +74,7 @@ public class PrimaryConfig {
                 .packages("com.example.jpa.multidatasource.primary", "com.example.jpa.association"
                         , "com.example.jpa.attroverride", "com.example.jpa.base", "com.example.jpa.version"
                         , "com.example.jpa.audit", "com.example.jpa.graph", "com.example.jpa.querydsl"
-                        , "com.example.jpa.logicdelete")
+                        , "com.example.jpa.logicdelete", "com.example.jpa.query")
                 //设置实体类所在位置
                 .persistenceUnit("primaryPersistenceUnit")
                 .build();

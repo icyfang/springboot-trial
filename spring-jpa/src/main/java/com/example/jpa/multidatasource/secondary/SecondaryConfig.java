@@ -1,9 +1,9 @@
 package com.example.jpa.multidatasource.secondary;
 
+import com.alibaba.druid.pool.DruidDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +22,7 @@ import java.util.Objects;
 @EnableJpaRepositories(
         entityManagerFactoryRef = "entityManagerFactorySecondary",
         transactionManagerRef = "transactionManagerSecondary",
-        basePackages = {"com.example.jpa.multidatasource.secondary"})
+        basePackages = {"com.example.jpa.multidatasource.secondary", "com.example.jpa.batch"})
 public class SecondaryConfig {
 
     @Autowired
@@ -31,7 +31,7 @@ public class SecondaryConfig {
     @Bean
     @ConfigurationProperties(prefix = "spring.secondary.datasource")
     public DataSource secondaryDataSource() {
-        return DataSourceBuilder.create().build();
+        return new DruidDataSource();
     }
 
     @Bean(name = "entityManagerSecondary")
@@ -45,11 +45,10 @@ public class SecondaryConfig {
                 .dataSource(secondaryDataSource())
                 .properties(jpaProperties.getProperties())
                 //设置实体类所在包
-                .packages("com.example.jpa.multidatasource.secondary")
+                .packages("com.example.jpa.multidatasource.secondary", "com.example.jpa.batch")
                 .persistenceUnit("secondaryPersistenceUnit")
                 .build();
     }
-
 
     @Bean(name = "transactionManagerSecondary")
     PlatformTransactionManager transactionManagerSecondary(EntityManagerFactoryBuilder builder) {

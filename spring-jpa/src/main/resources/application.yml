@@ -24,9 +24,9 @@ spring:
         session-stat-enable: true
       stat-view-servlet:
         enabled: true
-        login-password: 123
-        login-username: admin
-        reset-enable: false
+        #        login-password: 123
+        #        login-username: admin
+        reset-enable: true
         url-pattern: /druid/*
   jpa:
     open-in-view: true

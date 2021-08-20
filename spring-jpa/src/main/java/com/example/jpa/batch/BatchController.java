@@ -25,8 +25,8 @@ public class BatchController {
     @Autowired
     private DemoBatchRepository demoBatchRepository;
 
-    EntityManager entityManager = ApplicationContextHolder.getApplicationContext()
-                                                          .getBean("entityManagerSecondary", EntityManager.class);
+    final EntityManager entityManager = ApplicationContextHolder.getApplicationContext()
+                                                                .getBean("entityManagerSecondary", EntityManager.class);
 
     @PostMapping("/saveAll")
     public void saveAll() {

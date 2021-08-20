@@ -41,6 +41,4 @@ public class UserPO {
     @JoinColumn(name = "department_id")
     private DepartmentPO department;
 
-//    @Column(name = "department_id")
-//    private Long departmentId;
 }

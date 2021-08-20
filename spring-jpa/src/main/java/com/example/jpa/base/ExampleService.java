@@ -21,8 +21,8 @@ public class ExampleService {
     /**
      * use MatchMode.ALL, the default behavior
      *
-     * @param: username, password
-     * @return: java.util.List<com.example.jpa.base.ForumPO>
+     * @param username, password
+     * @return java.util.List<com.example.jpa.base.ForumPO>
      */
     public List<ForumPO> findByUsernameAndPassword(String username, String password) {
 
@@ -34,8 +34,8 @@ public class ExampleService {
     /**
      * use MatchMode.ANY
      *
-     * @param: username, password
-     * @return: java.util.List<com.example.jpa.base.ForumPO>
+     * @param username, password
+     * @return java.util.List<com.example.jpa.base.ForumPO>
      */
     public List<ForumPO> findByUsernameOrPassword(String username, String password) {
 
@@ -47,8 +47,8 @@ public class ExampleService {
     /**
      * ignore null param, the default behavior
      *
-     * @param: username, password
-     * @return: java.util.List<com.example.jpa.base.ForumPO>
+     * @param username, password
+     * @return java.util.List<com.example.jpa.base.ForumPO>
      */
     public List<ForumPO> findByUsernameAndPasswordIgnoreNull(String username, String password) {
 
@@ -61,8 +61,8 @@ public class ExampleService {
     /**
      * include null param
      *
-     * @param: username, password
-     * @return: java.util.List<com.example.jpa.base.ForumPO>
+     * @param username, password
+     * @return java.util.List<com.example.jpa.base.ForumPO>
      */
     public List<ForumPO> findByUsernameAndPasswordIncludeNull(String username, String password) {
 
@@ -75,8 +75,8 @@ public class ExampleService {
     /**
      * find by condition: username like and password equals
      *
-     * @param: username, password
-     * @return: java.util.List<com.example.jpa.base.ForumPO>
+     * @param username, password
+     * @return java.util.List<com.example.jpa.base.ForumPO>
      */
     public List<ForumPO> findByUsernameLikeAndPassword(String username, String password) {
 
@@ -91,8 +91,8 @@ public class ExampleService {
     /**
      * same with findByUsernameLikeAndPassword, different implement
      *
-     * @param: username, password
-     * @return: java.util.List<com.example.jpa.base.ForumPO>
+     * @param username, password
+     * @return java.util.List<com.example.jpa.base.ForumPO>
      */
     public List<ForumPO> queryByUsernameLikeAndPassword(String username, String password) {
 
@@ -106,8 +106,8 @@ public class ExampleService {
     /**
      * find by condition: username like and password equals, ignore cae of username
      *
-     * @param: username, password
-     * @return: java.util.List<com.example.jpa.base.ForumPO>
+     * @param username, password
+     * @return java.util.List<com.example.jpa.base.ForumPO>
      */
     public List<ForumPO> findByUsernameLikeIgnoreCaseAndPassword(String username, String password) {
 
@@ -122,8 +122,8 @@ public class ExampleService {
     /**
      * same with findByUsernameLikeIgnoreCaseAndPassword, different implement
      *
-     * @param: username, password
-     * @return: java.util.List<com.example.jpa.base.ForumPO>
+     * @param username, password
+     * @return java.util.List<com.example.jpa.base.ForumPO>
      */
     public List<ForumPO> queryByUsernameLikeIgnoreCaseAndPassword(String username, String password) {
 
@@ -138,8 +138,8 @@ public class ExampleService {
     /**
      * ignore username, just find by password
      *
-     * @param: username, password
-     * @return: java.util.List<com.example.jpa.base.ForumPO>
+     * @param username, password
+     * @return java.util.List<com.example.jpa.base.ForumPO>
      */
     public List<ForumPO> findByPasswordIgnoreUsername(String username, String password) {
 

@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class AccountService {
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     private AccountRepository accountRepository;
 

@@ -32,7 +32,7 @@ public class UserSpecificationServiceTest {
     @Autowired
     private UserRepository userRepository;
 
-    private LocalDate now = LocalDate.now();
+    private final LocalDate now = LocalDate.now();
 
     @BeforeAll
     public void initData() {

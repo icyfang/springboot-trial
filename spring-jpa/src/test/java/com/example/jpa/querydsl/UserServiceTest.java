@@ -32,7 +32,7 @@ public class UserServiceTest {
     @Autowired
     private UserWithoutFKRepository userWithoutFKRepository;
 
-    private LocalDate now = LocalDate.now();
+    private final LocalDate now = LocalDate.now();
 
     @BeforeAll
     public void initData() {

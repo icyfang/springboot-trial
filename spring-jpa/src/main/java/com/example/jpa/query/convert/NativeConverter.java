@@ -4,6 +4,7 @@ import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.core.convert.converter.GenericConverter;
+import org.springframework.lang.Nullable;
 
 import java.beans.PropertyDescriptor;
 import java.util.Collections;
@@ -22,7 +23,8 @@ public class NativeConverter implements GenericConverter {
     }
 
     @Override
-    public Object convert(Object source, TypeDescriptor sourceType, TypeDescriptor targetType) {
+    @Nullable
+    public Object convert(@Nullable Object source, TypeDescriptor sourceType, TypeDescriptor targetType) {
         Map<?, ?> sMap = (Map<?, ?>) source;
         BeanWrapper bw = new BeanWrapperImpl(targetType.getObjectType());
         PropertyDescriptor[] pds = bw.getPropertyDescriptors();

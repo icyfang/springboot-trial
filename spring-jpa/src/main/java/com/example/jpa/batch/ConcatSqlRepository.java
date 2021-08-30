@@ -2,10 +2,7 @@ package com.example.jpa.batch;
 
 import lombok.Data;
 import org.hibernate.Session;
-import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Column;
@@ -37,13 +34,15 @@ import java.util.Set;
  */
 public interface ConcatSqlRepository<T, ID> {
 
-    int BATCH_SIZE = 1000;
-
+    //todo id generated value
+    //todo multi datasource
+    //todo auditor
+    //todo multi table
     EntityManager entityManager = ApplicationContextHolder.getApplicationContext()
                                                           .getBean("entityManagerSecondary", EntityManager.class);
 
     @Transactional(rollbackFor = Exception.class)
-    default <S extends T> Iterable<S> batchInsert(Iterable<S> s) throws IllegalAccessException {
+    default <S extends T> void batchInsert(Iterable<S> s) throws IllegalAccessException {
 
         Class<?> aClass;
         Iterator<S> iterator = s.iterator();
@@ -69,11 +68,7 @@ public interface ConcatSqlRepository<T, ID> {
             }
         }
         builder.append(")").append("VALUES");
-        Query nativeQuery = entityManager
-                .createNativeQuery("show VARIABLES WHERE Variable_name LIKE \"max_allowed_packet\"");
-        Object singleResult = nativeQuery.getSingleResult();
-        Object[] objects = (Object[]) singleResult;
-        Long maxPacketLength = Long.parseLong(((String) objects[1]));
+        long maxPacketLength = getMaxPacketLength();
         int index = 0;
         long lengthCount = builder.length();
         List<List<StringBuilder>> builders = new ArrayList<>();
@@ -85,39 +80,8 @@ public interface ConcatSqlRepository<T, ID> {
                 if (!columnDefinition.getInsertable()) {
                     continue;
                 }
-                Field param = columnDefinition.getParam();
-                Object o = null;
-                try {
-                    param.setAccessible(true);
-                    o = param.get(next);
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                    throw e;
-                }
-                if (o instanceof String) {
-                    valueBuilder.append("\"").append(o).append("\"").append(",");
-                } else {
-                    // todo date type
-                    String format = null;
-                    if (o instanceof LocalDate) {
-                        LocalDate localDate = (LocalDate) o;
-                        format = localDate.format(DateTimeFormatter.ISO_LOCAL_DATE);
-                    } else if (o instanceof LocalDateTime) {
-                        LocalDateTime localDate = (LocalDateTime) o;
-                        format = localDate.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-                    } else if (o instanceof LocalTime) {
-                        LocalTime localDate = (LocalTime) o;
-                        format = localDate.format(DateTimeFormatter.ISO_LOCAL_TIME);
-                    } else if (o instanceof Date) {
-                        Date localDate = (Date) o;
-                        format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(localDate);
-                    }
-                    if (format == null) {
-                        valueBuilder.append(o).append(",");
-                    } else {
-                        valueBuilder.append("\"").append(format).append("\"").append(",");
-                    }
-                }
+                Object result = getValue(next, columnDefinition);
+                valueBuilder.append(result).append(",");
             }
             valueBuilder.replace(valueBuilder.length() - 1, valueBuilder.length(), "),");
             lengthCount += valueBuilder.length();
@@ -132,6 +96,68 @@ public interface ConcatSqlRepository<T, ID> {
             builders.get(index).add(valueBuilder);
         }
 
+        execute(builder, builders);
+    }
+
+    private <S extends T> Object getValue(S next, ColumnDefinition columnDefinition) throws IllegalAccessException {
+        Field param = columnDefinition.getParam();
+        Object o = null;
+
+        if (param.isAnnotationPresent(CreatedDate.class)) {
+            if (param.getType().equals(LocalDate.class)) {
+                o = LocalDate.now();
+            } else if (param.getType().equals(LocalDateTime.class)) {
+                o = LocalDateTime.now();
+            } else if (param.getType().equals(LocalTime.class)) {
+                o = LocalTime.now();
+            } else if (param.getType().equals(Date.class)) {
+                o = new Date();
+            }
+        } else {
+            try {
+                param.setAccessible(true);
+                o = param.get(next);
+
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+                throw e;
+            }
+        }
+
+        Object result;
+        String value = null;
+        if (o instanceof String) {
+            value = (String) o;
+        } else if (o instanceof LocalDate) {
+            LocalDate localDate = (LocalDate) o;
+            value = localDate.format(DateTimeFormatter.ISO_LOCAL_DATE);
+        } else if (o instanceof LocalDateTime) {
+            LocalDateTime localDate = (LocalDateTime) o;
+            value = localDate.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+        } else if (o instanceof LocalTime) {
+            LocalTime localDate = (LocalTime) o;
+            value = localDate.format(DateTimeFormatter.ISO_LOCAL_TIME);
+        } else if (o instanceof Date) {
+            Date localDate = (Date) o;
+            value = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(localDate);
+        }
+        if (value == null) {
+            result = o;
+        } else {
+            result = "\"" + value + "\"";
+        }
+        return result;
+    }
+
+    private long getMaxPacketLength() {
+        Query nativeQuery = entityManager
+                .createNativeQuery("show VARIABLES WHERE Variable_name LIKE \"max_allowed_packet\"");
+        Object singleResult = nativeQuery.getSingleResult();
+        Object[] objects = (Object[]) singleResult;
+        return Long.parseLong(((String) objects[1]));
+    }
+
+    private void execute(StringBuilder builder, List<List<StringBuilder>> builders) {
         Session unwrap = entityManager.unwrap(Session.class);
         unwrap.getTransaction().begin();
 
@@ -145,7 +171,6 @@ public interface ConcatSqlRepository<T, ID> {
             query.executeUpdate();
         }
         unwrap.getTransaction().commit();
-        return s;
     }
 
     @Transactional(rollbackFor = Exception.class)
@@ -177,21 +202,9 @@ public interface ConcatSqlRepository<T, ID> {
                 columnDefinition.setInsertable(column.insertable());
                 columnDefinition.setUpdatable(column.updatable());
             } else {
-//                String snakeCaseParamName = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, item.getName());
                 columnDefinition.setColumn(item.getName());
             }
-            if (item.isAnnotationPresent(CreatedBy.class)) {
-                columnDefinition.setAuditCreateBy(true);
-            }
-            if (item.isAnnotationPresent(LastModifiedBy.class)) {
-                columnDefinition.setAuditUpdateBy(true);
-            }
-            if (item.isAnnotationPresent(CreatedDate.class)) {
-                columnDefinition.setAuditCreateTime(true);
-            }
-            if (item.isAnnotationPresent(LastModifiedDate.class)) {
-                columnDefinition.setAuditUpdateTime(true);
-            }
+
             columns.add(columnDefinition);
         }
         return columns;
@@ -204,9 +217,13 @@ public interface ConcatSqlRepository<T, ID> {
         private String column;
         private Boolean insertable = true;
         private Boolean updatable = true;
-        private Boolean auditCreateBy = false;
-        private Boolean auditUpdateBy = false;
-        private Boolean auditUpdateTime = false;
-        private Boolean auditCreateTime = false;
     }
 }
+
+
+
+
+
+
+
+

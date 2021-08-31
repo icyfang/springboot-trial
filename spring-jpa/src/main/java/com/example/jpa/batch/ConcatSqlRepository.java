@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.persistence.metamodel.EntityType;
 import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -19,9 +20,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -35,44 +38,38 @@ import java.util.Set;
 public interface ConcatSqlRepository<T, ID> {
 
     //todo id generated value
-    //todo multi datasource
     //todo auditor
     //todo multi table
-    EntityManager entityManager = ApplicationContextHolder.getApplicationContext()
-                                                          .getBean("entityManagerSecondary", EntityManager.class);
+    //todo extends
+    Map<Class<?>, EntityManager> entityManagerMap = getEntityManagerMap();
+
+    private static Map<Class<?>, EntityManager> getEntityManagerMap() {
+        Map<String, EntityManager> beansOfType = ApplicationContextHolder.getApplicationContext()
+                                                                         .getBeansOfType(EntityManager.class);
+        Map<Class<?>, EntityManager> map = new HashMap<>();
+        beansOfType.forEach((k, v) -> {
+            Set<EntityType<?>> entities = v.getEntityManagerFactory().getMetamodel().getEntities();
+            for (EntityType<?> entity : entities) {
+                Class<?> javaType = entity.getJavaType();
+                map.put(javaType, v);
+            }
+        });
+        return map;
+    }
 
     @Transactional(rollbackFor = Exception.class)
     default <S extends T> void batchInsert(Iterable<S> s) throws IllegalAccessException {
 
-        Class<?> aClass;
-        Iterator<S> iterator = s.iterator();
-        if (iterator.hasNext()) {
-            S next = iterator.next();
-            aClass = next.getClass();
-
-        } else {
-            throw new RuntimeException();
-        }
+        Class<?> aClass = getGenericClass(s);
+        EntityManager entityManager = entityManagerMap.get(aClass);
         List<ColumnDefinition> columnDefinitions = parsePO(aClass);
-        Table annotation = aClass.getAnnotation(Table.class);
-        StringBuilder builder = new StringBuilder();
-        builder.append("insert into ").append(annotation.name()).append("(");
-        for (int i = 0; i < columnDefinitions.size(); i++) {
-            ColumnDefinition obj = columnDefinitions.get(i);
-            if (obj.getInsertable()) {
-                if (i == 0) {
-                    builder.append(obj.column);
-                } else {
-                    builder.append(",").append(obj.column);
-                }
-            }
-        }
-        builder.append(")").append("VALUES");
-        long maxPacketLength = getMaxPacketLength();
+        StringBuilder insertColumnSql = buildInsertSql(aClass, columnDefinitions);
+
+        long maxPacketLength = getMaxPacketLength(entityManager);
         int index = 0;
-        long lengthCount = builder.length();
+        long lengthCount = insertColumnSql.length();
         List<List<StringBuilder>> builders = new ArrayList<>();
-        iterator = s.iterator();
+        Iterator<S> iterator = s.iterator();
         while (iterator.hasNext()) {
             S next = iterator.next();
             StringBuilder valueBuilder = new StringBuilder("(");
@@ -87,7 +84,7 @@ public interface ConcatSqlRepository<T, ID> {
             lengthCount += valueBuilder.length();
             if (lengthCount > maxPacketLength) {
                 index++;
-                lengthCount = ((long) builder.length()) + valueBuilder.length();
+                lengthCount = ((long) insertColumnSql.length()) + valueBuilder.length();
             }
             if (builders.size() <= index) {
                 builders.add(index, new ArrayList<>());
@@ -96,7 +93,38 @@ public interface ConcatSqlRepository<T, ID> {
             builders.get(index).add(valueBuilder);
         }
 
-        execute(builder, builders);
+        execute(entityManager, insertColumnSql, builders);
+    }
+
+    private <S extends T> Class<?> getGenericClass(Iterable<S> s) {
+        Class<?> aClass;
+        Iterator<S> iterator = s.iterator();
+        if (iterator.hasNext()) {
+            S next = iterator.next();
+            aClass = next.getClass();
+
+        } else {
+            throw new RuntimeException();
+        }
+        return aClass;
+    }
+
+    private StringBuilder buildInsertSql(Class<?> aClass, List<ColumnDefinition> columnDefinitions) {
+        Table annotation = aClass.getAnnotation(Table.class);
+        StringBuilder builder = new StringBuilder();
+        builder.append("insert into ").append(annotation.name()).append("(");
+        for (int i = 0; i < columnDefinitions.size(); i++) {
+            ColumnDefinition obj = columnDefinitions.get(i);
+            if (obj.getInsertable()) {
+                if (i == 0) {
+                    builder.append(obj.column);
+                } else {
+                    builder.append(",").append(obj.column);
+                }
+            }
+        }
+        builder.append(")").append("VALUES");
+        return builder;
     }
 
     private <S extends T> Object getValue(S next, ColumnDefinition columnDefinition) throws IllegalAccessException {
@@ -149,7 +177,7 @@ public interface ConcatSqlRepository<T, ID> {
         return result;
     }
 
-    private long getMaxPacketLength() {
+    private long getMaxPacketLength(EntityManager entityManager) {
         Query nativeQuery = entityManager
                 .createNativeQuery("show VARIABLES WHERE Variable_name LIKE \"max_allowed_packet\"");
         Object singleResult = nativeQuery.getSingleResult();
@@ -157,7 +185,7 @@ public interface ConcatSqlRepository<T, ID> {
         return Long.parseLong(((String) objects[1]));
     }
 
-    private void execute(StringBuilder builder, List<List<StringBuilder>> builders) {
+    private void execute(EntityManager entityManager, StringBuilder builder, List<List<StringBuilder>> builders) {
         Session unwrap = entityManager.unwrap(Session.class);
         unwrap.getTransaction().begin();
 
@@ -219,11 +247,3 @@ public interface ConcatSqlRepository<T, ID> {
         private Boolean updatable = true;
     }
 }
-
-
-
-
-
-
-
-

@@ -21,11 +21,11 @@ import java.util.List;
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class DemoBatchRepositoryTest {
+public class CommentPORepositoryTest {
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
-    private DemoBatchRepository demoBatchRepository;
+    private CommentRepository commentRepository;
 
     @Test
     @Order(1)
@@ -33,16 +33,16 @@ public class DemoBatchRepositoryTest {
 
         long start = System.currentTimeMillis();
 
-        List<DemoBatch> l = new ArrayList<>();
+        List<CommentPO> l = new ArrayList<>();
         for (int i = 0; i < 5000; i++) {
-            DemoBatch demoBatch = new DemoBatch();
-            demoBatch.setId((long) i);
-            demoBatch.setContent("content of demo batch#" + i);
-            demoBatch.setName("name of demo batch#" + i);
-            l.add(demoBatch);
+            CommentPO commentPO = new CommentPO();
+            commentPO.setId((long) i);
+            commentPO.setContent("content of demo batch#" + i);
+            commentPO.setName("name of demo batch#" + i);
+            l.add(commentPO);
         }
 
-        demoBatchRepository.batchInsert(l);
+        commentRepository.batchInsert(l);
         System.out.println(System.currentTimeMillis() - start);
     }
 
@@ -52,16 +52,16 @@ public class DemoBatchRepositoryTest {
 
         long start = System.currentTimeMillis();
 
-        List<DemoBatch> l = new ArrayList<>();
+        List<CommentPO> l = new ArrayList<>();
         for (int i = 5000; i < 10000; i++) {
-            DemoBatch demoBatch = new DemoBatch();
-            demoBatch.setId((long) i);
-            demoBatch.setContent("content of demo batch#" + i);
-            demoBatch.setName("name of demo batch#" + i);
-            l.add(demoBatch);
+            CommentPO commentPO = new CommentPO();
+            commentPO.setId((long) i);
+            commentPO.setContent("content of demo batch#" + i);
+            commentPO.setName("name of demo batch#" + i);
+            l.add(commentPO);
         }
 
-        demoBatchRepository.saveAll(l);
+        commentRepository.saveAll(l);
         System.out.println(System.currentTimeMillis() - start);
     }
 
@@ -69,16 +69,16 @@ public class DemoBatchRepositoryTest {
     @Order(4)
     public void batchUpdate() {
         long start = System.currentTimeMillis();
-        List<DemoBatch> l = new ArrayList<>();
+        List<CommentPO> l = new ArrayList<>();
         for (int i = 0; i < 5000; i++) {
-            DemoBatch demoBatch = new DemoBatch();
-            demoBatch.setId((long) i);
-            demoBatch.setContent("new content of demo batch#" + i);
-            demoBatch.setName("new name of demo batch#" + i);
-            l.add(demoBatch);
+            CommentPO commentPO = new CommentPO();
+            commentPO.setId((long) i);
+            commentPO.setContent("new content of demo batch#" + i);
+            commentPO.setName("new name of demo batch#" + i);
+            l.add(commentPO);
         }
 
-        demoBatchRepository.batchUpdate(l);
+        commentRepository.batchUpdate(l);
         System.out.println(System.currentTimeMillis() - start);
     }
 
@@ -86,16 +86,16 @@ public class DemoBatchRepositoryTest {
     @Order(4)
     public void updateAll() {
         long start = System.currentTimeMillis();
-        List<DemoBatch> l = new ArrayList<>();
+        List<CommentPO> l = new ArrayList<>();
         for (int i = 5000; i < 10000; i++) {
-            DemoBatch demoBatch = new DemoBatch();
-            demoBatch.setId((long) i);
-            demoBatch.setContent("new content of demo batch#" + i);
-            demoBatch.setName("new name of demo batch#" + i);
-            l.add(demoBatch);
+            CommentPO commentPO = new CommentPO();
+            commentPO.setId((long) i);
+            commentPO.setContent("new content of demo batch#" + i);
+            commentPO.setName("new name of demo batch#" + i);
+            l.add(commentPO);
         }
 
-        demoBatchRepository.saveAll(l);
+        commentRepository.saveAll(l);
         System.out.println(System.currentTimeMillis() - start);
     }
 }

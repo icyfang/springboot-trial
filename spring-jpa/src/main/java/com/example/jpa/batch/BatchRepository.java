@@ -1,5 +1,6 @@
 package com.example.jpa.batch;
 
+import com.example.jpa.ApplicationContextHolder;
 import org.hibernate.Session;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -1,5 +1,6 @@
 package com.example.jpa.batch;
 
+import com.example.jpa.ApplicationContextHolder;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,35 +24,35 @@ public class BatchController {
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
-    private DemoBatchRepository demoBatchRepository;
+    private CommentRepository commentRepository;
 
     final EntityManager entityManager = ApplicationContextHolder.getApplicationContext()
                                                                 .getBean("entityManagerSecondary", EntityManager.class);
 
     @PostMapping("/saveAll")
     public void saveAll() {
-        List<DemoBatch> l = getDemoBatches(0, 5000, "");
-        demoBatchRepository.saveAll(l);
+        List<CommentPO> l = getDemoBatches(0, 5000, "");
+        commentRepository.saveAll(l);
     }
 
     @PostMapping("/batchInsert")
     public void batchInsert() {
-        List<DemoBatch> l = getDemoBatches(5000, 10000, "");
-        demoBatchRepository.batchInsert(l);
+        List<CommentPO> l = getDemoBatches(5000, 10000, "");
+        commentRepository.batchInsert(l);
     }
 
     @PutMapping("/updateAll")
     public void updateAll() {
-        List<DemoBatch> l = getDemoBatches(0, 5000, "new");
-        demoBatchRepository.saveAll(l);
+        List<CommentPO> l = getDemoBatches(0, 5000, "new");
+        commentRepository.saveAll(l);
     }
 
     @PutMapping("/concatUpdateClause")
     public void updateUsingConcat() {
-        List<DemoBatch> l = getDemoBatches(5000, 10000, "new");
+        List<CommentPO> l = getDemoBatches(5000, 10000, "new");
         StringBuilder sb = new StringBuilder("update demo_batch set content = case");
-        for (DemoBatch demoBatch : l) {
-            sb.append(" when id = ").append(demoBatch.getId()).append(" then '").append(demoBatch.getContent())
+        for (CommentPO commentPO : l) {
+            sb.append(" when id = ").append(commentPO.getId()).append(" then '").append(commentPO.getContent())
               .append("'");
         }
         sb.append(" else content end")
@@ -64,7 +65,7 @@ public class BatchController {
     @PostMapping("/concatInsertClause")
     public void insertUsingConcat() {
         StringBuilder sb = new StringBuilder("insert into demo_batch(id, content, name) values ");
-        List<DemoBatch> l = new ArrayList<>();
+        List<CommentPO> l = new ArrayList<>();
         for (int i = 10000; i < 15000; i++) {
             sb.append("(")
               .append(i)
@@ -79,14 +80,14 @@ public class BatchController {
         executeQuery(sb);
     }
 
-    private List<DemoBatch> getDemoBatches(int start, int end, String suffix) {
-        List<DemoBatch> l = new ArrayList<>();
+    private List<CommentPO> getDemoBatches(int start, int end, String suffix) {
+        List<CommentPO> l = new ArrayList<>();
         for (int i = start; i < end; i++) {
-            DemoBatch demoBatch = new DemoBatch();
-            demoBatch.setId((long) i);
-            demoBatch.setContent(suffix + "content of demo batch#" + i);
-            demoBatch.setName(suffix + "name of demo batch#" + i);
-            l.add(demoBatch);
+            CommentPO commentPO = new CommentPO();
+            commentPO.setId((long) i);
+            commentPO.setContent(suffix + "content of demo batch#" + i);
+            commentPO.setName(suffix + "name of demo batch#" + i);
+            l.add(commentPO);
         }
         return l;
     }

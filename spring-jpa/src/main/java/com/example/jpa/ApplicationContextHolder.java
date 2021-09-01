@@ -1,4 +1,4 @@
-package com.example.jpa.batch;
+package com.example.jpa;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

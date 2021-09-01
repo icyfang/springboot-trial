@@ -12,10 +12,10 @@ import javax.persistence.Table;
  * @date 2021/8/13
  */
 @Entity
-@Table(name = "demo_batch")
+@Table(name = "t_comment")
 @Getter
 @Setter
-public class DemoBatch {
+public class CommentPO {
 
     @Id
     private Long id;

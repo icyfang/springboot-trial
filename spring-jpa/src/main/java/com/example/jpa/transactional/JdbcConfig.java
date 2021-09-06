@@ -14,7 +14,7 @@ import javax.sql.DataSource;
  * jpa does not support propagation_nested, so use jdbcTemplate for example
  * </p>
  *
- * @author lancec
+ * @author Hodur
  * @date 2021/9/3
  */
 @Configuration

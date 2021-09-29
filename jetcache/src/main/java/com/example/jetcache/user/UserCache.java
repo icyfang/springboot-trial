@@ -18,12 +18,8 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
- * <p>
- * description
- * </p>
- *
  * @author Hodur
- * @date 12/20/20 15:07
+ * @date 2021/9/28
  */
 @Component
 public class UserCache implements CacheHolder<String, Map<Long, User>> {

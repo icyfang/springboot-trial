@@ -1,12 +1,8 @@
 package com.example.jetcache.common;
 
 /**
- * <p>
- * description
- * </p>
- *
  * @author Hodur
- * @date 12/22/20 22:34
+ * @date 2021/9/28
  */
 public final class CacheName {
     public static final String C_KEY_USER = "user";

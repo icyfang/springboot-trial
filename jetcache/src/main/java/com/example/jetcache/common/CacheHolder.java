@@ -5,12 +5,8 @@ import org.springframework.boot.context.event.ApplicationPreparedEvent;
 import org.springframework.context.ApplicationListener;
 
 /**
- * <p>
- *
- * </p>
- *
  * @author Hodur
- * @date 9/13/2021 2:14 PM
+ * @date 2021/9/28
  */
 public interface CacheHolder<K, V> extends ApplicationListener<ApplicationPreparedEvent> {
 

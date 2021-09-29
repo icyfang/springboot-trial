@@ -4,12 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * <p>
- *
- * </p>
- *
  * @author Hodur
- * @date 9/28/2021 10:35 AM
+ * @date 2021/9/28
  */
 @Service
 public class UserService {

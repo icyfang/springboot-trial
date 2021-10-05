@@ -1,4 +1,4 @@
-package com.example.jpa.batch;
+package com.example.jpa.batch.concatsql;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,4 +1,4 @@
-package com.example.jpa.batch;
+package com.example.jpa.batch.concatsql;
 
 import com.example.jpa.ApplicationContextHolder;
 import lombok.Data;

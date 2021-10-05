@@ -1,5 +1,7 @@
 package com.example.jpa.batch;
 
+import com.example.jpa.batch.concatsql.BatchUserPO;
+import com.example.jpa.batch.concatsql.BatchUserRepository;
 import com.github.javafaker.Address;
 import com.github.javafaker.Country;
 import com.github.javafaker.Faker;

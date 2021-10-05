@@ -27,7 +27,7 @@ public class BatchController {
     private CommentRepository commentRepository;
 
     final EntityManager entityManager = ApplicationContextHolder.getApplicationContext()
-                                                                .getBean("entityManagerSecondary", EntityManager.class);
+            .getBean("entityManagerSecondary", EntityManager.class);
 
     @PostMapping("/saveAll")
     public void saveAll() {
@@ -39,6 +39,24 @@ public class BatchController {
     public void batchInsert() {
         List<CommentPO> l = getDemoBatches(5000, 10000, "");
         commentRepository.batchInsert(l);
+    }
+
+    @PostMapping("/concatInsertClause")
+    public void insertUsingConcat() {
+        StringBuilder sb = new StringBuilder("insert into demo_batch(id, content, name) values ");
+        List<CommentPO> l = new ArrayList<>();
+        for (int i = 10000; i < 15000; i++) {
+            sb.append("(")
+                    .append(i)
+                    .append(",'content of demo batch#")
+                    .append(i)
+                    .append("','name of demo batch#")
+                    .append(i)
+                    .append("'),");
+        }
+        sb.deleteCharAt(sb.length() - 1);
+
+        executeQuery(sb);
     }
 
     @PutMapping("/updateAll")
@@ -53,30 +71,12 @@ public class BatchController {
         StringBuilder sb = new StringBuilder("update demo_batch set content = case");
         for (CommentPO commentPO : l) {
             sb.append(" when id = ").append(commentPO.getId()).append(" then '").append(commentPO.getContent())
-              .append("'");
+                    .append("'");
         }
         sb.append(" else content end")
-          .append(" where id in (")
-          .append(l.stream().map(i -> String.valueOf(i.getId())).collect(Collectors.joining(",")))
-          .append(")");
-        executeQuery(sb);
-    }
-
-    @PostMapping("/concatInsertClause")
-    public void insertUsingConcat() {
-        StringBuilder sb = new StringBuilder("insert into demo_batch(id, content, name) values ");
-        List<CommentPO> l = new ArrayList<>();
-        for (int i = 10000; i < 15000; i++) {
-            sb.append("(")
-              .append(i)
-              .append(",'content of demo batch#")
-              .append(i)
-              .append("','name of demo batch#")
-              .append(i)
-              .append("'),");
-        }
-        sb.deleteCharAt(sb.length() - 1);
-
+                .append(" where id in (")
+                .append(l.stream().map(i -> String.valueOf(i.getId())).collect(Collectors.joining(",")))
+                .append(")");
         executeQuery(sb);
     }
 

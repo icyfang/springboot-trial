@@ -16,43 +16,47 @@ public interface BatchRepository<T, ID> {
 
     int BATCH_SIZE = 1000;
 
-    EntityManager entityManager = ApplicationContextHolder.getApplicationContext().getBean(EntityManager.class);
+    EntityManager MANAGER_SECONDARY = ApplicationContextHolder.getApplicationContext()
+            .getBean("entityManagerSecondary", EntityManager.class);
 
+    @Transactional(rollbackFor = Exception.class)
     default <S extends T> Iterable<S> batchInsert(Iterable<S> s) {
 
-        batchExecute(s, entityManager::persist);
+        batchExecute(s, MANAGER_SECONDARY::persist);
+        return s;
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    default <S extends T> Iterable<S> batchUpdate(Iterable<S> s) {
+
+        batchExecute(s, MANAGER_SECONDARY::merge);
         return s;
     }
 
     private <S extends T> void batchExecute(Iterable<S> s, Consumer<S> consumer) {
-        Session unwrap = entityManager.unwrap(Session.class);
+        Session session = MANAGER_SECONDARY.unwrap(Session.class);
         try {
-            unwrap.getTransaction().begin();
+            session.getTransaction().begin();
             Iterator<S> iterator = s.iterator();
             int index = 0;
             while (iterator.hasNext()) {
                 consumer.accept(iterator.next());
                 index++;
                 if (index % BATCH_SIZE == 0) {
-                    entityManager.flush();
-                    entityManager.clear();
+                    MANAGER_SECONDARY.flush();
+                    MANAGER_SECONDARY.clear();
                 }
             }
             if (index % BATCH_SIZE != 0) {
-                entityManager.flush();
-                entityManager.clear();
+                MANAGER_SECONDARY.flush();
+                MANAGER_SECONDARY.clear();
             }
-            unwrap.getTransaction().commit();
-        } catch (Exception e) {
-            unwrap.getTransaction().rollback();
+            session.getTransaction().commit();
+        } finally {
+            session.getTransaction().rollback();
         }
     }
 
-    @Transactional(rollbackFor = Exception.class)
-    default <S extends T> Iterable<S> batchUpdate(Iterable<S> s) {
 
-        batchExecute(s, entityManager::merge);
-        return s;
-    }
 
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,6 +31,7 @@ public class BatchController {
             .getBean("entityManagerSecondary", EntityManager.class);
 
     @PostMapping("/saveAll")
+    @Transactional
     public void saveAll() {
         List<CommentPO> l = getDemoBatches(0, 5000, "");
         commentRepository.saveAll(l);
@@ -43,7 +45,7 @@ public class BatchController {
 
     @PostMapping("/concatInsertClause")
     public void insertUsingConcat() {
-        StringBuilder sb = new StringBuilder("insert into demo_batch(id, content, name) values ");
+        StringBuilder sb = new StringBuilder("insert into t_comment(id, content, name) values ");
         List<CommentPO> l = new ArrayList<>();
         for (int i = 10000; i < 15000; i++) {
             sb.append("(")
@@ -68,7 +70,7 @@ public class BatchController {
     @PutMapping("/concatUpdateClause")
     public void updateUsingConcat() {
         List<CommentPO> l = getDemoBatches(5000, 10000, "new");
-        StringBuilder sb = new StringBuilder("update demo_batch set content = case");
+        StringBuilder sb = new StringBuilder("update t_comment set content = case");
         for (CommentPO commentPO : l) {
             sb.append(" when id = ").append(commentPO.getId()).append(" then '").append(commentPO.getContent())
                     .append("'");
@@ -92,9 +94,9 @@ public class BatchController {
         return l;
     }
 
-    private void executeQuery(StringBuilder sb) {
+    @Transactional
+    public void executeQuery(StringBuilder sb) {
         Session unwrap = entityManager.unwrap(Session.class);
-        unwrap.setJdbcBatchSize(1000);
         try {
             unwrap.getTransaction().begin();
             Query query = entityManager.createNativeQuery(sb.toString());

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+    <bean id="courseDao" class="com.example.springcontext.beanfactory.CourseDaoImpl"/>
+    <bean id="courseService" class="com.example.springcontext.beanfactory.CourseService">
+        <property name="courseDao" ref="courseDao"/>
+    </bean>
+</beans>

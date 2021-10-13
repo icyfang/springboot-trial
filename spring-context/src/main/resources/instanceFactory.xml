@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	         http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Instance Factory Method:
+         1.must create a bean for the Instance Factroy First
+       -->
+    <bean id="carFactory" class="com.example.springcontext.factory.CarInstanceFactory">
+        <property name="map">
+            <map>
+                <entry key="4">
+                    <bean class="com.example.springcontext.factory.Car">
+                        <property name="id" value="4"/>
+                        <property name="name" value="Honda"/>
+                        <property name="price" value="300000"/>
+                    </bean>
+                </entry>
+                <entry key="6">
+                    <bean class="com.example.springcontext.factory.Car">
+                        <property name="id" value="6"/>
+                        <property name="name" value="ford"/>
+                        <property name="price" value="500000"/>
+                    </bean>
+                </entry>
+            </map>
+        </property>
+    </bean>
+    <!-- 2.use Factory bean to get bean objectr
+     factory-bean : the bean define above
+     factory-method: method of get Bean Object
+     constructor-arg: parameters of factory-method
+    -->
+    <bean id="car4" factory-bean="carFactory" factory-method="getCar">
+        <constructor-arg value="4"/>
+    </bean>
+    <bean id="car6" factory-bean="carFactory" factory-method="getCar">
+        <constructor-arg value="6"/>
+    </bean>
+
+</beans>

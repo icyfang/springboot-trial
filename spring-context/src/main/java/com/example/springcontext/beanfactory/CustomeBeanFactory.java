@@ -18,6 +18,8 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
+ * A simple implement of Spring BeanFactory, using xml to do DI, only bean injection supported.
+ *
  * @author Hodur
  * @date 2021/10/12
  */

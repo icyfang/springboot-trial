@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * Demo of factory in bean definition, using instance factory
+ *
  * @author Hodur
  * @date 2021/10/12
  */

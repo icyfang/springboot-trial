@@ -42,11 +42,10 @@ public interface CacheHolder<K, V> extends ApplicationListener<ApplicationPrepar
     /**
      * get
      *
-     * @param k k
      * @return V
      */
-    default V get(K k) {
-        return getCache().get(k);
+    default V get() {
+        return getCache().get(getKey());
     }
 
     /**
@@ -65,6 +64,6 @@ public interface CacheHolder<K, V> extends ApplicationListener<ApplicationPrepar
 
     @Override
     default void onApplicationEvent(ApplicationPreparedEvent event) {
-        getCache().get(getKey());
+        get();
     }
 }

@@ -153,22 +153,19 @@ public abstract class BaseUnitTestGenerator {
             r = getReturnInstanceName(genericReturnClass);
         } else if (genericReturnType instanceof ParameterizedTypeImpl) {
             ParameterizedTypeImpl genericReturnClass = (ParameterizedTypeImpl) genericReturnType;
-            String returnInstanceName =
-                    getString(genericReturnClass.getActualTypeArguments()[0]);
+            String returnInstanceName = getString(genericReturnClass.getActualTypeArguments()[0]);
             Class<?> rawType = genericReturnClass.getRawType();
             if (rawType.equals(List.class)) {
                 r = "Collections.singletonList(" + returnInstanceName + ")";
             } else if (rawType.equals(Set.class)) {
                 r = "Collections.singleton(" + returnInstanceName + ")";
             } else if (rawType.equals(Map.class)) {
-                String returnInstanceName1 =
-                        getString(genericReturnClass.getActualTypeArguments()[1]);
+                String returnInstanceName1 = getString(genericReturnClass.getActualTypeArguments()[1]);
                 r = "Collections.singletonMap(" + returnInstanceName + "," + returnInstanceName1 + ")";
 //            } else if (rawType.equals(JsonEntity.class)) {
 //                r = "ResponseHelper.of(" + returnInstanceName + ")";
             } else if (rawType.equals(Map.Entry.class)) {
-                String returnInstanceName1 =
-                        getString(genericReturnClass.getActualTypeArguments()[1]);
+                String returnInstanceName1 = getString(genericReturnClass.getActualTypeArguments()[1]);
                 r = "Maps.immutableEntry(" + returnInstanceName + "," + returnInstanceName1 + ")";
             } else if (rawType.equals(Optional.class)) {
                 r = "Optional.of(" + returnInstanceName + ")";
@@ -607,17 +604,19 @@ public abstract class BaseUnitTestGenerator {
                 StringBuilder sb = new StringBuilder();
                 String r = "a" + returnType.getSimpleName();
                 sb.append(getReturnTypeStr(declaredMethod.getGenericReturnType()))
-                  .append(" ")
-                  .append(r)
-                  .append("=")
-                  .append(switchCaseOfFirstChar(getSimpleNameRemoveImpl(aClass)))
-                  .append(".")
-                  .append(declaredMethod.getName())
-                  .append("(");
+                        .append(" ")
+                        .append(r)
+                        .append("=")
+                        .append(switchCaseOfFirstChar(getSimpleNameRemoveImpl(aClass)))
+                        .append(".")
+                        .append(declaredMethod.getName())
+                        .append("(");
                 for (Type parameterType : genericParameterTypes) {
                     sb.append(getString(parameterType)).append(",");
                 }
-                sb.delete(sb.length() - 1, sb.length());
+                if (sb.charAt(sb.length() - 1) == ',') {
+                    sb.delete(sb.length() - 1, sb.length());
+                }
                 sb.append(");");
                 lines.add(sb.toString());
                 if (returnType.equals(Boolean.class)) {

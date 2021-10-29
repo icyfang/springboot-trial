@@ -40,15 +40,6 @@ public interface CacheHolder<K, V> extends ApplicationListener<ApplicationPrepar
     }
 
     /**
-     * get
-     *
-     * @return V
-     */
-    default V get() {
-        return getCache().get(getKey());
-    }
-
-    /**
      * get cache
      *
      * @return com.alicp.jetcache.Cache<K, V>
@@ -64,6 +55,6 @@ public interface CacheHolder<K, V> extends ApplicationListener<ApplicationPrepar
 
     @Override
     default void onApplicationEvent(ApplicationPreparedEvent event) {
-        get();
+        getCache().get(getKey());
     }
 }

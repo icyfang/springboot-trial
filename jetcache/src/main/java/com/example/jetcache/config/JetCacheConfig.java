@@ -33,6 +33,9 @@ import java.util.Optional;
 @EnableCreateCacheAnnotation
 public class JetCacheConfig {
 
+    private final static String REDIS_URI_PREFIX = "redis://";
+    private final static String REDIS_SENTINEL_URI_PREFIX = "redis-sentinel://";
+
     @Value("${spring.redis.password:}")
     String pwd;
     @Value("${spring.redis.sentinel.nodes:}")
@@ -43,9 +46,6 @@ public class JetCacheConfig {
     String port;
     @Value("${spring.redis.database}")
     String database;
-
-    private final static String REDIS_URI_PREFIX = "redis://";
-    private final static String REDIS_SENTINEL_URI_PREFIX = "redis-sentinel://";
 
     @Bean
     public GlobalCacheConfig globalCacheConfig(SpringConfigProvider configProvider, RedisClient redisClient) {

@@ -1,8 +1,12 @@
 package com.example.jetcache.user;
 
+import com.alicp.jetcache.Cache;
 import com.example.basic.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.jetcache.common.CacheName;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.Map;
 
 /**
  * @author Hodur
@@ -11,10 +15,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-    @Autowired
-    private UserCache userCache;
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
+    @Resource(name = "userCacheHolder")
+    Cache<String, Map<Long, User>> userCache;
 
     public User getUser(Long id) {
-        return userCache.get().get(id);
+        return userCache.get(CacheName.C_KEY_USER).get(id);
     }
 }

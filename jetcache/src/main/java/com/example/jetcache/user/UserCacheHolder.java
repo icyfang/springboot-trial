@@ -11,17 +11,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
- * @author Hodur
- * @date 2021/9/28
+ * description
+ *
+ * @author candicey
+ * @date 0020/12/20
  */
 @Component
-public class UserCache implements CacheHolder<String, Map<Long, User>> {
+public class UserCacheHolder implements CacheHolder<String, Map<Long, User>> {
 
     @CreateCache(name = "user:", cacheType = CacheType.REMOTE)
     private Cache<String, Map<Long, User>> userCache;
@@ -51,12 +51,9 @@ public class UserCache implements CacheHolder<String, Map<Long, User>> {
         @Override
         public Map<Long, User> load(String key) {
             // get all of active component definition
-            List<User> users = Arrays.asList(
-                    new User(1L, "user1", 18),
-                    new User(2L, "user2", 18),
-                    new User(3L, "user3", 18));
-            return users.stream().collect(Collectors.toMap(User::getId, i -> i));
+            Map<Long, User> collect = new HashMap<>();
+            collect.put(1L, new User(1L, "user1", 20));
+            return collect;
         }
-
     }
 }

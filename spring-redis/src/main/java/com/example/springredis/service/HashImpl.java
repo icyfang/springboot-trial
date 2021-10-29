@@ -1,13 +1,11 @@
-package com.example.springredis.controller;
+package com.example.springredis.service;
 
 import com.example.basic.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.hash.BeanUtilsHashMapper;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -18,28 +16,23 @@ import java.util.stream.Collectors;
 @Component
 public class HashImpl implements CrudInterface {
 
-    @Autowired
-    private RedisTemplate<String, Object> redisTemplate;
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
+    @Resource(name = "redisTemplate")
+    HashOperations<String, Object, Object> hashOperations;
 
-    private HashOperations<String, Object, Object> hashOperations;
-
-    @PostConstruct
-    public void init() {
-        hashOperations = redisTemplate.opsForHash();
-    }
+    BeanUtilsHashMapper<User> beanUtilsHashMapper = new BeanUtilsHashMapper<>(User.class);
 
     @Override
     public User get(String username) {
         Map<Object, Object> entries = hashOperations.entries("hash::" + username);
         Map<String, String> collect = entries.entrySet().stream()
-                                             .collect(Collectors
-                                                     .toMap(i -> (String) i.getKey(), i -> (String) i.getValue()));
-        return new BeanUtilsHashMapper<>(User.class).fromHash(collect);
+                .collect(Collectors.toMap(i -> (String) i.getKey(), i -> (String) i.getValue()));
+        return beanUtilsHashMapper.fromHash(collect);
     }
 
     @Override
     public void insert(User user) {
-        Map<String, String> map = new BeanUtilsHashMapper<>(User.class).toHash(user);
+        Map<String, String> map = beanUtilsHashMapper.toHash(user);
         hashOperations.putAll("hash::" + user.getName(), map);
     }
 
@@ -50,7 +43,7 @@ public class HashImpl implements CrudInterface {
 
     @Override
     public void update(String username, User user) {
-        Map<String, String> map = new BeanUtilsHashMapper<>(User.class).toHash(user);
+        Map<String, String> map = beanUtilsHashMapper.toHash(user);
         hashOperations.putAll("hash::" + username, map);
     }
 }

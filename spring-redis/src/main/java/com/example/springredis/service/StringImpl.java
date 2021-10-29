@@ -1,12 +1,10 @@
-package com.example.springredis.controller;
+package com.example.springredis.service;
 
 import com.example.basic.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 
 /**
  * @author Hodur
@@ -15,15 +13,10 @@ import javax.annotation.PostConstruct;
 @Component
 public class StringImpl implements CrudInterface {
 
-    @Autowired
-    private RedisTemplate<String, Object> redisTemplate;
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 
-    private ValueOperations<String, Object> valueOperations;
-
-    @PostConstruct
-    public void init() {
-        valueOperations = redisTemplate.opsForValue();
-    }
+    @Resource(name = "redisTemplate")
+    ValueOperations<String, Object> valueOperations;
 
     @Override
     public User get(String username) {
@@ -45,4 +38,5 @@ public class StringImpl implements CrudInterface {
     public void update(String username, User user) {
         valueOperations.set("string::" + user.getName(), user);
     }
+
 }

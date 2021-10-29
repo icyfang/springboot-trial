@@ -1,4 +1,4 @@
-package com.example.springredis.controller;
+package com.example.springredis.service;
 
 import com.example.basic.model.User;
 import org.junit.jupiter.api.Assertions;
@@ -17,27 +17,28 @@ import java.util.List;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class SetImplTest {
+class ListImplTest {
 
     @Autowired
-    private SetImpl setImpl;
-
-    @Test
-    @Order(2)
-    void pop() {
-        User pop = setImpl.pop();
-        Assertions.assertEquals(pop, new User((long) 1, "user1", 20));
-        List<User> list = setImpl.list();
-        Assertions.assertEquals(list, Collections.emptyList());
-    }
+    private ListImpl listImpl;
 
     @Test
     @Order(1)
     void push() {
         User user = new User((long) 1, "user1", 20);
-        setImpl.push(user);
-        List<User> list = setImpl.list();
+        listImpl.push(user);
+        List<User> list = listImpl.list();
         Assertions.assertEquals(list, Collections.singletonList(new User((long) 1, "user1", 20)));
     }
+
+    @Test
+    @Order(2)
+    void pop() {
+        User pop = listImpl.pop();
+        Assertions.assertEquals(pop, new User((long) 1, "user1", 20));
+        List<User> list = listImpl.list();
+        Assertions.assertEquals(list, Collections.emptyList());
+    }
+
 
 }

@@ -1,4 +1,4 @@
-package com.example.springredis.controller;
+package com.example.springredis.service;
 
 import com.example.basic.model.User;
 

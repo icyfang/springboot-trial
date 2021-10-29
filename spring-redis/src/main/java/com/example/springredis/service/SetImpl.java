@@ -1,12 +1,10 @@
-package com.example.springredis.controller;
+package com.example.springredis.service;
 
 import com.example.basic.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.SetOperations;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -18,15 +16,9 @@ import java.util.stream.Collectors;
 @Component
 public class SetImpl {
 
-    @Autowired
-    private RedisTemplate<String, Object> redisTemplate;
-
-    private SetOperations<String, Object> setOperations;
-
-    @PostConstruct
-    public void init() {
-        setOperations = redisTemplate.opsForSet();
-    }
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
+    @Resource(name = "redisTemplate")
+    SetOperations<String, Object> setOperations;
 
     public User pop() {
         Object pop = setOperations.pop("set::user");

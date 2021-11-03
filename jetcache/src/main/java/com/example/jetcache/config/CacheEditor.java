@@ -1,6 +1,6 @@
 package com.example.jetcache.config;
 
-import com.example.jetcache.common.CacheHolder;
+import com.example.jetcache.holder.CacheHolder;
 
 import java.beans.PropertyEditorSupport;
 

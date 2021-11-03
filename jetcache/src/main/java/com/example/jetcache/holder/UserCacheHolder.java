@@ -1,17 +1,14 @@
-package com.example.jetcache.user;
+package com.example.jetcache.holder;
 
 import com.alicp.jetcache.Cache;
-import com.alicp.jetcache.CacheLoader;
 import com.alicp.jetcache.anno.CacheType;
 import com.alicp.jetcache.anno.CreateCache;
 import com.example.basic.model.User;
-import com.example.jetcache.common.CacheHolder;
 import com.example.jetcache.common.CacheName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -45,15 +42,4 @@ public class UserCacheHolder implements CacheHolder<String, Map<Long, User>> {
         return CacheName.C_KEY_USER;
     }
 
-    @Component
-    public static class UserCacheLoader implements CacheLoader<String, Map<Long, User>> {
-
-        @Override
-        public Map<Long, User> load(String key) {
-            // get all of active component definition
-            Map<Long, User> collect = new HashMap<>();
-            collect.put(1L, new User(1L, "user1", 20));
-            return collect;
-        }
-    }
 }

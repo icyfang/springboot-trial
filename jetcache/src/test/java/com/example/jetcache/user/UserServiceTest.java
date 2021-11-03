@@ -20,4 +20,18 @@ class UserServiceTest {
         User user = userService.getUser(1L);
         System.out.println(user);
     }
+
+    @Test
+    void fetchUser() {
+
+        User user = userService.fetchUser(1L);
+        System.out.println(user);
+    }
+
+    @Test
+    void retrieveUser() {
+
+        User user = userService.retrieveUser(1L);
+        System.out.println(user);
+    }
 }

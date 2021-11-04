@@ -48,4 +48,33 @@ class StringImplTest {
         Assertions.assertNull(user1);
     }
 
+    @Test
+    @Order(5)
+    void insertByBound() {
+        stringImpl.insertByBound(new User((long) 1, "user1", 20));
+    }
+
+    @Test
+    @Order(6)
+    void getByBound() {
+        User user1 = stringImpl.getByBound("user1");
+        Assertions.assertEquals(user1, new User((long) 1, "user1", 20));
+    }
+
+    @Order(7)
+    @Test
+    void updateByBound() {
+        stringImpl.updateByBound("user1", new User((long) 1, "user1", 30));
+        User user1 = stringImpl.getByBound("user1");
+        Assertions.assertEquals(user1, new User((long) 1, "user1", 30));
+    }
+
+    @Order(8)
+    @Test
+    void deleteByBound() {
+        stringImpl.deleteByBound("user1");
+        User user1 = stringImpl.getByBound("user1");
+        Assertions.assertNull(user1);
+    }
+
 }

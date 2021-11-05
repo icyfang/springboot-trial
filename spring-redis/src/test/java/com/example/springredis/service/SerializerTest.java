@@ -18,6 +18,7 @@ import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -102,6 +103,13 @@ public class SerializerTest {
         List<Object> userList = redisTemplate.opsForList().range(stringRedisSerializer, 0, -1);
         assert userList != null;
         Assertions.assertEquals(userVO, userList.get(0));
+    }
+
+    @Test
+    @Order(5)
+    public void testJdkSerializationRedisSerializer() {
+        redisTemplate.setValueSerializer(new JdkSerializationRedisSerializer());
+        pushAndRange("JdkSerializationRedisSerializer");
     }
 
     private Map<String, Object> getExpectedMap() {

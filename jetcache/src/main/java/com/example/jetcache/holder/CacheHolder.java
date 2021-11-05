@@ -9,6 +9,8 @@ import org.springframework.context.ApplicationListener;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * Holder for cache, loading cache on application start and configuring default refresh policy.
+ *
  * @author Hodur
  * @date 2021/9/13
  */

@@ -18,7 +18,9 @@ import javax.annotation.PostConstruct;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Common cache service implementation
+ * Common cache service implementation, avoiding implementing ApplicationListener, configuring refresh policy
+ * and creating cache repeatedly. Define a {@link com.alicp.jetcache.CacheLoader}, and get the cached data through
+ * {@code getCache} with the CacheLoader class as parameter.
  *
  * @author Hodur
  * @date 2019/9/27

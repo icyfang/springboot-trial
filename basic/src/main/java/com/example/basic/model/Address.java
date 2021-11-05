@@ -1,21 +1,21 @@
 package com.example.basic.model;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-/**
- * @author Hodur
- * @date 2021/10/29
- */
+import java.io.Serializable;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Address {
+@EqualsAndHashCode
+public class Address implements Serializable {
 
     String city;
     String country;

@@ -2,8 +2,8 @@ package com.example.swagger.feign.api;
 
 import com.example.swagger.feign.ApiClient;
 import com.example.swagger.model.Order;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 /**
  * API tests for StoreApi
@@ -12,7 +12,7 @@ public class StoreApiTest {
 
     private StoreApi api;
 
-    @Before
+    @BeforeAll
     public void setup() {
         api = new ApiClient().buildClient(StoreApi.class);
     }

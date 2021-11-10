@@ -14,15 +14,15 @@
 package com.example.swagger.restTemplate.api;
 
 import com.example.swagger.model.User;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 /**
  * API tests for UserApi
  */
-@Ignore
+@Disabled
 public class UserApiTest {
 
     private final UserApi api = new UserApi();

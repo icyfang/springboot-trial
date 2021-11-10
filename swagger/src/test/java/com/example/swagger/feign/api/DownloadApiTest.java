@@ -1,8 +1,8 @@
 package com.example.swagger.feign.api;
 
 import com.example.swagger.feign.ApiClient;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
@@ -13,7 +13,7 @@ public class DownloadApiTest {
 
     private DownloadApi api;
 
-    @Before
+    @BeforeAll
     public void setup() {
         api = new ApiClient().buildClient(DownloadApi.class);
     }

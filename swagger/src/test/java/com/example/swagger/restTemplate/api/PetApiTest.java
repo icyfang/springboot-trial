@@ -15,8 +15,8 @@ package com.example.swagger.restTemplate.api;
 
 import com.example.swagger.model.ModelApiResponse;
 import com.example.swagger.model.Pet;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.util.List;
@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * API tests for PetApi
  */
-@Ignore
+@Disabled
 public class PetApiTest {
 
     private final PetApi api = new PetApi();

@@ -2,8 +2,8 @@ package com.example.swagger.feign.api;
 
 import com.example.swagger.feign.ApiClient;
 import com.example.swagger.model.User;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public class UserApiTest {
 
     private UserApi api;
 
-    @Before
+    @BeforeAll
     public void setup() {
         api = new ApiClient().buildClient(UserApi.class);
     }

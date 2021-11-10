@@ -12,15 +12,15 @@
 
 package com.example.swagger.restTemplate.api;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
 /**
  * API tests for DownloadApi
  */
-@Ignore
+@Disabled
 public class DownloadApiTest {
 
     private final DownloadApi api = new DownloadApi();

@@ -2,8 +2,8 @@ package com.example.swagger.feign.api;
 
 import com.example.swagger.feign.ApiClient;
 import com.example.swagger.model.Pet;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.util.List;
@@ -15,7 +15,7 @@ public class PetApiTest {
 
     private PetApi api;
 
-    @Before
+    @BeforeAll
     public void setup() {
         api = new ApiClient().buildClient(PetApi.class);
     }

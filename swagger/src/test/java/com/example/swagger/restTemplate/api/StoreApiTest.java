@@ -14,15 +14,15 @@
 package com.example.swagger.restTemplate.api;
 
 import com.example.swagger.model.Order;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
 /**
  * API tests for StoreApi
  */
-@Ignore
+@Disabled
 public class StoreApiTest {
 
     private final StoreApi api = new StoreApi();

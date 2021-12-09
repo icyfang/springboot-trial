@@ -33,15 +33,15 @@ public class ValidUserController {
     }
 
     @Validated(ValidUser.Single.class)
-    @PostMapping("/single")
+    @PostMapping("/group/single")
     public String postUser(@Valid @RequestBody ValidUser user) {
         users.put(user.getId(), user);
         return "success";
     }
 
     @Validated(ValidUser.Batch.class)
-    @PostMapping("/batch")
-    public String postBatchUser(@Valid @RequestBody List<ValidUser> user) {
+    @PostMapping("/group/batch")
+    public String postUserInBatch(@Valid @RequestBody List<ValidUser> user) {
         user.forEach(this::postUser);
         return "success";
     }
@@ -59,7 +59,7 @@ public class ValidUserController {
         return "success";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/path/{id}")
     public ValidUser getUser(@Validated @Min(3) @PathVariable Long id) {
         return users.get(id);
     }

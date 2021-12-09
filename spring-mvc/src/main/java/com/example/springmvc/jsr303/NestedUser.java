@@ -35,7 +35,7 @@ public class NestedUser extends ValidUser {
         private Long id;
 
         @NotNull
-        @Size(min = 5, max = 10, message = "{validation.validUser.name.size}")
+        @Size(min = 5, max = 10, message = "{validation.nestedUser.address.name.size}")
         private String country;
 
     }

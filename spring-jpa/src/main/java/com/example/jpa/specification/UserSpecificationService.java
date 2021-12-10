@@ -98,15 +98,10 @@ public class UserSpecificationService {
     public List<UserPO> getUserBySpec(UserPO userPO) {
 
         Specification<UserPO> specification = Specifications.<UserPO>and()
-                                                            .eq(StringUtils.isNotBlank(userPO
-                                                                    .getFirstName()), "firstName", userPO
-                                                                    .getFirstName())
-                                                            .like(StringUtils.isNotBlank(userPO
-                                                                    .getLastName()), "lastName", "%" + userPO
-                                                                    .getLastName() + "%")
-                                                            .between(userPO.getBirthday() != null, "birthday", userPO
-                                                                    .getBirthday(), LocalDate.now())
-                                                            .build();
+                .eq(StringUtils.isNotBlank(userPO.getFirstName()), "firstName", userPO.getFirstName())
+                .like(StringUtils.isNotBlank(userPO.getLastName()), "lastName", "%" + userPO.getLastName() + "%")
+                .between(userPO.getBirthday() != null, "birthday", userPO.getBirthday(), LocalDate.now())
+                .build();
         Specification<UserPO> joinSpecification = (root, query, cb) -> {
 
             // sort

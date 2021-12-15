@@ -1,6 +1,7 @@
 package com.example.mybatisplus.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.mybatisplus.ApplicationContextHolder;
 import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -86,7 +87,6 @@ public interface BatchMapper<T> {
      * for PO with an auto_increment pk, use insertBatch
      *
      * @param list List of Object need to be persisted.
-     * @return
      */
     @Transactional(rollbackFor = Exception.class)
     default boolean insert(List<T> list) {

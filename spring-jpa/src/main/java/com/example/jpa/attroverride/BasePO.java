@@ -6,6 +6,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+/**
+ * @author Hodur
+ * @date 2020/04/11
+ */
 @MappedSuperclass
 public class BasePO {
 

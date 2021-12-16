@@ -11,7 +11,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ApplicationContextHolder implements ApplicationContextAware {
-    // 上下文对象实例
+    /**
+     * 上下文对象实例
+     */
     private static ApplicationContext applicationContext;
 
     @Override

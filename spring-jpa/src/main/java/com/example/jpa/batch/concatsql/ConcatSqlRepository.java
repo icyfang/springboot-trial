@@ -42,12 +42,13 @@ public interface ConcatSqlRepository<T, ID> {
     //todo auditor
     //todo multi table
     //todo extends
+
     Map<Class<?>, EntityManager> entityManagerMap = getEntityManagerMap();
 
     private static Map<Class<?>, EntityManager> getEntityManagerMap() {
         Map<String, EntityManager> beansOfType = ApplicationContextHolder.getApplicationContext()
-                                                                         .getBeansOfType(EntityManager.class);
-        Map<Class<?>, EntityManager> map = new HashMap<>();
+                .getBeansOfType(EntityManager.class);
+        Map<Class<?>, EntityManager> map = new HashMap<>(16);
         beansOfType.forEach((k, v) -> {
             Set<EntityType<?>> entities = v.getEntityManagerFactory().getMetamodel().getEntities();
             for (EntityType<?> entity : entities) {
@@ -70,9 +71,7 @@ public interface ConcatSqlRepository<T, ID> {
         int index = 0;
         long lengthCount = insertColumnSql.length();
         List<List<StringBuilder>> builders = new ArrayList<>();
-        Iterator<S> iterator = s.iterator();
-        while (iterator.hasNext()) {
-            S next = iterator.next();
+        for (S next : s) {
             StringBuilder valueBuilder = new StringBuilder("(");
             for (ColumnDefinition columnDefinition : columnDefinitions) {
                 if (!columnDefinition.getInsertable()) {

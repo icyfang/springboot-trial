@@ -3,6 +3,7 @@ package com.example.jpa.batch;
 import com.example.jpa.ApplicationContextHolder;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,7 +31,7 @@ public class BatchController {
             .getBean("entityManagerSecondary", EntityManager.class);
 
     @PostMapping("/saveAll")
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void saveAll() {
         List<CommentPO> l = getDemoBatches(0, 5000, "");
         commentRepository.saveAll(l);
@@ -94,7 +94,7 @@ public class BatchController {
         return l;
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void executeQuery(StringBuilder sb) {
         Session unwrap = entityManager.unwrap(Session.class);
         try {

@@ -5,6 +5,10 @@ import org.springframework.data.jpa.repository.Lock;
 
 import javax.persistence.LockModeType;
 
+/**
+ * @author Hodur
+ * @date 2020/07/06
+ */
 public interface AccountRepository extends JpaRepository<Account, Long> {
 
     @Lock(LockModeType.PESSIMISTIC_READ)

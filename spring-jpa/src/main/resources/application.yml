@@ -28,6 +28,9 @@ spring:
         #        login-username: admin
         reset-enable: true
         url-pattern: /druid/*
+      maxWait: 60000
+      #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      timeBetweenEvictionRunsMillis: 60000
   jpa:
     open-in-view: true
     properties:
@@ -36,6 +39,8 @@ spring:
         format_sql: true
         hbm2ddl:
           auto: update
+        jdbc:
+          batch_size: 1000
     show-sql: true
   # multi-datasource config
   primary:

@@ -14,6 +14,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.util.List;
 
+/**
+ * @author Hodur
+ * @date 2020/07/13
+ */
 @Getter
 @Setter
 @Entity

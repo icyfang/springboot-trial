@@ -2,6 +2,10 @@ package com.example.jpa.multidatasource;
 
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * @author Hodur
+ * @date 2020/07/06
+ */
 @Configuration
 public class DataSourceConfig {
 
@@ -21,6 +25,5 @@ public class DataSourceConfig {
 //    public DataSourceProperties primaryDataSourceProperties(){
 //        return new DataSourceProperties();
 //    }
-
 
 }

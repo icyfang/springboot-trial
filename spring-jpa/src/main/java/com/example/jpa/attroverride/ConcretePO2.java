@@ -5,6 +5,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+/**
+ * @author Hodur
+ * @date 2020/04/10
+ */
 @Entity
 @Table(name = "t_concrete2")
 @AttributeOverride(name = "name", column = @Column(name = "name"))

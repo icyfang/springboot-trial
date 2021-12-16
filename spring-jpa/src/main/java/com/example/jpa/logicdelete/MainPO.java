@@ -15,6 +15,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import java.util.List;
 
+/**
+ * @author Hodur
+ * @date 2021/07/16
+ */
 @Data
 @Entity(name = "logic_delete_main")
 @Proxy(lazy = false)

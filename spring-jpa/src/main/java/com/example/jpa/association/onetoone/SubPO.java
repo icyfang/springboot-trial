@@ -6,6 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * @author Hodur
+ * @date 2020/10/10
+ */
 @Data
 @Entity
 @Table(name = "onetoone_sub")

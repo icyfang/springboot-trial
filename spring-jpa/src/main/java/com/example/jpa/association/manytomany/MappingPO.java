@@ -10,6 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * @author Hodur
+ * @date 2021/07/13
+ */
 @Getter
 @Setter
 @Entity(name = "manytomany_join")

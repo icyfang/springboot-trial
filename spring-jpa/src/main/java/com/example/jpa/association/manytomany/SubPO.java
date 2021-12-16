@@ -14,6 +14,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import java.util.List;
 
+/**
+ * @author Hodur
+ * @date 2020/10/10
+ */
 @Getter
 @Setter
 @Entity(name = "manytomany_sub")

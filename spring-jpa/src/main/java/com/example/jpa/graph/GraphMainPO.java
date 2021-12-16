@@ -6,6 +6,10 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * @author Hodur
+ * @date 2021/07/13
+ */
 @Getter
 @Setter
 @Entity

@@ -13,6 +13,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+/**
+ * @author Hodur
+ * @date 2020/10/10
+ */
 @Data
 @Entity
 @Table(name = "onetoone_main")

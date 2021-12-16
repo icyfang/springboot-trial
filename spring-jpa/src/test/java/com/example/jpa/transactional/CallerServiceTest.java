@@ -37,7 +37,7 @@ public class CallerServiceTest {
     void requireNew1() {
         try {
             service.requireNew1();
-        } catch (Exception e) {
+        } catch (Exception ignored) {
 
         } finally {
             Assertions.assertEquals(0, repository.findAll().size());
@@ -49,7 +49,7 @@ public class CallerServiceTest {
     void requireNew2() {
         try {
             service.requireNew2();
-        } catch (Exception e) {
+        } catch (Exception ignored) {
 
         } finally {
             Assertions.assertEquals(0, repository.findAll().size());
@@ -61,7 +61,7 @@ public class CallerServiceTest {
     void requireNew3() {
         try {
             service.requireNew3();
-        } catch (Exception e) {
+        } catch (Exception ignored) {
 
         } finally {
             Assertions.assertEquals(1, repository.findAll().size());
@@ -73,7 +73,7 @@ public class CallerServiceTest {
     void nested1() {
         try {
             service.nested1();
-        } catch (Exception e) {
+        } catch (Exception ignored) {
 
         } finally {
             Assertions.assertEquals(0, repository.findAll().size());
@@ -85,7 +85,7 @@ public class CallerServiceTest {
     void nested2() {
         try {
             service.nested2();
-        } catch (Exception e) {
+        } catch (Exception ignored) {
 
         } finally {
             Assertions.assertEquals(0, repository.findAll().size());
@@ -97,7 +97,7 @@ public class CallerServiceTest {
     void nested3() {
         try {
             service.nested3();
-        } catch (Exception e) {
+        } catch (Exception ignored) {
 
         } finally {
             Assertions.assertEquals(1, repository.findAll().size());
@@ -109,7 +109,7 @@ public class CallerServiceTest {
     void notSupported1() {
         try {
             service.notSupported1();
-        } catch (Exception e) {
+        } catch (Exception ignored) {
 
         } finally {
             Assertions.assertEquals(0, repository.findAll().size());

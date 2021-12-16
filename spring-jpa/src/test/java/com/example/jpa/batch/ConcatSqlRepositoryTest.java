@@ -51,9 +51,9 @@ class ConcatSqlRepositoryTest {
             user.setLastname(name.lastName());
             user.setFullName(name.fullName());
             user.setNickname(name.name());
-            user.setDescription("ald;sfasjdlkflkjasdljfkl;adlsjfljlasdfsd");
+            user.setDescription("any words long enough as the description");
             user.setPhoneNum(phoneNumber.phoneNumber());
-            user.setEmail("adfa;sjklajsdklflajsd;lfalsdklfa");
+            user.setEmail("anywhere@any.com");
             user.setCountry(country.name());
             user.setCity(address.city());
             user.setAddress(address.fullAddress());

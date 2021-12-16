@@ -8,6 +8,10 @@ import org.springframework.data.repository.query.Param;
 import java.math.BigDecimal;
 import java.util.List;
 
+/**
+ * @author Hodur
+ * @date 2020/07/06
+ */
 public interface ForumRepository extends JpaRepository<ForumPO, Long> {
 
     @Query(value = "select u from ForumPO u where u.username=:username")

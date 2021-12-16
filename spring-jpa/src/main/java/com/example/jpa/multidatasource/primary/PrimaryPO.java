@@ -9,6 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * @author Hodur
+ * @date 2020/10/10
+ */
 @Entity
 @Data
 @Table(name = "t_primary")

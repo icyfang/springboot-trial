@@ -9,6 +9,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 
+/**
+ * @author Hodur
+ * @date 2020/10/10
+ */
 @Data
 @Entity(name = "onetomany_sub")
 public class SubPO {

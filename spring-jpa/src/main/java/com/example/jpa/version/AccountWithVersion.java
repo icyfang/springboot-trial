@@ -1,7 +1,10 @@
 package com.example.jpa.version;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +18,10 @@ import java.math.BigDecimal;
  * @date 2021-01-06
  */
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity
 @Table(name = "t_account_version")
 public class AccountWithVersion {
@@ -36,4 +42,5 @@ public class AccountWithVersion {
         this.accountName = accountName;
         this.balance = balance;
     }
+
 }

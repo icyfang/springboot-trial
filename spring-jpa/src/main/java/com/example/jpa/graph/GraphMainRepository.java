@@ -7,6 +7,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
+/**
+ * @author Hodur
+ * @date 2021/07/13
+ */
 public interface GraphMainRepository extends JpaRepository<GraphMainPO, Long> {
 
     @Override

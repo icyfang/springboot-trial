@@ -20,6 +20,10 @@ import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 import java.util.Objects;
 
+/**
+ * @author Hodur
+ * @date 2020/05/25
+ */
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(

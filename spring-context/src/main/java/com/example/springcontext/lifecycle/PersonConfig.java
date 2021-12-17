@@ -29,6 +29,11 @@ public class PersonConfig {
     }
 
     @Bean
+    public MyBeanPostProcessor2 myBeanPostProcessor2() {
+        return new MyBeanPostProcessor2();
+    }
+
+    @Bean
     public MyInstantiationAwareBeanPostProcessor myInstantiationAwareBeanPostProcessor() {
         return new MyInstantiationAwareBeanPostProcessor();
     }

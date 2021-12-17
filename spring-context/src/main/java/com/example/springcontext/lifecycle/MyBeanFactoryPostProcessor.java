@@ -10,6 +10,7 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
  * @date 2020-08-19
  */
 public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
+
     public MyBeanFactoryPostProcessor() {
         super();
         System.out.println("BeanFactoryPostProcessor constructor");

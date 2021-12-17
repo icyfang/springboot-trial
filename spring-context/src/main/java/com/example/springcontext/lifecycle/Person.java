@@ -6,6 +6,7 @@ import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.lang.NonNull;
 
 /**
  * @author Hodur
@@ -39,18 +40,18 @@ public class Person implements BeanFactoryAware, BeanNameAware, InitializingBean
      * 这是BeanFactoryAware接口方法
      */
     @Override
-    public void setBeanFactory(BeanFactory arg0) throws BeansException {
+    public void setBeanFactory(@NonNull BeanFactory beanFactory) throws BeansException {
         System.out.println("BeanFactoryAware#setBeanFactory");
-        this.beanFactory = arg0;
+        this.beanFactory = beanFactory;
     }
 
     /**
      * 这是BeanNameAware接口方法
      */
     @Override
-    public void setBeanName(String arg0) {
+    public void setBeanName(@NonNull String name) {
         System.out.println("BeanNameAware#setBeanName");
-        this.beanName = arg0;
+        this.beanName = name;
     }
 
     /**
@@ -62,7 +63,7 @@ public class Person implements BeanFactoryAware, BeanNameAware, InitializingBean
     }
 
     /**
-     * 这是DisposableBean接口方法
+     * 这是DiposibleBean接口方法
      */
     @Override
     public void destroy() {

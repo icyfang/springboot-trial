@@ -3,8 +3,7 @@ package com.example.springcontext.lifecycle;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.PropertyValues;
 import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessorAdapter;
-
-import java.beans.PropertyDescriptor;
+import org.springframework.lang.NonNull;
 
 /**
  * @author Hodur
@@ -16,12 +15,14 @@ public class MyInstantiationAwareBeanPostProcessor extends InstantiationAwareBea
         System.out.println("InstantiationAwareBeanPostProcessorAdapter constructor");
     }
 
+    private final static String TARGET_BEAN_NAME = "person";
+
     /**
      * 接口方法、实例化Bean之前调用
      */
     @Override
-    public Object postProcessBeforeInstantiation(Class beanClass, String beanName) throws BeansException {
-        if ("person".equals(beanName)) {
+    public Object postProcessBeforeInstantiation(@NonNull Class beanClass, @NonNull String beanName) throws BeansException {
+        if (TARGET_BEAN_NAME.equals(beanName)) {
             System.out.println("InstantiationAwareBeanPostProcessor#postProcessBeforeInstantiation");
         }
         return null;
@@ -31,8 +32,8 @@ public class MyInstantiationAwareBeanPostProcessor extends InstantiationAwareBea
      * 接口方法、实例化Bean之后调用
      */
     @Override
-    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        if ("person".equals(beanName)) {
+    public Object postProcessAfterInitialization(@NonNull Object bean, @NonNull String beanName) throws BeansException {
+        if (TARGET_BEAN_NAME.equals(beanName)) {
             System.out.println("InstantiationAwareBeanPostProcessor#postProcessAfterInitialization");
         }
         return bean;
@@ -42,10 +43,10 @@ public class MyInstantiationAwareBeanPostProcessor extends InstantiationAwareBea
      * 接口方法、设置某个属性时调用
      */
     @Override
-    public PropertyValues postProcessPropertyValues(PropertyValues pvs,
-                                                    PropertyDescriptor[] pds, Object bean, String beanName)
+    public PropertyValues postProcessProperties(@NonNull PropertyValues pvs, @NonNull Object bean,
+                                                @NonNull String beanName)
             throws BeansException {
-        if ("person".equals(beanName)) {
+        if (TARGET_BEAN_NAME.equals(beanName)) {
             System.out.println("InstantiationAwareBeanPostProcessor#postProcessPropertyValues");
         }
         return pvs;

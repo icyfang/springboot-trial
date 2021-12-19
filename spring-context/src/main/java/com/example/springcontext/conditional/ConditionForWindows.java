@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Condition;
 import org.springframework.context.annotation.ConditionContext;
 import org.springframework.core.env.Environment;
 import org.springframework.core.type.AnnotatedTypeMetadata;
+import org.springframework.lang.NonNull;
 
 /**
  * @author Hodur
@@ -19,7 +20,7 @@ public class ConditionForWindows implements Condition {
      * @param annotatedTypeMetadata:注解所在位置的注释信息
      */
     @Override
-    public boolean matches(ConditionContext conditionContext, AnnotatedTypeMetadata annotatedTypeMetadata) {
+    public boolean matches(ConditionContext conditionContext, @NonNull AnnotatedTypeMetadata annotatedTypeMetadata) {
         //获取ioc使用的beanFactory
         ConfigurableListableBeanFactory beanFactory = conditionContext.getBeanFactory();
         //获取类加载器

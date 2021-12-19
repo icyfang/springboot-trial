@@ -16,13 +16,13 @@ import java.util.concurrent.Future;
 @Component
 public class AsyncTask {
 
-    public static final Random random = new Random();
+    public static final Random RANDOM = new Random();
 
     @Async("taskExecutor")
     public void doTaskOne() throws Exception {
         log.info("start task 1");
         long start = System.currentTimeMillis();
-        Thread.sleep(random.nextInt(10000));
+        Thread.sleep(RANDOM.nextInt(10000));
         log.info("task 1 completed, takes：" + (System.currentTimeMillis() - start) + "ms");
     }
 
@@ -30,7 +30,7 @@ public class AsyncTask {
     public void doTaskTwo() throws Exception {
         log.info("start task 2");
         long start = System.currentTimeMillis();
-        Thread.sleep(random.nextInt(10000));
+        Thread.sleep(RANDOM.nextInt(10000));
         log.info("task 2 completed, takes：" + (System.currentTimeMillis() - start) + "ms");
     }
 
@@ -38,7 +38,7 @@ public class AsyncTask {
     public void doTaskThree() throws Exception {
         log.info("start task 3");
         long start = System.currentTimeMillis();
-        Thread.sleep(random.nextInt(10000));
+        Thread.sleep(RANDOM.nextInt(10000));
         log.info("task 3 completed, takes：" + (System.currentTimeMillis() - start) + "ms");
     }
 
@@ -46,7 +46,7 @@ public class AsyncTask {
     public Future<String> doCallableTaskOne() throws Exception {
         log.info("start callable task 1");
         long start = System.currentTimeMillis();
-        Thread.sleep(random.nextInt(10000));
+        Thread.sleep(RANDOM.nextInt(10000));
         log.info("callable task 1 completed, takes：" + (System.currentTimeMillis() - start) + "ms");
         return new AsyncResult<>("callable task 1 completed");
     }
@@ -55,7 +55,7 @@ public class AsyncTask {
     public Future<String> doCallableTaskTwo() throws Exception {
         log.info("start callable task 1");
         long start = System.currentTimeMillis();
-        Thread.sleep(random.nextInt(10000));
+        Thread.sleep(RANDOM.nextInt(10000));
         log.info("callable task 2 completed, takes：" + (System.currentTimeMillis() - start) + "ms");
         return new AsyncResult<>("callable task 2 completed");
     }
@@ -64,7 +64,7 @@ public class AsyncTask {
     public Future<String> doCallableTaskThree() throws Exception {
         log.info("start callable task 1");
         long start = System.currentTimeMillis();
-        Thread.sleep(random.nextInt(10000));
+        Thread.sleep(RANDOM.nextInt(10000));
         log.info("callable task 3 completed, takes：" + (System.currentTimeMillis() - start) + "ms");
         return new AsyncResult<>("callable task 3 completed");
     }

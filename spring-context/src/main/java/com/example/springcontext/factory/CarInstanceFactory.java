@@ -10,7 +10,7 @@ import java.util.Map;
  * @date 2021/10/12
  */
 public class CarInstanceFactory {
-    private Map<Integer, Car> map = new HashMap<Integer, Car>();
+    private Map<Integer, Car> map = new HashMap<>();
 
     public void setMap(Map<Integer, Car> map) {
         this.map = map;

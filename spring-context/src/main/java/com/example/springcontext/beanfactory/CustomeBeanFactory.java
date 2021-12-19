@@ -10,6 +10,7 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.core.ResolvableType;
+import org.springframework.lang.NonNull;
 
 import java.io.InputStream;
 import java.lang.reflect.Field;
@@ -70,77 +71,77 @@ public class CustomeBeanFactory implements BeanFactory {
     }
 
     @Override
-    public Object getBean(String beanName) {
+    public Object getBean(@NonNull String beanName) {
         return container.get(beanName);
     }
 
     @Override
-    public <T> T getBean(String name, Class<T> requiredType) throws BeansException {
+    public <T> T getBean(@NonNull String name, @NonNull Class<T> requiredType) throws BeansException {
         return null;
     }
 
     @Override
-    public Object getBean(String name, Object... args) throws BeansException {
+    public Object getBean(@NonNull String name, Object... args) throws BeansException {
         return null;
     }
 
     @Override
-    public <T> T getBean(Class<T> requiredType) throws BeansException {
+    public <T> T getBean(@NonNull Class<T> requiredType) throws BeansException {
         return null;
     }
 
     @Override
-    public <T> T getBean(Class<T> requiredType, Object... args) throws BeansException {
+    public <T> T getBean(@NonNull Class<T> requiredType, @NonNull Object... args) throws BeansException {
         return null;
     }
 
     @Override
-    public <T> ObjectProvider<T> getBeanProvider(Class<T> requiredType) {
+    public <T> ObjectProvider<T> getBeanProvider(@NonNull Class<T> requiredType) {
         return null;
     }
 
     @Override
-    public <T> ObjectProvider<T> getBeanProvider(ResolvableType requiredType) {
+    public <T> ObjectProvider<T> getBeanProvider(@NonNull ResolvableType requiredType) {
         return null;
     }
 
     @Override
-    public boolean containsBean(String name) {
+    public boolean containsBean(@NonNull String name) {
         return false;
     }
 
     @Override
-    public boolean isSingleton(String name) throws NoSuchBeanDefinitionException {
+    public boolean isSingleton(@NonNull String name) throws NoSuchBeanDefinitionException {
         return false;
     }
 
     @Override
-    public boolean isPrototype(String name) throws NoSuchBeanDefinitionException {
+    public boolean isPrototype(@NonNull String name) throws NoSuchBeanDefinitionException {
         return false;
     }
 
     @Override
-    public boolean isTypeMatch(String name, ResolvableType typeToMatch) throws NoSuchBeanDefinitionException {
+    public boolean isTypeMatch(@NonNull String name, @NonNull ResolvableType typeToMatch) throws NoSuchBeanDefinitionException {
         return false;
     }
 
     @Override
-    public boolean isTypeMatch(String name, Class<?> typeToMatch) throws NoSuchBeanDefinitionException {
+    public boolean isTypeMatch(@NonNull String name, @NonNull Class<?> typeToMatch) throws NoSuchBeanDefinitionException {
         return false;
     }
 
     @Override
-    public Class<?> getType(String name) throws NoSuchBeanDefinitionException {
+    public Class<?> getType(@NonNull String name) throws NoSuchBeanDefinitionException {
         return null;
     }
 
     @Override
-    public Class<?> getType(String name, boolean allowFactoryBeanInit) throws NoSuchBeanDefinitionException {
+    public Class<?> getType(@NonNull String name, boolean allowFactoryBeanInit) throws NoSuchBeanDefinitionException {
         return null;
     }
 
     @Override
-    public String[] getAliases(String name) {
+    public String[] getAliases(@NonNull String name) {
         return new String[0];
     }
 }

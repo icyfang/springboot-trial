@@ -13,19 +13,19 @@ import org.springframework.expression.spel.support.StandardEvaluationContext;
  */
 public class SpelParserDemo {
 
-    static ExpressionParser parser = new SpelExpressionParser();
+    private final static ExpressionParser PARSER = new SpelExpressionParser();
 
     public static String evalWithDollarSign(String expr) {
         EvaluationContext context = new StandardEvaluationContext();
         context.setVariable("name", "avatar");
-        Expression expression = parser.parseExpression(expr, new TemplateParserContext("${", "}"));
+        Expression expression = PARSER.parseExpression(expr, new TemplateParserContext("${", "}"));
         return expression.getValue(context, String.class);
     }
 
     public static String eval(String expr) {
         EvaluationContext context = new StandardEvaluationContext();
         context.setVariable("name", "avatar");
-        Expression expression = parser.parseExpression(expr, new TemplateParserContext());
+        Expression expression = PARSER.parseExpression(expr, new TemplateParserContext());
         return expression.getValue(context, String.class);
     }
 

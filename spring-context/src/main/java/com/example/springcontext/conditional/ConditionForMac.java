@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Condition;
 import org.springframework.context.annotation.ConditionContext;
 import org.springframework.core.env.Environment;
 import org.springframework.core.type.AnnotatedTypeMetadata;
+import org.springframework.lang.NonNull;
 
 /**
  * @author Hodur
@@ -14,7 +15,7 @@ import org.springframework.core.type.AnnotatedTypeMetadata;
 public class ConditionForMac implements Condition {
 
     @Override
-    public boolean matches(ConditionContext conditionContext, AnnotatedTypeMetadata annotatedTypeMetadata) {
+    public boolean matches(ConditionContext conditionContext, @NonNull AnnotatedTypeMetadata annotatedTypeMetadata) {
         Environment environment = conditionContext.getEnvironment();
         String property = environment.getProperty("os.name");
         if (property.contains("Mac")) {

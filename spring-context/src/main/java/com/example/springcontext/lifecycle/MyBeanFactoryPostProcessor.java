@@ -7,7 +7,7 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 
 /**
  * @author Hodur
- * @date 2020-08-19
+ * @date 2020/8/19
  */
 public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
 
@@ -17,9 +17,9 @@ public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
     }
 
     @Override
-    public void postProcessBeanFactory(ConfigurableListableBeanFactory arg0) throws BeansException {
+    public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
         System.out.println("BeanFactoryPostProcessor#postProcessBeanFactory");
-        BeanDefinition bd = arg0.getBeanDefinition("person");
+        BeanDefinition bd = beanFactory.getBeanDefinition("person");
         bd.getPropertyValues().addPropertyValue("name", "Tom");
     }
 }

@@ -16,6 +16,21 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+    <modules>
+        <module>basic</module>
+        <module>jetcache</module>
+        <module>mybatis-plus</module>
+        <module>rabbitmq</module>
+        <module>spring-cache</module>
+        <module>spring-context</module>
+        <module>spring-jpa</module>
+        <module>spring-mvc</module>
+        <module>spring-reactor</module>
+        <module>spring-redis</module>
+        <module>spring-retry</module>
+        <module>swagger</module>
+    </modules>
+
     <properties>
         <java.version>11</java.version>
         <springboot.version>2.3.1.RELEASE</springboot.version>

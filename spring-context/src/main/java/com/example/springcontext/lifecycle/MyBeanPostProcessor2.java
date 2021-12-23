@@ -19,14 +19,6 @@ public class MyBeanPostProcessor2 implements BeanPostProcessor, Ordered {
     private final static String TARGET_BEAN_NAME = "person";
 
     @Override
-    public Object postProcessAfterInitialization(@NonNull Object bean, @NonNull String beanName) throws BeansException {
-        if (TARGET_BEAN_NAME.equals(beanName)) {
-            System.out.println("BeanPostProcessor2#postProcessAfterInitialization");
-        }
-        return bean;
-    }
-
-    @Override
     public Object postProcessBeforeInitialization(@NonNull Object bean, @NonNull String beanName) throws BeansException {
         if (TARGET_BEAN_NAME.equals(beanName)) {
             System.out.println("BeanPostProcessor2#postProcessBeforeInitialization");
@@ -35,7 +27,15 @@ public class MyBeanPostProcessor2 implements BeanPostProcessor, Ordered {
     }
 
     @Override
+    public Object postProcessAfterInitialization(@NonNull Object bean, @NonNull String beanName) throws BeansException {
+        if (TARGET_BEAN_NAME.equals(beanName)) {
+            System.out.println("BeanPostProcessor2#postProcessAfterInitialization");
+        }
+        return bean;
+    }
+
+    @Override
     public int getOrder() {
-        return 2;
+        return 1;
     }
 }

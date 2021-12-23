@@ -7,7 +7,7 @@ import org.springframework.lang.NonNull;
 
 /**
  * @author Hodur
- * @date 2020-08-19
+ * @date 2020/8/19
  */
 public class MyBeanPostProcessor implements BeanPostProcessor, Ordered {
     public MyBeanPostProcessor() {
@@ -16,6 +16,14 @@ public class MyBeanPostProcessor implements BeanPostProcessor, Ordered {
     }
 
     private final static String TARGET_BEAN_NAME = "person";
+
+    @Override
+    public Object postProcessBeforeInitialization(@NonNull Object bean, @NonNull String beanName) throws BeansException {
+        if (TARGET_BEAN_NAME.equals(beanName)) {
+            System.out.println("BeanPostProcessor#postProcessBeforeInitialization");
+        }
+        return bean;
+    }
 
     @Override
     public Object postProcessAfterInitialization(@NonNull Object bean, @NonNull String beanName) throws BeansException {
@@ -28,15 +36,7 @@ public class MyBeanPostProcessor implements BeanPostProcessor, Ordered {
     }
 
     @Override
-    public Object postProcessBeforeInitialization(@NonNull Object bean, @NonNull String beanName) throws BeansException {
-        if (TARGET_BEAN_NAME.equals(beanName)) {
-            System.out.println("BeanPostProcessor#postProcessBeforeInitialization");
-        }
-        return bean;
-    }
-
-    @Override
     public int getOrder() {
-        return 10;
+        return 9;
     }
 }

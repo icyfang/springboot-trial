@@ -60,6 +60,7 @@ class ConcatSqlRepositoryTest {
             user.setBirthday(LocalDate.now());
             user.setRegisterTime(LocalDateTime.now());
             user.setProvisionDate(new Date());
+
             l.add(user);
         }
         batchUserRepository.batchInsert(l);

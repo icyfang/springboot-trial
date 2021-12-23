@@ -10,7 +10,7 @@ import org.springframework.lang.NonNull;
 
 /**
  * @author Hodur
- * @date 2020-08-19
+ * @date 2020/8/19
  */
 public class Person implements BeanFactoryAware, BeanNameAware, InitializingBean, DisposableBean {
 
@@ -31,13 +31,21 @@ public class Person implements BeanFactoryAware, BeanNameAware, InitializingBean
         this.name = name;
     }
 
+    public BeanFactory getBeanFactory() {
+        return beanFactory;
+    }
+
+    public String getBeanName() {
+        return beanName;
+    }
+
     @Override
     public String toString() {
         return "Person [name=" + name + "]";
     }
 
     /**
-     * 这是BeanFactoryAware接口方法
+     * BeanFactoryAware 接口方法
      */
     @Override
     public void setBeanFactory(@NonNull BeanFactory beanFactory) throws BeansException {
@@ -63,7 +71,7 @@ public class Person implements BeanFactoryAware, BeanNameAware, InitializingBean
     }
 
     /**
-     * 这是DiposibleBean接口方法
+     * 这是DisposableBean接口方法
      */
     @Override
     public void destroy() {
@@ -73,6 +81,7 @@ public class Person implements BeanFactoryAware, BeanNameAware, InitializingBean
     /**
      * 通过<bean>的init-method属性指定的初始化方法
      */
+    @SuppressWarnings("unused")
     public void myInit() {
         System.out.println("Person init-method");
     }
@@ -80,6 +89,7 @@ public class Person implements BeanFactoryAware, BeanNameAware, InitializingBean
     /**
      * 通过<bean>的destroy-method属性指定的初始化方法
      */
+    @SuppressWarnings("unused")
     public void myDestroy() {
         System.out.println("Person destroy-method");
     }

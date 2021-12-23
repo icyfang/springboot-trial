@@ -18,7 +18,7 @@ public class MyInstantiationAwareBeanPostProcessor implements InstantiationAware
     private final static String TARGET_BEAN_NAME = "person";
 
     /**
-     * 接口方法、实例化Bean之前调用
+     * 接口方法、实例化 Bean 之前调用
      */
     @Override
     public Object postProcessBeforeInstantiation(@NonNull Class beanClass, @NonNull String beanName) throws BeansException {
@@ -41,10 +41,9 @@ public class MyInstantiationAwareBeanPostProcessor implements InstantiationAware
      */
     @Override
     public PropertyValues postProcessProperties(@NonNull PropertyValues pvs, @NonNull Object bean,
-                                                @NonNull String beanName)
-            throws BeansException {
+                                                @NonNull String beanName) throws BeansException {
         if (TARGET_BEAN_NAME.equals(beanName)) {
-            System.out.println("InstantiationAwareBeanPostProcessor#postProcessPropertyValues");
+            System.out.println("InstantiationAwareBeanPostProcessor#postProcessProperties");
         }
         return pvs;
     }

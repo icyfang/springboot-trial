@@ -10,7 +10,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
  * @author Hodur
- * @date 2020/8/19
+ * @date 2020/08/19
  */
 @ExtendWith(SpringExtension.class)
 @SpringBootTest

@@ -13,7 +13,7 @@
     <description>Demo project for Spring Boot</description>
 
     <properties>
-        <version.swagger>2.9.2</version.swagger>
+        <version.swagger>2.10.0</version.swagger>
     </properties>
 
     <dependencies>
